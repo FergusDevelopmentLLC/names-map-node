@@ -53,9 +53,15 @@ histogram in progress. See http://104.236.16.91:8645/names/d3/histogram.html
 
 The bars represent year, and highlight based on the slider.
 
+Tooltip affordance when hovering over state.
+
 The most popular year for a name should be signified/displayed.
 
 Bi-variate version is considered, in order to map 2 names simultaneously. Input 2 names.
+
+Button to get get to the most popular year
+
+Hover action on the icons so that they look like they can be interacted with.
 
 ### Wireframes
 
