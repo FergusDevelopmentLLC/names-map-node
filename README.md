@@ -35,11 +35,11 @@ http://storage9.static.itmages.com/i/17/0828/h_1503960370_4537145_c3520122ac.png
 
   U.S. State choropleth map, also a slider explore the name year by year.
 
-### Content and requirements
+### Content and requirements and User interface
 
-### User interaction (UI)
+Map shows state name data by year for names in the Popular Name Database (1910 - present)
 
-Random name/map produced on initial page load.
+Random name/map produced on initial page load from a database query from over 33k distinct names.
 
 User can change name to see a new map and can request a random name.
 
@@ -47,9 +47,7 @@ User can select Male/Female for the name lookup.
 
 User can slide year from when the name first entered the list to when/if it exited.
 
-Database behind map has over 33k distinct names in it, which means that this visualization can produce as many.
-
-Possible bi-variate version, in order to map 2 names simultaneously.
+Bi-variate version, in order to map 2 names simultaneously. Input 2 names.
 
 ### Wireframes
 
@@ -91,7 +89,7 @@ a series of low fidelity wireframes, paper prototypes, or mockups (in addition t
   * [Leaflet.js](#leaflet) - Leading open-source JavaScript library for mobile-friendly interactive maps. [link](http://leafletjs.com/)
   * GeoJSON
   * topojson
-  
+
   * [D3.js version 4](#d3js) - D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. [link](https://d3js.org/)
 * [Utilities](#utilities)
   * [Postman](#postman) - Powerful HTTP client for testing web services. [link](https://www.getpostman.com/)
