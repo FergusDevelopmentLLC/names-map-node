@@ -219,6 +219,9 @@
       .defer(d3.json, "/popular_name/getRandomName")
       .await(setName);
   }
+  else {
+    init();
+  }
 
   function setName(error, random_name_data) {
     sex = random_name_data[0].sex;
@@ -342,7 +345,6 @@
 
     addLegend();
 
-    console.log('here');
     makeChart(name_data, the_year);
 
     updateMap();
