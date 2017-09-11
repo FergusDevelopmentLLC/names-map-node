@@ -2,6 +2,8 @@
 
 Final Project Proposal
 
+![](http://storage2.static.itmages.com/i/17/0911/h_1505100561_8959476_b8f21c9727.png "")
+
 ### Topic
 
   I'll be mapping the occurrences of male and female names in America from 1910 until 2016. The extent of the map will be all 50 states.
