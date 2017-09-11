@@ -39,6 +39,18 @@ http://storage9.static.itmages.com/i/17/0828/h_1503960370_4537145_c3520122ac.png
 
 ### User interaction (UI)
 
+Random name/map produced on initial page load.
+
+User can change name to see a new map and can request a random name.
+
+User can select Male/Female for the name lookup.
+
+User can slide year from when the name first entered the list to when/if it exited.
+
+Database behind map has over 33k distinct names in it, which means that this visualization can produce as many.
+
+Possible bi-variate version, in order to map 2 names simultaneously.
+
 ### Wireframes
 
 a series of low fidelity wireframes, paper prototypes, or mockups (in addition to the 1-2 pages)
@@ -58,18 +70,31 @@ a series of low fidelity wireframes, paper prototypes, or mockups (in addition t
 
 ![](http://storage5.static.itmages.com/i/17/0911/h_1505097554_9759760_2522635eb1.png "")
 
-Also, include a brief description of your anticipated technologies you'll use to complete the project:
+###  Technology Stack
 
-### Anticipating your technology stack
+* [Backend Data wrangling](#backend)
+  * [PostgreSQL](#install-postgresql) - Powerful, open source object-relational database system. [link](https://www.postgresql.org/)
+    * [PostGIS](#install-postgis) - Geospatial database extender for PostgreSQL. [link](http://postgis.net/)
+  * Python
+  * MapShaper
+  * QGIS
+* [Web framework](#web-framework)
+  * [Node.js](#install-node) - Runtime built on Chrome's V8 JavaScript engine. [link](https://nodejs.org/)
+  * [Git](#git) - Version control. [link](https://git-scm.com/)
+  * [Express.js](#express) - Web framework for Node.js. [link](https://expressjs.com/)
+  * [Knex.js](#knex) - Query builder for PostgreSQL/Node.js. [link](http://knexjs.org/)
+  * [Joi.js](#joi) - Validator for JavaScript objects. [link](http://mongoosejs.com/)
+  * [REST API](#rest-api)
+* [Front End](#front-end) The stuff in the /public folder
+  * GeoJSON
+  * topojson
+  * [Vue.js](#vue) - Open-source progressive JavaScript framework for building user interfaces. [link](https://vuejs.org/)
+  * [Bootstrap](#bootstrap) - Popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web. [link](http://getbootstrap.com/)
+  * [Leaflet.js](#leaflet) - Leading open-source JavaScript library for mobile-friendly interactive maps. [link](http://leafletjs.com/)
 
-While your answer to this question need not be definite at this point, briefly describe the "technology stack" you plan to use for your final map. This should include:
-
-* data and information processing tools, web-based or desktop (i.e., QGIS, [MapShaper](http://www.mapshaper.org/))
-* the format you'll use to store your data (i.e., flat files such as CSV or GeoJSON, database technology such as CARTO)
-* the JS libraries you anticipate using or need (include any relevant plugins)
-* other relevant web technologies you'll be using (i.e., HTML, CSS)
-* the hosting platform you intend to use to host your map (i.e., GitHub pages, your own web server)
-
+  * [D3.js version 4](#d3js) - D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. [link](https://d3js.org/)
+* [Utilities](#utilities)
+  * [Postman](#postman) - Powerful HTTP client for testing web services. [link](https://www.getpostman.com/)
 
 ### Map Notes/TODO items
 
@@ -101,6 +126,15 @@ The Male/Female switch is html styled with css over the svg. Maybe a native svg 
 
 Same with slider. Will try to implement.
 
+I really don't like the woman, anything better than a floating html div?
+
+Is the ability to designate a sex even necessary?
+
+I used this to make the Name entry work. New thing? Unsupported?
+https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Editable_content
+This probably breaks all sorts of https://www.w3.org/WAI/intro/accessibility.php rules.
+
+Make the number breaks clean, round them in some way.
 
 Next step is to get histogram working...
 http://104.236.16.91:8645/names/d3/histogram.html
