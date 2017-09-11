@@ -2,20 +2,22 @@
 <html>
 <head>
     <meta charset=utf-8 />
-    <title>Starbucks Map</title>
+    <title>Name Map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src="../vue/dist/vue.js"></script>
-    <script src="../axios/dist/axios.min.js"></script>
-    <script src="../leaflet/dist/leaflet.js"></script>
-    <script src="../simple-statistics/dist/simple-statistics.min.js"></script>
-    <script src="../moment/min/moment.min.js"></script>
+
+    <script src="../../vue/dist/vue.js"></script>
+    <script src="../../axios/dist/axios.min.js"></script>
+    <script src="../../leaflet/dist/leaflet.js"></script>
+    <script src="../../simple-statistics/dist/simple-statistics.min.js"></script>
+    <script src="../../moment/min/moment.min.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
 
     <script src="assets/spin.min.js"></script><!-- <script src="http://spin.js.org/spin.js"></script> -->
-    <link rel="stylesheet" href="../leaflet/dist/leaflet.css" />
-    <link href='assets/bootstrap-custom.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../leaflet/dist/leaflet.css" />
+    <!-- <link href='assets/bootstrap-custom.css' rel='stylesheet' type='text/css'> -->
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
     <link href='assets/slider.css' rel='stylesheet' type='text/css'>
 
     <style>
@@ -56,7 +58,7 @@
           margin: 0;
           font-size: 14px;
           text-align: center;
-          margin-bottom: 5px;
+          margin-bottom: 10px;
         }
 
         h4 {
@@ -112,9 +114,9 @@
 <body>
 <div id="app">
   <div id="legend">
-    <h2>{{ title }}</h2>
+    <h2>"{{ popular_name }}"</h2>
     <h3>{{ subtitle }}</h3>
-    <h4>{{ display_date }}</h4>
+    <h3>{{ subsubtitle }}</h3>
     <table>
       <tr>
         <td v-if="legend_breaks[0]" v-bind:style="{ background: legend_breaks[0][1], border: '1px solid rgba(' + this.rgb + ', .75)' }">&nbsp;</td>
@@ -139,12 +141,12 @@
     </table>
     <div id='slider-wrapper'>
       <label>
-        <span class="min">{{ new Date(dates[0]).getFullYear() }}</span><span class="max">{{ new Date(dates[dates.length - 1]).getFullYear() }}</span>
+        <span class="min">{{ min_year }}</span><span class="max">{{ this.max_year }}</span>
         <input type='range' min='0' max='0' value='0' step='1' v-on:change='sliderChange' v-on:input='sliderChange' id='range-slider' class='range-slider'>
       </label>
     </div>
     <div id='play-wrapper' v-if="data_exists">
-      <button type="btn-play" class="btn btn-primary" v-on:click='init'>Redraw Grid</button>
+      <button type="btn-play" class="btn btn-primary" v-on:click='init'>Change Name</button>
     </div>
 
   </div>
@@ -172,12 +174,6 @@
 
     var map = L.map('map', options).fitBounds(maxBounds);
 
-    // var basemap = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-    // 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-    // 	subdomains: 'abcd',
-    // 	maxZoom: 19
-    // }).addTo(map);
-
     var basemap = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
     	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     	subdomains: 'abcd',
@@ -191,26 +187,28 @@
     var app = new Vue({
       el: '#app',
       data: {
-        name: 'Starbucks',
+		    popular_name: 'Quinn',
+        sex: 'M',
         month_names: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
         the_month: 1,
-        the_year: 2006,
+        the_year: 1910,
         min_month: 1,
-        min_year: 2006,
+        min_year: 190,
         max_month: 1,
         max_year: 2016,
         title: '',
         subtitle: '',
+        subsubtitle: '',
         data_exists: false,
         delay: 100,
         state: 'pause',
         label: 'Play',
-        rgb: "0, 128, 0", //"69, 126, 231",
+        rgb: "51, 122, 183",
         breaks: [],
         legend_breaks: [],
-        openings: '',
-        hex_grid: '',
-        hex_grid_size: '100',
+        occurrences: '',
+        geom: '',
+        hex_geom_size: '100',
         dates: [],
         display_date: ''
       },
@@ -218,74 +216,50 @@
 
         init : function () {
 
-          this.clearMap();
+		      this.clearMap();
 
-          const bounds = map.getBounds();
-          const box = bounds._southWest.lng + "/" + bounds._southWest.lat + "/" + bounds._northEast.lng + "/" + bounds._northEast.lat;
-          const zoom = map.getZoom();
+          const name_query = gup('name', document.location.search);
+          if(name_query != null)
+            this.popular_name = name_query;
 
-          this.hex_grid_size = '150';
-          if(zoom >= 4)
-            this.hex_grid_size = '150';
-          if(zoom >= 5)
-            this.hex_grid_size = '100';
-          if(zoom >= 6)
-            this.hex_grid_size = '75';
-          if(zoom >= 6.5)
-            this.hex_grid_size = '50';
-          if(zoom >= 7)
-            this.hex_grid_size = '25';
-          if(zoom >= 8.5)
-            this.hex_grid_size = '10';
-          if(zoom > 10)
-            this.hex_grid_size = '05';
-          if(zoom > 12)
-            this.hex_grid_size = '025';
-          if(zoom > 14)
-            this.hex_grid_size = '0125';
+          const sex_query = gup('sex', document.location.search);
+          if(sex_query != null)
+            this.sex = sex_query;
 
-          document.getElementsByClassName('spinner')[0].style.display = 'block';
+          var data_url = '../../popular_name/d/' + this.popular_name  + '/' + this.sex;
+          var geom_url = '../../state/';
+
+          console.log(data_url);
+          console.log(geom_url);
 
           var self = this;
 
-          //http://127.0.0.1:8644/starbucks_data/data/150/-165.49/-1.14/-45.79/64.96 /data/:size/:left_lng/:bottom_lat/:right_lng/:top_lat
-          //http://127.0.0.1:8644/grid/cont_us_hex_grid/150/-165.49/-1.14/-45.79/64.96 /cont_us_hex_grid/:size/:left_lng/:bottom_lat/:right_lng/:top_lat
-          var data_url = '/starbucks_data/data/' + this.hex_grid_size + '/' + box;
-          var grid_url = '/grid/cont_us_hex_grid/' + this.hex_grid_size + '/' + box;
-
-          if (this.hex_grid_size == '100') {
-            data_url = 'data/openings.json';
-            grid_url = 'data/hex_grid_cont_us_100.geojson';
-          }
-
-          console.log(data_url);
-          console.log(grid_url);
-
-          self.title = "Starbucks Locations";
-
           axios.get(data_url).then(res => {
 
-            self.openings = res.data;
+            self.occurrences = res.data;
+            for (occurrence in self.occurrences) {
+              var dt = "12-31-" + self.occurrences[occurrence].yr;
+              self.occurrences[occurrence].date = new Date(dt);
+            }
 
-            axios.get(grid_url).then(res => {
+            axios.get(geom_url).then(res => {
 
-              self.hex_grid = self.getGrid(res.data);
-              self.hex_grid.addTo(map);
-              self.joinOpeningsToGrid();
-              self.populateMaxMinMonthYear();
-
+              self.geom = self.getGeom(res.data);
+              self.geom.addTo(map);
+              self.joinOccurrencesToGeom();
+              self.populateMaxMinMonthYearDates();
               self.populateBreaks(5);
               self.populateLegendBreaks();
 
               document.querySelector('div[id=legend]').style.display = 'block';
               document.querySelector('input[id=range-slider]').max = this.dates.length - 1;
-              document.querySelector('input[id=range-slider]').value = this.dates.length - 1;
+              document.querySelector('input[id=range-slider]').value = 0;
 
               self.updateMap();
 
             });
-          });
 
+          });
         },
 
         clearMap : function () {
@@ -302,49 +276,48 @@
 
         },
 
-        getGrid: function (grid_data) {
+        getGeom: function (geom_data) {
           var hex_color = 'rgba(' + this.rgb + ', 1)';
-          var the_grid = L.geoJson(grid_data, {
+          var the_geom = L.geoJson(geom_data, {
             style: function(feature) {
               return {
                 color: hex_color,
                 fillOpacity: 0,
-                stroke: false,
-                weight: 1
+                stroke: true,
+                weight: 2
               }
             }
           });
-          return the_grid;
+          return the_geom;
         },
 
-        joinOpeningsToGrid: function () {
-
-          for (var grid in this.hex_grid._layers) {
-            var layer_gid = this.hex_grid._layers[grid].feature.properties.gid;
-            this.hex_grid._layers[grid].feature.properties.openings = [];
+		    joinOccurrencesToGeom: function () {
+          for (var geom in this.geom._layers) {
+            var layer_stusps = this.geom._layers[geom].feature.properties.stusps;
+            this.geom._layers[geom].feature.properties.occurrences = [];
             var i = 0;
-            for (var opening in this.openings) {
-              if(layer_gid == this.openings[opening].hex_id) {
-                this.hex_grid._layers[grid].feature.properties.openings[i] = this.openings[opening].open_date;
+            for (var occurrence in this.occurrences) {
+              if(layer_stusps == this.occurrences[occurrence].st) {
+                this.geom._layers[geom].feature.properties.occurrences[i] = this.occurrences[occurrence];
                 i++;
               }
             }
           }
         },
 
-        populateMaxMinMonthYear : function () {
+		    populateMaxMinMonthYearDates : function () {
 
-          var first_date = new Date(this.openings[0].open_date);
+          var first_date = new Date(this.occurrences[0].date);
 
-          var last_date = new Date(this.openings[this.openings.length-1].open_date);
+          var last_date = new Date(this.occurrences[this.occurrences.length-1].date);
 
           this.min_month = first_date.getMonth();
           this.min_year = first_date.getFullYear();
           this.max_month = last_date.getMonth();
           this.max_year = last_date.getFullYear();
 
-          this.the_month = this.max_month;
-          this.the_year = this.max_year;
+          this.the_month = this.min_month;
+          this.the_year = this.min_year;
 
           this.data_exists = true;
 
@@ -355,23 +328,26 @@
           // console.log(this.max_month);
           // console.log(this.max_year);
 
-          var startDate = moment(new Date(this.min_year + '-' + parseInt((this.min_month + 1)) + '-1'));
-          var endDate = moment(new Date(this.max_year + '-' + parseInt((this.max_month + 1)) + '-1'));
+          var min_year_str = '12-31-' + this.min_year;
+          var max_year_str = '12-31-' + this.max_year;
+
+          var startDate = moment(new Date(min_year_str));
+          var endDate = moment(new Date(max_year_str));
 
           this.dates = [];
-          endDate.add(1, "month"); //Substract one month to exclude endDate itself
-          var month = moment(startDate); //clone the startDate
-          month.add(1, "month");
-          month.subtract(1, "day");
-          while( month < endDate ) {
-            month.add(1, "month");
-            this.dates.push(month.format('MMM D, YYYY'));
+          var year = moment(startDate);
+
+          while( year <= endDate ) {
+            this.dates.push(year.format('MMM D, YYYY'));
+            year.add(1, "year");
           }
+
         },
 
         populateLegendBreaks: function () {
 
           var breaks = this.breaks;
+
           var breaks_simp = [];
 
           if(breaks[0]){
@@ -428,68 +404,72 @@
 
         updateMap : function () {
 
-          var last_day_of_current_month = new moment(new Date(this.the_year, this.the_month + 1, 0));
+          var last_day_of_current_year = new moment(new Date('12-31-' + this.the_year));
 
-          this.display_date = last_day_of_current_month.format('MMM D, YYYY');
+          this.display_date = last_day_of_current_year.format('YYYY');
 
-          var total_openings = 0;
+          var total_occurrences_all_time = 0;
+          var total_occurrences_for_year = 0;
 
-          for (var grid in this.hex_grid._layers) {
-            var openings_since_beg_for_grid = 0;
-            if (this.hex_grid._layers[grid].feature.properties.openings.length > 0) {
-              for (var opening in this.hex_grid._layers[grid].feature.properties.openings) {
-                var open_date = new Date(this.hex_grid._layers[grid].feature.properties.openings[opening]);
-                if(open_date <= last_day_of_current_month) {
-                  openings_since_beg_for_grid ++;
-                  total_openings ++;
+          for (var geom in this.geom._layers) {
+            this.geom._layers[geom].setStyle({
+              fillOpacity: 0,
+              stroke: true
+            });
+          }
+
+          for (var geom in this.geom._layers) {
+            if (this.geom._layers[geom].feature.properties.occurrences.length > 0) {
+              for (var occurrence in this.geom._layers[geom].feature.properties.occurrences) {
+                var occurrence_date = new Date(this.geom._layers[geom].feature.properties.occurrences[occurrence].date);
+                if(occurrence_date.getFullYear() == this.the_year && this.geom._layers[geom].feature.properties.occurrences[occurrence].oc > 0) {
+                  total_occurrences_for_year = total_occurrences_for_year + this.geom._layers[geom].feature.properties.occurrences[occurrence].oc;
+                  var opacity = getOpacity(this.geom._layers[geom].feature.properties.occurrences[occurrence].oc, this.breaks);
+                  if (opacity > 0){
+                    var self = this;
+                    this.geom._layers[geom].setStyle({
+                      fillOpacity: opacity,
+                      stroke: true
+                    });
+                    var hex_color = rgb2hex('rgba(' + self.rgb + ', 1)');
+                    this.geom._layers[geom].on('mouseover', function(layer) {
+                      if(this.options.fillOpacity > 0) {
+                        this.bringToFront();
+                        this.setStyle({
+                          stroke: true,
+                          color: 'red',
+                          fillColor: hex_color,
+                          weight: 2
+                        });
+                      }
+                      else {
+                        this.closeTooltip();
+                      }
+                    });
+                    this.geom._layers[geom].on('mouseout', function(layer) {
+                      if(this.options.fillOpacity > 0) {
+                        this.setStyle({
+                          stroke: true,
+                          color: hex_color,
+                          fillColor: hex_color,
+                          weight: 1
+                        });
+                      }
+                    });
+
+                    var message = this.geom._layers[geom].feature.properties.occurrences[occurrence].oc + " births in " + this.display_date;
+      			        this.geom._layers[geom].bindTooltip(message, { sticky: true });
+                  }
+                }
+                if(occurrence_date.getFullYear() <= this.the_year) {
+                  total_occurrences_all_time = total_occurrences_all_time + this.geom._layers[geom].feature.properties.occurrences[occurrence].oc;
                 }
               }
-              var opacity = getOpacity(openings_since_beg_for_grid, this.breaks);
-              //console.log(this.hex_grid._layers[grid]);
-              if (opacity > 0){
-                var self = this;
-                this.hex_grid._layers[grid].setStyle({
-                  fillOpacity: opacity,
-                  stroke: true
-                });
-                var hex_color = rgb2hex('rgba(' + self.rgb + ', 1)');
-                this.hex_grid._layers[grid].on('mouseover', function(layer) {
-                  if(this.options.fillOpacity > 0) {
-                    this.bringToFront();
-                    this.setStyle({
-                      stroke: true,
-                      color: 'red',
-                      fillColor: hex_color,
-                      weight: 2
-                    });
-                  }
-                  else {
-                    this.closeTooltip();
-                  }
-                });
-                this.hex_grid._layers[grid].on('mouseout', function(layer) {
-                  if(this.options.fillOpacity > 0) {
-                    this.setStyle({
-                      stroke: true,
-                      color: hex_color,
-                      fillColor: hex_color,
-                      weight: 1
-                    });
-                  }
-                });
-
-                var openings_label = "openings"
-                if(openings_since_beg_for_grid == 1) { openings_label = "opening" };
-                var message = openings_since_beg_for_grid + " " + openings_label + " as of " + this.display_date;
-                this.hex_grid._layers[grid].bindTooltip(message, { sticky: true });
-              }
+              this.subtitle = total_occurrences_for_year.toLocaleString() + " births in " + this.the_year;
             }
           }
-          var openings_label = "openings"
-          if(total_openings == 1)
-            openings_label = "opening"
 
-          this.subtitle = total_openings + " " + openings_label + " as of ";
+          this.subsubtitle = total_occurrences_all_time.toLocaleString() + " births since " + this.min_year;
 
           document.getElementsByClassName('spinner')[0].style.display = 'none';
 
@@ -530,17 +510,14 @@
 
         populateBreaks: function (number_of_classes) {
 
-          var opens = [];
-          for (var grid in this.hex_grid._layers) {
-            if(this.hex_grid._layers[grid].feature.properties.openings.length > 0){
-              //console.log(this.hex_grid._layers[grid].feature.properties.openings.length);
-              opens.push(this.hex_grid._layers[grid].feature.properties.openings.length);
+          var occurrences = [];
+          for (var geom in this.geom._layers) {
+            for (occurrence in this.geom._layers[geom].feature.properties.occurrences) {
+              occurrences.push(this.geom._layers[geom].feature.properties.occurrences[occurrence].oc);
             }
           }
 
-          var breaks = getClassBreaks(opens, number_of_classes);
-
-          this.breaks = breaks;
+          this.breaks = getClassBreaks(occurrences, number_of_classes);
 
         },
 
@@ -594,7 +571,9 @@
     }
 
     function getOpacity(d, breaks) {
+
       d = parseInt(d);
+
       if(d == 0)
         return 0;
 
@@ -692,6 +671,15 @@
           return 0.85;
         }
       }
+    }
+
+    function gup( name, url ) {
+      if (!url) url = location.href;
+      name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+      var regexS = "[\\?&]"+name+"=([^&#]*)";
+      var regex = new RegExp( regexS );
+      var results = regex.exec( url );
+      return results == null ? null : results[1];
     }
 
     function createSpinner() {

@@ -22,14 +22,6 @@ app.use(helmet());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 
-//routes
-//starbucks map
-const grid = require('./routes/grid');
-app.use('/grid', grid);
-
-const starbucksdata = require('./routes/starbucks');
-app.use('/starbucks_data', starbucksdata);
-
 //popular_name map
 const popular_name = require('./routes/popular_name');
 app.use('/popular_name', popular_name);
