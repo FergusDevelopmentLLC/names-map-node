@@ -43,12 +43,20 @@ http://storage9.static.itmages.com/i/17/0828/h_1503960370_4537145_c3520122ac.png
 
 a series of low fidelity wireframes, paper prototypes, or mockups (in addition to the 1-2 pages)
 
-http://storage1.static.itmages.com/i/17/0911/h_1505096468_4092358_b48c0cd0bd.png
 
-http://storage2.static.itmages.com/i/17/0911/h_1505096535_3247971_aa76d0e156.png
+![](http://storage3.static.itmages.com/i/17/0911/h_1505097386_1540974_fef790703f.png "")
 
-http://storage3.static.itmages.com/i/17/0911/h_1505096576_9497553_1b96437af9.png
+![](http://storage1.static.itmages.com/i/17/0911/h_1505096468_4092358_b48c0cd0bd.png "")
 
+![](http://storage2.static.itmages.com/i/17/0911/h_1505096535_3247971_aa76d0e156.png "")
+
+![](http://storage3.static.itmages.com/i/17/0911/h_1505096576_9497553_1b96437af9.png "")
+
+![](http://storage1.static.itmages.com/i/17/0911/h_1505096986_5526102_dbae722e6d.png "")
+
+![](http://storage3.static.itmages.com/i/17/0911/h_1505097046_2645969_c83f97308e.png "")
+
+![](http://storage5.static.itmages.com/i/17/0911/h_1505097554_9759760_2522635eb1.png "")
 
 Also, include a brief description of your anticipated technologies you'll use to complete the project:
 
@@ -91,7 +99,7 @@ http://104.236.16.91:8645/names/d3/?name=Will&sex=M
 
 The Male/Female switch is html styled with css over the svg. Maybe a native svg switch is better.
 
-Same with slider. Will try to implement
+Same with slider. Will try to implement.
 
 
 Next step is to get histogram working...
