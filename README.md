@@ -86,12 +86,12 @@ a series of low fidelity wireframes, paper prototypes, or mockups (in addition t
   * [Joi.js](#joi) - Validator for JavaScript objects. [link](http://mongoosejs.com/)
   * [REST API](#rest-api)
 * [Front End](#front-end) The stuff in the /public folder
-  * GeoJSON
-  * topojson
   * [Vue.js](#vue) - Open-source progressive JavaScript framework for building user interfaces. [link](https://vuejs.org/)
   * [Bootstrap](#bootstrap) - Popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web. [link](http://getbootstrap.com/)
   * [Leaflet.js](#leaflet) - Leading open-source JavaScript library for mobile-friendly interactive maps. [link](http://leafletjs.com/)
-
+  * GeoJSON
+  * topojson
+  
   * [D3.js version 4](#d3js) - D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. [link](https://d3js.org/)
 * [Utilities](#utilities)
   * [Postman](#postman) - Powerful HTTP client for testing web services. [link](https://www.getpostman.com/)
