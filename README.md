@@ -47,7 +47,13 @@ User can select Male/Female for the name lookup.
 
 User can slide year from when the name first entered the list to when/if it exited.
 
-Bi-variate version, in order to map 2 names simultaneously. Input 2 names.
+histogram in progress. See http://104.236.16.91:8645/names/d3/histogram.html
+
+The bars represent year, and highlight based on the slider.
+
+The most popular year for a name should be signified/displayed.
+
+Bi-variate version is considered, in order to map 2 names simultaneously. Input 2 names.
 
 ### Wireframes
 
