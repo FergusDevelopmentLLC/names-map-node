@@ -6,11 +6,11 @@ Final Project Proposal
 
 ### Topic
 
-  I'll be mapping the occurrences of male and female names in America from 1910 until 2016. The extent of the map will be all 50 states.
+Occurrences of male and female names in America from 1910 until 2016. The extent of the map will be all 50 states.
 
 ### Title
 
-  Popular American Surnames of the Last Century
+Popular American Surnames of the Last Century
 
 ### Map objectives
 
@@ -20,11 +20,11 @@ I want to find different ways for the data to be explored using different platfo
 
 ### User Persona
 
-  Maybe this is a map that is provided as part of news article or post about the changing nature of baby names. The user is an expectant mother looking for a popular or unique name for her child. They can use the map to see names that are popular now and get an idea if the popularity is on the rise or fall. The user has low expertise and motivation, so the map should be as simple as possible to understand and manipulate.
+Maybe this is a map that is provided as part of news article or post about the changing nature of baby names. The user is an expectant mother looking for a popular or unique name for her child. They can use the map to see names that are popular now and get an idea if the popularity is on the rise or fall. The user has low expertise and motivation, so the map should be as simple as possible to understand and manipulate.
 
 ### Use case/scenario
 
-  By using a slider to manipulate the year, users will need to see and understand how the changing colors on the map and highlighting of a histogram column signifies popularity over time. Also, the user needs to understand that the map is dynamic for any name, and that they can change it. Another goal is to possibly show how different name popularity is related over time.
+By using a slider to manipulate the year, users will need to see and understand how the changing colors on the map and highlighting of a histogram column signifies popularity over time. Also, the user needs to understand that the map is dynamic for any name, and that they can change it. Another goal is to possibly show how different name popularity is related over time.
 
 ### Data source
 
@@ -35,7 +35,7 @@ http://storage9.static.itmages.com/i/17/0828/h_1503960370_4537145_c3520122ac.png
 
 ### Thematic representation
 
-  U.S. State choropleth map, also a slider explore the name year by year.
+U.S. State choropleth map, also a slider explore the name year by year.
 
 ### Content and requirements and User interface
 
@@ -66,7 +66,6 @@ Hover action on the icons so that they look like they can be interacted with.
 ### Wireframes
 
 a series of low fidelity wireframes, paper prototypes, or mockups (in addition to the 1-2 pages)
-
 
 ![](http://storage3.static.itmages.com/i/17/0911/h_1505097386_1540974_fef790703f.png "")
 
@@ -117,7 +116,7 @@ So, if you refresh the page you get a random name each time.
 
 The edit (pencil) and shuffle icons in the legend are works in progress.
 
-  If you can get a click to work on the shuffle icon, it simply reloads the page, producing a random name/map. This doesn't have to reload, could be written.
+If you can get a click to work on the shuffle icon, it simply reloads the page, producing a random name/map. This doesn't have to reload, could be written.
 
 You can change the name by clicking on it, entering a name and pressing enter. This is not as smooth as I think it could be. Using a new thing, an editable DIV.
 https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Editable_content
