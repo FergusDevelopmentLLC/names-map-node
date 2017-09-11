@@ -16,11 +16,26 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
-var data_url = '/popular_name/d/Jennifer/F';
+var popular_name = 'William';
+var sex = 'M';
 
 d3.queue()
-  .defer(d3.json, data_url)
-  .await(makeHist);
+  .defer(d3.json, "/popular_name/getRandomName")
+  .await(setName);
+
+function setName(error, random_name_data) {
+  sex = random_name_data[0].sex;
+  popular_name = random_name_data[0].name;
+  init();
+}
+
+function init() {
+  var data_url = '/popular_name/d/' + popular_name + '/' + sex;
+  console.log(data_url);
+  d3.queue()
+    .defer(d3.json, data_url)
+    .await(makeHist);
+}
 
 function makeHist(error, name_data) {
 
