@@ -103,7 +103,7 @@ a series of low fidelity wireframes, paper prototypes, or mockups (in addition t
   * [Leaflet.js](#leaflet) - Leading open-source JavaScript library for mobile-friendly interactive maps. [link](http://leafletjs.com/)
   * GeoJSON
   * topojson
-
+  * SVG
   * [D3.js version 4](#d3js) - D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. [link](https://d3js.org/)
 * [Utilities](#utilities)
   * [Postman](#postman) - Powerful HTTP client for testing web services. [link](https://www.getpostman.com/)

@@ -11,8 +11,15 @@
   font: 10px sans-serif;
 }
 
+#name {
+  position: absolute;
+  top: 10px;
+  left: 300px;
+}
+
 </style>
 <svg width="960" height="500"></svg>
+<div id="name"></div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
@@ -26,6 +33,9 @@ d3.queue()
 function setName(error, random_name_data) {
   sex = random_name_data[0].sex;
   popular_name = random_name_data[0].name;
+
+  d3.select('#name').html(popular_name);
+
   init();
 }
 
