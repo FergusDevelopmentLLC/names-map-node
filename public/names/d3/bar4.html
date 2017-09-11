@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style> /* set the CSS */
+
+.bar { fill: steelblue; }
+
+</style>
+<body>
+
+<!-- load the d3.js library -->
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script>
+
+var popular_name = 'William';
+var sex = 'M';
+
+init();
+
+function init() {
+  var data_url = '/popular_name/d/' + popular_name + '/' + sex;
+  console.log(data_url);
+  d3.queue()
+    .defer(d3.json, data_url)
+    .await(makeChart);
+}
+
+function makeChart(error, name_data) {
+
+  // set the dimensions and margins of the graph
+  var margin = {top: 0, right: 0, bottom: 0, left: 0},
+      width = 200 - margin.left - margin.right,
+      height = 100 - margin.top - margin.bottom;
+
+  // set the ranges
+  var x = d3.scaleBand()
+    .range([0, width])
+    .padding(0.01);
+
+  var y = d3.scaleLinear()
+    .range([height, 0]);
+
+  var svg = d3.select("body")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var year_accumulations = [];
+  var last_yr = name_data[0].yr;
+  var year_accum = 0;
+
+  for(var oc in name_data) {
+    if(name_data[oc].yr == last_yr) {
+      year_accum += name_data[oc].oc;
+    }
+    else {
+      var year = {};
+      year.yr = last_yr;
+      year.year_accum = year_accum;
+      year_accumulations.push(year);
+      year_accum = name_data[oc].oc;
+      last_yr = name_data[oc].yr;
+    }
+  }
+
+  // Scale the range of the data in the domains
+  x.domain(year_accumulations.map(function(d) { return d.yr; }));
+  y.domain([0, d3.max(year_accumulations, function(d) { return d.year_accum; })]);
+
+  // append the rectangles for the bar chart
+  svg.selectAll(".bar")
+    .data(year_accumulations)
+  .enter().append("rect")
+    .attr("class", "bar")
+    .attr("x", function(d) { return x(d.yr); })
+    .attr("width", x.bandwidth())
+    .attr("y", function(d) { return y(d.year_accum); })
+    .attr("height", function(d) { return height - y(d.year_accum); });
+}
+
+</script>
+</body>

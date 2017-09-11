@@ -3,8 +3,8 @@
   color: #808080;
   padding: 0px;
   margin: 0px;
-  top: 450px;
-  left: 725px;
+  top: 500px;
+  left: 450px;
   display: none;
 }
 
@@ -14,11 +14,11 @@
 }
 
 #slider-wrapper input {
-  width:150px;
+  width:180px;
 }
 
 .slider {
-  width: 150px;
+  width: 180px;
 }
 
 /*=============================================*/
@@ -28,7 +28,7 @@ input[type=range] {
   -webkit-appearance: none;
   margin: 0px 0;
   width: 100%;
-  /*background-color: #E8E8E8;*/
+  background-color: #E8E8E8;
 }
 input[type=range]:focus {
   outline: none;

@@ -154,3 +154,7 @@ Make the number breaks clean, round them in some way.
 Next step is to get histogram working...
 http://104.236.16.91:8645/names/d3/histogram.html
 (reload this page to get a randome name histogram, look at console to see name)
+
+Do a double check on possible sql injection, harden joi, knexjs.
+
+Background color on the slider not matching legend.

@@ -149,6 +149,10 @@
           stroke: none;
         }
 
+        .bar {
+          fill: #31a354;
+        }
+
     </style>
 </head>
 <body>
@@ -329,6 +333,7 @@
         tooltip.style("opacity", 0);//TODO, figure a better tooltip
         the_year = this.value;
         updateMap();
+        highlightBarFor(the_year);
       });
 
     d3.select("#pop_name").style("display","block");
@@ -336,6 +341,9 @@
     d3.select("#switch-field").style("display","block");
 
     addLegend();
+
+    console.log('here');
+    makeChart(name_data, the_year);
 
     updateMap();
 
@@ -374,18 +382,6 @@
       });
 
     document.getElementById("pop_name").blur();
-
-    // $('#slider').val(most_popular_year);
-    // $("input[type='range']").slider( "refresh" );
-
-    // $('#slider').val(most_popular_year);
-    // $('#slider').slider('refresh');
-
-    //d3.select('#slider').property("value", most_popular_year);
-    // document.getElementById("slider").value = most_popular_year;
-    // document.getElementById("slider").fireEvent("onchange");
-
-
   }
 
   function joinDataToGeom(states, name_data) {
@@ -444,6 +440,7 @@
     }
 
     most_popular_year = most_pop_year;
+
   }
 
   function populateBreaks(number_of_classes, states) {
@@ -520,7 +517,7 @@
 
     legend_root.append("rect")
       .attr("class", "legend-rect")
-      .attr("height", 205)
+      .attr("height", 165)
       .attr("width", 180);
 
     //edit icon
@@ -602,6 +599,77 @@
 
       i++;
     }
+  }
+
+  function makeChart (name_data, the_year) {
+
+    var year_accumulations = [];
+    var last_yr = name_data[0].yr;
+    var year_accum = 0;
+
+    for(var oc in name_data) {
+      if(name_data[oc].yr == last_yr) {
+        year_accum += name_data[oc].oc;
+      }
+      else {
+        var year = {};
+        year.yr = last_yr;
+        year.year_accum = year_accum;
+        year_accumulations.push(year);
+        year_accum = name_data[oc].oc;
+        last_yr = name_data[oc].yr;
+      }
+    }
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 0, right: 0, bottom: 0, left: 0},
+        width = 200 - margin.left - margin.right,
+        height = 75 - margin.top - margin.bottom;
+
+    // set the ranges
+    var x = d3.scaleBand()
+      .range([0, width])
+      .padding(0.01);
+
+    var y = d3.scaleLinear()
+      .range([height, 0]);
+
+    d3.select('.bar-chart').remove();
+
+    svg.append("g")
+      .attr("class", 'bar-chart')
+      .attr("transform", "translate(440,420)");
+
+    // Scale the range of the data in the domains
+    x.domain(year_accumulations.map(function(d) { return d.yr; }));
+    y.domain([0, d3.max(year_accumulations, function(d) { return d.year_accum; })]);
+
+    var bar_chart_group = d3.select('.bar-chart');
+
+    // console.log(bar_chart_group);
+
+    // append the rectangles for the bar chart
+    bar_chart_group.selectAll(".bar")
+      .data(year_accumulations)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("id", function(d) { return 'bar-' + d.yr; })
+      .attr("x", function(d) { return x(d.yr); })
+      .attr("width", x.bandwidth())
+      .attr("y", function(d) { return y(d.year_accum); })
+      .attr("height", function(d) { return height - y(d.year_accum); });
+
+    highlightBarFor(the_year);
+
+  }
+
+  function highlightBarFor (the_year) {
+    d3.selectAll('.bar').each(function(d) {
+      var bar = d3.select(this);
+      var bar_id = bar._groups[0][0].id;
+      if ( bar_id == 'bar-' + the_year ) { bar.style('fill','#FF0000'); }
+      else { bar.style('fill', '#31a354'); }
+    });
   }
 
   function getColor(d, breaks) {
@@ -705,13 +773,6 @@
           d3.select(this)._groups[0][0].blur();
           return;
         }
-        else {
-          popular_name = d3.select(this)._groups[0][0].textContent;
-          total_occurrences_all_time = 0;
-          total_occurrences_for_year = 0;
-          sex = d3.select('input[name="switch_mf"]:checked').node().value;//why is this required?
-          init();
-        }
       })
       .on("keydown", function() {
         if(d3.event.keyCode == 13) {
@@ -729,6 +790,7 @@
         }
       });
   }
+
 </script>
 
 </body>
