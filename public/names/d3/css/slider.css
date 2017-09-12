@@ -1,13 +1,3 @@
-#slider-wrapper {
-  position: absolute;
-  color: #808080;
-  padding: 0px;
-  margin: 0px;
-  top: 500px;
-  left: 450px;
-  display: none;
-}
-
 #slider-wrapper div {
   text-align: center;
   font-size: .8em;

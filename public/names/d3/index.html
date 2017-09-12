@@ -18,63 +18,14 @@
     <script src="http://colorbrewer2.org/export/colorbrewer.js"></script>
     <script src="https://unpkg.com/simple-statistics@4.1.0/dist/simple-statistics.min.js"></script>
 
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script> -->
-
     <style>
+
+        /*HTML elements*/
 
         body {
           padding: 0;
           margin: 0;
           background: #E8E8E8;
-          font-family: Montserrat, sans-serif;
-        }
-
-        h1, h2, h3 {
-          font-size: 1.3em;
-          font-weight: 100;
-          color: #808080;
-          margin: 0;
-          margin-bottom: 3px;
-        }
-
-        h2 {
-          font-size: 1em;
-          margin-bottom: 3px;
-        }
-
-        h3 {
-          font-size: .65em;
-          margin-bottom: 10px;
-        }
-
-        h3 a {
-          color: #808080;
-        }
-
-        #map {
-          width: 900px;
-          height: 600px;
-          margin-left: 0px;
-          margin-top: 0px;
-          margin-bottom: 5px;
-        }
-
-        .state {
-          stroke: #696969;
-          stroke-width: 1;
-        }
-
-        .legend-linear {
-          fill: #696969;
-          font-size: .7em;
-        }
-
-        #min-year {
-          float: left;
-        }
-
-        #max-year {
-          float: right;
         }
 
         div.tooltip {
@@ -88,6 +39,85 @@
           border: 1px solid grey;
           border-radius: 3px;
           pointer-events: none;
+        }
+
+        /*Slider*/
+        #slider-wrapper {
+          position: absolute;
+          font-family: 'Montserrat', sans-serif;
+          color: #808080;
+          padding: 0px;
+          margin: 0px;
+          top: 558px;
+          left: 520px;
+          display: none;
+        }
+
+        #slider-min-label {
+          float: left;
+        }
+
+        #slider-max-label {
+          float: right;
+        }
+
+        /*bar-chart*/
+        #bar-chart {
+          transform: translate(510px, 480px);
+        }
+
+        .bar {
+          fill: #31a354;
+        }
+
+        /*Map background*/
+        #map-background {
+          fill: #E8E8E8;
+          /*fill: blue;*/
+          stroke: none;
+          width: 1000px;
+          height: 600px;
+          transform: translate(0,0);
+        }
+
+        /*States*/
+        #states {
+          transform: translate(-20px, -20px);
+        }
+
+        .state {
+          stroke: #696969;
+          stroke-width: 1;
+        }
+
+        /*Legend*/
+        #pop_name {
+          position: absolute;
+          font-family: 'Montserrat', sans-serif;
+          width: 128px;
+          height: 20px;
+          top:370px;
+          left:820px;
+          font-size: 1em;
+          font-weight: bold;
+          text-align: center;
+          display: none;
+        }
+
+        .switch-field {
+          font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
+          padding: 0;
+        	overflow: hidden;
+          position: absolute;
+          top:400px;
+          left:830px;
+          display: none;
+        }
+
+        #legend {
+          fill: #696969;
+          font-size: .7em;
+          transform: translate(795px, 360px);
         }
 
         .legend-text {
@@ -132,38 +162,15 @@
           ry: 5;
         }
 
-        #pop_name {
-          position: absolute;
-          width: 128px;
-          height: 20px;
-          top:300px;
-          left:735px;
-          font-size: 1em;
-          font-weight: bold;
-          text-align: center;
-          display: none;
-        }
-
-        #background {
-          fill: #E8E8E8;
-          stroke: none;
-        }
-
-        .bar {
-          fill: #31a354;
-        }
-
     </style>
 </head>
 <body>
 
-<div id="map"></div>
-
 <div id='slider-wrapper'>
   <div id="slider-div"></div>
   <div>
-    <div id="min-year"></div>
-    <div id="max-year"></div>
+    <div id="slider-min-label"></div>
+    <div id="slider-max-label"></div>
   </div>
 </div>
 
@@ -178,8 +185,8 @@
 
 <script>
 
-  var width = 900,
-      height = 500,
+  var width = 1000,
+      height = 600,
       default_popular_name = 'Quinn',
       default_sex = 'M',
       number_of_breaks = 5,
@@ -195,14 +202,14 @@
       total_occurrences_for_year = 0,
       tooltip = '';
 
-  var svg = d3.select("#map")
+  var svg = d3.select("body")
     .append("svg")
       .attr("width", width)
       .attr("height", height);
 
   var geoPath = d3.geoPath()
     .projection(d3.geoAlbersUsa()
-      .scale(1000)
+      .scale(1200)
       .translate([width / 2, height / 2]));
 
   tooltip = d3.select("body").append("div")
@@ -213,8 +220,8 @@
 
   sex = getSexFromQS();
 
+  //get a random name, if none passed.
   if(popular_name == default_popular_name && sex == default_sex) {
-    //get a random name, if none passed.
     d3.queue()
       .defer(d3.json, "/popular_name/getRandomName")
       .await(setName);
@@ -235,10 +242,13 @@
 
     setMaleFemaleSwitch();
 
+    //set sex to match switch
     sex = d3.select('input[name="switch_mf"]:checked').node().value;
 
+    //force name to be camel case
     popular_name = toCamelCase(popular_name);
 
+    //set display for name
     d3.select("#pop_name").html(popular_name);
 
     var data_url = '/popular_name/d/' + popular_name + '/' + sex;
@@ -249,17 +259,17 @@
       .defer(d3.json, 'data/states.topojson')
       .defer(d3.json, data_url)
       .await(makeMap);
-
   }
 
   function makeMap(error, statestopo, name_data) {
 
-    occurrences = name_data;
-
-    for (occurrence in occurrences) {
-      var dt = "12/31/" + occurrences[occurrence].yr;
-      occurrences[occurrence].date = new Date(dt);
+    if(error) {
+      console.log(error);
+      alert('Error!')
+      return;
     }
+
+    populateOccurencesFrom(name_data);
 
     joinDataToGeom(statestopo, name_data);
 
@@ -267,54 +277,9 @@
 
     populateBreaks(number_of_breaks, statestopo);
 
-    d3.select('#background').remove();
+    addBackgroundToMap();
 
-    svg.append("rect")
-      .attr("id", "background")
-      .attr("width", "900px")
-      .attr("height", "500px")
-      .attr("transform", "translate(0,0)")
-      .on("mouseover",function(d) {
-        tooltip.style("opacity", 0);//TODO, figure a better tooltip
-      });
-
-    d3.select('#states').remove();
-
-    svg.append("g")
-      .attr("transform","translate(-20,-20)")
-      .attr("id","states")
-      .selectAll("path")
-      .data( topojson.feature(statestopo, statestopo.objects.states).features )
-      .enter()
-      .append("path")
-      .attr("d",geoPath)
-      .attr("class", "state")
-      .on("mouseover",function(d) {
-
-        var tooltip_msg = getTooltipMessage(d);
-
-        tooltip.transition()
-          .style("opacity", .9);
-
-        tooltip.html(tooltip_msg)
-          .style("left", (d3.event.pageX + 15) + "px")
-          .style("top", (d3.event.pageY - 28) + "px");
-
-        d3.select(this).style("stroke", "#FF0000");//make st outline red
-        d3.select(this).style("stroke-width", "1.2");
-
-        //https://stackoverflow.com/questions/17917072/choropleth-maps-changing-stroke-color-in-mouseover-shows-overlapping-boundari
-        this.parentNode.appendChild(this);//append it to parent to make it move to top, otherwise outline is covered by bordering state lines
-
-      })
-      .on("mouseout",function(d) {
-
-        d3.select(this).style("stroke", "#696969");//return st outline to gray
-        d3.select(this).style("stroke-width", "1");
-
-        tooltip.style("opacity", 0);
-
-      });
+    addStatesToMap(statestopo);
 
     setMostPopularYear();
 
@@ -322,7 +287,6 @@
 
     //remove any previous slider
     d3.select('#slider').remove();
-
     //add a new one back according to this name
     d3.select('#slider-div').append('input')
       .attr("type", "range")
@@ -339,17 +303,70 @@
         highlightBarFor(the_year);
       });
 
-    d3.select("#pop_name").style("display","block");
-    d3.select("#slider-wrapper").style("display","block");
-    d3.select("#switch-field").style("display","block");
-
     addLegend();
 
     makeChart(name_data, the_year);
 
+    //display html elements after everything loaded
+    d3.select("#pop_name").style("display","block");
+
+    d3.select("#slider-wrapper").style("display","block");
+
+    d3.select("#switch-field").style("display","block");
+
     updateMap();
 
   };
+
+  function addBackgroundToMap() {
+    d3.select('#map-background').remove();
+    svg.append("rect")
+      .attr("id", "map-background")
+      .on("mouseover",function(d) {
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+      });
+  }
+
+  function addStatesToMap(statestopo) {
+
+    //if another map had been drawn and populated previously, remove it to make room for this one
+    d3.select('#states').remove();
+
+    svg.append("g")
+      .attr("id","states")
+      .selectAll("path")
+      .data( topojson.feature(statestopo, statestopo.objects.states).features )
+        .enter()
+        .append("path")
+        .attr("d",geoPath)
+        .attr("class", "state")
+        .on("mouseover",function(d) {
+
+          var tooltip_msg = getTooltipMessage(d);
+
+          tooltip.transition()
+            .style("opacity", .9);
+
+          tooltip.html(tooltip_msg)
+            .style("left", (d3.event.pageX + 15) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+
+          d3.select(this).style("stroke", "#FF0000");//make st outline red
+          d3.select(this).style("stroke-width", "1.2");
+
+          //https://stackoverflow.com/questions/17917072/choropleth-maps-changing-stroke-color-in-mouseover-shows-overlapping-boundari
+          this.parentNode.appendChild(this);//append it to parent to make it move to top, otherwise outline is covered by bordering state lines
+
+        })
+        .on("mouseout",function(d) {
+
+          d3.select(this).style("stroke", "#696969");//return st outline to gray
+          d3.select(this).style("stroke-width", "1");
+
+          tooltip.style("opacity", 0);
+
+        });
+  }
 
   function updateMap() {
 
@@ -386,6 +403,18 @@
     document.getElementById("pop_name").blur();
   }
 
+  function populateOccurencesFrom(name_data) {
+    //append date to the name_data as the last day of occurrence yr
+    occurrences = name_data;
+
+    //add actual date field to occurrences for easier processing later
+    for (occurrence in occurrences) {
+      var dt = "12/31/" + occurrences[occurrence].yr;
+      occurrences[occurrence].date = new Date(dt);
+    }
+
+  }
+
   function joinDataToGeom(states, name_data) {
     states.objects.states.geometries.forEach(function(d) {
       var layer_stusps = d.properties.stusps;
@@ -409,8 +438,8 @@
     max_year = last_date.getFullYear();
     the_year = min_year;
 
-    d3.select("#min-year").html(min_year);
-    d3.select("#max-year").html(max_year);
+    d3.select("#slider-min-label").html(min_year);
+    d3.select("#slider-max-label").html(max_year);
 
   }
 
@@ -506,16 +535,15 @@
     //    </g>
     // </g>
 
-    d3.select('.legend-linear').remove();
+    d3.select('#legend').remove();
 
     svg.append("g")
-      .attr("class", "legend-linear")
-      .attr("transform", "translate(710,290)")
+      .attr("id", "legend")
       .on("mouseover",function(d) {
         tooltip.style("opacity", 0);//TODO, figure a better tooltip
       });
 
-    var legend_root = d3.select('.legend-linear');
+    var legend_root = d3.select('#legend');
 
     legend_root.append("rect")
       .attr("class", "legend-rect")
@@ -639,14 +667,13 @@
     d3.select('.bar-chart').remove();
 
     svg.append("g")
-      .attr("class", 'bar-chart')
-      .attr("transform", "translate(440,420)");
+      .attr("id", 'bar-chart')
 
     // Scale the range of the data in the domains
     x.domain(year_accumulations.map(function(d) { return d.yr; }));
     y.domain([0, d3.max(year_accumulations, function(d) { return d.year_accum; })]);
 
-    var bar_chart_group = d3.select('.bar-chart');
+    var bar_chart_group = d3.select('#bar-chart');
 
     // console.log(bar_chart_group);
 

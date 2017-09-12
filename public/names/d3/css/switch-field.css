@@ -1,13 +1,3 @@
-.switch-field {
-  font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
-  padding: 0;
-	overflow: hidden;
-  position: absolute;
-  top:330px;
-  left:745px;
-  display: none;
-}
-
 .switch-field input {
     position: absolute !important;
     clip: rect(0, 0, 0, 0);
