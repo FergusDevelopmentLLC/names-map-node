@@ -61,6 +61,10 @@ module.exports = {
 
     sexSchema: Joi.object().keys ({
       param: Joi.string()
+    }),
+
+    thresholdSchema: Joi.object().keys ({
+      param: Joi.number().integer().min(0)
     })
 
   }
