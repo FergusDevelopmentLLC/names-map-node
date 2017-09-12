@@ -375,6 +375,7 @@
   }
 
   function populateOccurencesFrom (name_data) {
+
     //append date to the name_data as the last day of occurrence yr
     occurrences = name_data;
 
@@ -387,6 +388,7 @@
   }
 
   function joinDataToGeom (states, name_data) {
+
     states.objects.states.geometries.forEach(function(d) {
       var layer_stusps = d.properties.stusps;
       d.properties.occurrences = [];
@@ -398,6 +400,7 @@
         }
       }
     });
+
   }
 
   function populateMaxMinYear () {
@@ -438,12 +441,15 @@
   }
 
   function addBackgroundToMap () {
+
+    //this is to catch when the mouse goes off the map, turn tooltip off. hack.
     d3.select('#map-background').remove();
     svg.append("rect")
       .attr("id", "map-background")
       .on("mouseover",function(d) {
         tooltip.style("opacity", 0);//TODO, figure a better tooltip
       });
+
   }
 
   function addStatesToMap (statestopo) {
@@ -485,6 +491,7 @@
           tooltip.style("opacity", 0);
 
         });
+
   }
 
   function setMostPopularYear () {
@@ -519,6 +526,7 @@
   }
 
   function addSlider() {
+
     //remove any previous slider
     d3.select('#slider').remove();
     //add a new one back according to this name
@@ -536,6 +544,7 @@
         updateMap();
         highlightBarFor(this_year);
       });
+
   }
 
   function addLegend () {
@@ -707,23 +716,8 @@
 
   function addBars (name_data, this_year) {
 
-    var year_accumulations = [];
-    var last_yr = name_data[0].yr;
-    var year_accum = 0;
-
-    for(var oc in name_data) {
-      if(name_data[oc].yr == last_yr) {
-        year_accum += name_data[oc].oc;
-      }
-      else {
-        var year = {};
-        year.yr = last_yr;
-        year.year_accum = year_accum;
-        year_accumulations.push(year);
-        year_accum = name_data[oc].oc;
-        last_yr = name_data[oc].yr;
-      }
-    }
+    //get array of years, with each years total occurrences, regardless of state
+    var year_accumulations = createObjectArrayOfYearAccumulations(name_data);
 
     // set the dimensions and margins of the graph
     var margin = {top: 0, right: 0, bottom: 0, left: 0},
@@ -734,12 +728,11 @@
     var x = d3.scaleBand()
       .range([0, width])
       .padding(0.01);
-
     var y = d3.scaleLinear()
       .range([height, 0]);
 
+    // remove any previous bar charts
     d3.select('#bar-chart').remove();
-
     svg.append("g")
       .attr("id", 'bar-chart')
 
@@ -761,6 +754,28 @@
       .attr("height", function(d) { return height - y(d.year_accum); });
 
     highlightBarFor(this_year);
+
+  }
+
+  function getObjectArrayOfYearAccumulations (name_data) {
+
+    var year_accumulations = [];
+    var last_yr = name_data[0].yr;
+    var year_accum = 0;
+
+    for(var oc in name_data) {
+      if(name_data[oc].yr == last_yr) {
+        year_accum += name_data[oc].oc;
+      }
+      else {
+        var year = {};
+        year.yr = last_yr;
+        year.year_accum = year_accum;
+        year_accumulations.push(year);
+        year_accum = name_data[oc].oc;
+        last_yr = name_data[oc].yr;
+      }
+    }
 
   }
 
