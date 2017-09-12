@@ -717,7 +717,7 @@
   function addBars (name_data, this_year) {
 
     //get array of years, with each years total occurrences, regardless of state
-    var year_accumulations = createObjectArrayOfYearAccumulations(name_data);
+    var year_accumulations = getObjectArrayOfYearAccumulations(name_data);
 
     // set the dimensions and margins of the graph
     var margin = {top: 0, right: 0, bottom: 0, left: 0},
@@ -776,6 +776,8 @@
         last_yr = name_data[oc].yr;
       }
     }
+
+    return year_accumulations;
 
   }
 
