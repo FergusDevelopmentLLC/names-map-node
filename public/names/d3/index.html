@@ -664,7 +664,9 @@
     var y = d3.scaleLinear()
       .range([height, 0]);
 
-    d3.select('.bar-chart').remove();
+    console.log('here');
+
+    d3.select('#bar-chart').remove();
 
     svg.append("g")
       .attr("id", 'bar-chart')
