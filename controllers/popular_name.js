@@ -46,9 +46,10 @@ module.exports = {
       from pop_name
       group by name, sex
       having sum(occurrences) > #threshold#
-      order by sum(occurrences) desc;
+      --order by sum(occurrences) desc;
+      order by max(name);
     `;
-    
+
     sql = sql.replace('#threshold#', threshold);
     const result = await knex.raw(sql);
     res.status(200).json(result.rows);
