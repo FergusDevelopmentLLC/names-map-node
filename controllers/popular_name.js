@@ -5,8 +5,13 @@ const knex = Knex(knexConfig[process.env.NODE_ENV || 'development']);
 module.exports = {
 
   getRandomName: async (req, res, next) => {
-    var sql =  " SELECT sex, name FROM names_distinct ORDER BY random() LIMIT 1; ";
-    console.log(sql);
+
+    var sql = `
+      select sex, name
+      from names_distinct
+      order by random() limit 1;
+    `;
+
     const result = await knex.raw(sql);
     res.status(200).json(result.rows);
   },
@@ -16,12 +21,17 @@ module.exports = {
     const name = req.value.params.name;
     const sex = req.value.params.sex;
 
-    var sql =  " select date_part('year', year) as yr, pop_name.state as st, pop_name.occurrences as oc";
-        sql += " from pop_name ";
-        sql += " where pop_name.name = '" + name + "' ";
-        sql += " and pop_name.state != 'DC' ";
-        sql += " and sex = '" + sex + "' ";
-        sql += " order by year; ";
+    var sql = `
+      select date_part('year', year) as yr, pop_name.state as st, pop_name.occurrences as oc
+      from pop_name
+      where pop_name.name = '#name#'
+      and pop_name.state != 'DC'
+      and sex = '#sex#'
+      order by year;
+    `;
+
+    sql = sql.replace('#name#', name);
+    sql = sql.replace('#sex#', sex);
 
     const result = await knex.raw(sql);
     res.status(200).json(result.rows);
@@ -38,6 +48,7 @@ module.exports = {
       having sum(occurrences) > #threshold#
       order by sum(occurrences) desc;
     `;
+    
     sql = sql.replace('#threshold#', threshold);
     const result = await knex.raw(sql);
     res.status(200).json(result.rows);
