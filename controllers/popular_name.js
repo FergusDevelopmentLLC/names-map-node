@@ -41,12 +41,20 @@ module.exports = {
 
     const threshold = req.value.params.threshold;
 
+    // var sql = `
+    //   select max(name) as name, max(sex) as sex, sum(occurrences) as tot
+    //   from pop_name
+    //   group by name, sex
+    //   having sum(occurrences) > #threshold#
+    //   --order by sum(occurrences) desc;
+    //   order by max(name);
+    // `;
+
     var sql = `
-      select max(name) as name, max(sex) as sex, sum(occurrences) as tot
+      select max(name) as name, max(sex) as sex
       from pop_name
       group by name, sex
       having sum(occurrences) > #threshold#
-      --order by sum(occurrences) desc;
       order by max(name);
     `;
 

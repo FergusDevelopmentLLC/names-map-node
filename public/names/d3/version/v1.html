@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/awesomplete.css" />
 
     <script src="js/utils.js"></script>
-    <script src="js/awesomplete.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/d3-queue.v3.min.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
@@ -20,10 +19,7 @@
     <script src="http://colorbrewer2.org/export/colorbrewer.js"></script>
     <script src="https://unpkg.com/simple-statistics@4.1.0/dist/simple-statistics.min.js"></script>
 
-    <script src="http://spin.js.org/spin.min.js"></script>
-    <script src="js/spin_opt.js"></script>
-
-    <script src="data/most_pop_names_data.js"></script>
+    <script src="js/awesomplete.js"></script>
 
     <style>
 
@@ -98,35 +94,21 @@
         }
 
         /*Legend*/
-
-        #search-widget-wrapper {
+        #pop_name {
           position: absolute;
-          top: 368px;
-          left: 810px;
-          display: none;
-        }
-
-        .name-input {
-          border: 0;
-          padding:3px;
-          width: 125px;
-          text-align: center;
           font-family: 'Montserrat', sans-serif;
           width: 128px;
           height: 20px;
+          top:370px;
+          left:810px;
           font-size: 1em;
           font-weight: bold;
-        }
-
-        .name-input-edit {
-          border: 1px solid #000;
-          padding:3px;
-          width: 125px;
-          text-align: left;
+          text-align: center;
+          display: none;
         }
 
         .switch-field {
-          font-family: 'Montserrat', sans-serif;
+          font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
           padding: 0;
         	overflow: hidden;
           position: absolute;
@@ -176,24 +158,16 @@
 
         .legend-rect {
           fill: #ffffff;
-          fill-opacity: 1;
+          fill-opacity: .75;
           stroke-width: .3;
           stroke: #696969;
           rx: 5;
           ry: 5;
         }
 
-        #spinner-wrapper {
-          position:absolute;
-          width: 1000px;
-          height: 600px;
-        }
-
     </style>
 </head>
 <body>
-
-<div id="spinner-wrapper"></div>
 
 <div id='slider-wrapper'>
   <div id="slider-div"></div>
@@ -203,23 +177,16 @@
   </div>
 </div>
 
+<div id="pop_name" contentEditable="true"></div>
+
 <div class="switch-field" id="switch-field">
   <input type="radio" id="switch_left" name="switch_mf" value="M" checked/>
-  <label for="switch_left">Boy</label>
+  <label for="switch_left">Male</label>
   <input type="radio" id="switch_right" name="switch_mf" value="F" />
-  <label for="switch_right">Girl</label>
-</div>
-
-<div id="search-widget-wrapper">
-  <input id="name-input" class="name-input" />
+  <label for="switch_right">Female</label>
 </div>
 
 <script>
-
-  d3.selectAll("input[name='switch_mf']").on("change", function(){
-    sex = this.value;
-    handleAutocomplete();
-  });
 
   var width = 1000,
       height = 600,
@@ -236,12 +203,7 @@
       novaluecolor = '#ffffff',
       total_occurrences_all_time = 0,
       total_occurrences_for_year = 0,
-      tooltip = '',
-      name_list = '';
-
-  var spin_target = document.getElementById('spinner-wrapper')
-  var spinner = '';
-  //spinner.stop();
+      tooltip = '';
 
   var svg = d3.select("body")
     .append("svg")
@@ -273,9 +235,7 @@
 
   function init () {
 
-    spinner = new Spinner(opts).spin(spin_target);
-
-    clearMap();
+    handleCustomNameInput();
 
     setMaleFemaleSwitch();
 
@@ -285,11 +245,8 @@
     //force name to be camel case
     popular_name = toCamelCase(popular_name);
 
-    //this will repopulate the name lookup input with only the sex selected on the Boy/Girl switch
-    handleAutocomplete();
-
-    //set legend name display
-    d3.select("#name-input").html(popular_name);
+    //set display for name
+    d3.select("#pop_name").html(popular_name);
 
     var data_url = '/popular_name/getOccurrences/' + popular_name + '/' + sex;
 
@@ -303,8 +260,11 @@
 
   function makeMap (error, statestopo, name_data) {
 
+    //console.log(name_data);
+
     if(error) {
       console.log(error);
+      alert('Error!')
       return;
     }
 
@@ -320,8 +280,6 @@
 
     populateBreaks(number_of_breaks, statestopo);
 
-    spinner.stop();
-
     addBackgroundToMap();
 
     addStatesToMap(statestopo);
@@ -333,7 +291,7 @@
     addBars(name_data, this_year);
 
     //display html elements after everything loaded
-    d3.select("#search-widget-wrapper").style("display","block");
+    d3.select("#pop_name").style("display","block");
 
     d3.select("#slider-wrapper").style("display","block");
 
@@ -342,81 +300,6 @@
     updateMap();
 
   };
-
-  function handleAutocomplete() {
-
-    name_list = most_pop_names.map(function(x) {
-
-      var display_gender = "Boy";
-
-      if(sex == 'F')
-        display_gender = "Girl";
-
-      if(x.sex == sex)
-        return x.name + " (" + display_gender + ")";
-    });
-
-    //remove it if there
-    d3.select('#name-input').remove();
-
-    //add it back
-    d3.select('#search-widget-wrapper').append('input')
-      .attr("id", "name-input")
-      .attr("class", "name-input")
-      .attr("value", popular_name);
-
-    name_input = document.getElementById("name-input");
-
-    new Awesomplete(name_input, {
-      list: name_list
-    });
-
-    Awesomplete.$.bind(name_input, { "awesomplete-selectcomplete": nameSelected });
-
-    d3.select("#name-input")
-      .on("focus", function() {
-        this.value = '';
-        d3.select(this).attr('class', 'name-input-edit');
-      });
-
-    d3.select("#name-input")
-      .on("blur", function() {
-        d3.select(this).attr('class', 'name-input');
-        var entered_value = this.value.replace(/\s/g,'');
-        if(entered_value == '') {
-          this.value = popular_name;
-        }
-      });
-
-    //handle when user doesn't select autocomplete option, enters own name and presses enter.
-    d3.select("#name-input")
-      .on("keydown", function() {
-        if(d3.event.keyCode == 13) {
-
-          var entered_name = '';
-
-          var selected_sex = '';
-
-          if(this.value == '') {
-            this.value = popular_name;
-            this.blur();
-            return;
-          }
-          else {
-            entered_name = this.value.replace(/\s/g,'');
-            selected_sex = d3.select('input[name="switch_mf"]:checked').node().value;
-          }
-
-          if(entered_name != popular_name || selected_sex != sex) {
-            popular_name = entered_name;
-            sex = selected_sex;
-            init();
-          }
-
-        }
-      });
-
-  }
 
   function getNameFromQS () {
     var name_query = gup('name', document.location.search);
@@ -441,6 +324,48 @@
     sex = random_name_data[0].sex;
     popular_name = random_name_data[0].name;
     init();
+  }
+
+  function handleCustomNameInput () {
+
+    tooltip.style("opacity", 0);//TODO, figure a better tooltip
+
+    var prev_name = popular_name;//save what was there in case something bad happens.
+
+    //TODO: figure this mess out
+    //going for this...kinda works
+    //https://stackoverflow.com/questions/8548126/make-span-element-editable
+    //http://jsfiddle.net/adamb/Hbww2/
+    //make the
+    d3.select("#pop_name")
+      .html(popular_name)
+      .on("click",function(d) {
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+        prev_name = d3.select(this)._groups[0][0].textContent;
+        d3.select(this)._groups[0][0].textContent = "";
+      })
+      .on("blur",function(d) {
+        if(d3.select(this)._groups[0][0].textContent == '') {
+          d3.select(this)._groups[0][0].textContent = prev_name;
+          d3.select(this)._groups[0][0].blur();
+          return;
+        }
+      })
+      .on("keydown", function() {
+        if(d3.event.keyCode == 13) {
+          if(d3.select(this)._groups[0][0].textContent == '') {
+            d3.select(this)._groups[0][0].textContent = prev_name;
+            d3.select(this)._groups[0][0].blur();
+            return;
+          }
+          popular_name = d3.select(this)._groups[0][0].textContent;
+          total_occurrences_all_time = 0;
+          total_occurrences_for_year = 0;
+          sex = d3.select('input[name="switch_mf"]:checked').node().value;//why is this required?
+          init();
+          d3.event.preventDefault();
+        }
+      });
   }
 
   function setMaleFemaleSwitch () {
@@ -789,7 +714,7 @@
         return fill;
       });
 
-    //document.getElementById("pop_name").blur();
+    document.getElementById("pop_name").blur();
   }
 
   function addBars (name_data, this_year) {
@@ -915,39 +840,6 @@
       }
     }
     return tooltip_msg;
-  }
-
-  function nameSelected (evt) {
-
-    var selected_name = evt.text.value;
-    sex = "F"
-    if(selected_name.indexOf('(Boy)') > 0) {
-      sex = "M";
-    }
-
-    selected_name = selected_name.replace(' (Boy)','');
-    selected_name = selected_name.replace(' (Girl)','');
-    popular_name = selected_name;
-    document.querySelector('#name-input').value = popular_name;
-
-    d3.selectAll("input[name='switch_mf']").each(function(){
-      if(d3.select(this).node().value == sex)
-        d3.select(this).node().checked = true;
-    });
-
-    document.querySelector('#name-input').blur();
-
-    init();
-
-  }
-
-  function clearMap() {
-    svg.selectAll(".state")
-      .style('fill', function(d) {
-        var fill = novaluecolor;
-        return fill;
-      });
-
   }
 
 </script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Awesomplete: Ultra lightweight, highly customizable, simple autocomplete, by Lea Verou</title>
+<link rel="stylesheet" href="css/awesomplete.css" />
+<script src="js/awesomplete.js"></script>
+
+
+<style>
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#search-widget {
+	position: absolute;
+	top: 100px;
+	left: 100px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="search-widget">
+	<input id="myinput" />
+</div>
+
+<script>
+
+var input = document.getElementById("myinput");
+new Awesomplete(input, {
+	list: ["Ada", "Java", "JavaScript", "Brainfuck", "LOLCODE", "Node.js", "Ruby on Rails"]
+});
+
+</script>
+
+</body>
+</html>

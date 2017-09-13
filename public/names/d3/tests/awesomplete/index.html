@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<title>Awesomplete: Ultra lightweight, highly customizable, simple autocomplete, by Lea Verou</title>
+<!-- <link rel="stylesheet" href="prism/prism.css" /> -->
+<link rel="stylesheet" href="css/awesomplete.css" />
+<link rel="stylesheet" href="css/style.css" />
+
+<script src="js/awesomplete.js"></script>
+<script src="js/index.js"></script>
+</head>
+<body class="language-markup">
+
+<header>
+</header>
+
+<h2>Demo 1</h2>
+<label>
+	Pick a programming language:<br />
+	<input autofocus class="awesomplete" data-list="Ada, Java, JavaScript, Brainfuck, LOLCODE, Node.js, Ruby on Rails" />
+</label>
+
+<br/>
+
+<h2>Demo 2</h2>
+<label>
+	Pick a programming language:<br />
+	<input class="awesomplete" list="mylist" />
+	<datalist id="mylist">
+		<option>Ada</option>
+		<option>Java</option>
+		<option>JavaScript</option>
+		<option>Brainfuck</option>
+		<option>LOLCODE</option>
+		<option>Node.js</option>
+		<option>Ruby on Rails</option>
+	</datalist>
+</label>
+
+<h2>Demo 3</h2>
+<label>
+	Pick a programming language:<br />
+	<input class="awesomplete" data-list="#mylist" />
+	<ul id="mylist">
+		<li>Ada</li>
+		<li>Java</li>
+		<li>JavaScript</li>
+		<li>Brainfuck</li>
+		<li>LOLCODE</li>
+		<li>Node.js</li>
+		<li>Ruby on Rails</li>
+	</ul>
+</label>
+
+<h2>Demo 4</h2>
+<input id="myinput" />
+
+<script>
+
+var input = document.getElementById("myinput");
+
+// Show label but insert value into the input:
+// new Awesomplete(input, {
+// 	list: [
+// 		{ label: "Belarus", value: "BY" },
+// 		{ label: "China", value: "CN" },
+// 		{ label: "United States", value: "US" }
+// 	]
+// });
+
+// Same with arrays:
+new Awesomplete(input, {
+	list: [
+		[ "Belarus", "BY" ],
+		[ "China", "CN" ],
+		[ "United States", "US" ]
+	]
+});
+
+</script>
+
+</body>
+</html>
