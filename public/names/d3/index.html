@@ -218,9 +218,7 @@
   <label for="switch_right">Girl</label>
 </div>
 
-<div id="search-widget-wrapper">
-  <input id="name-input" class="name-input" />
-</div>
+<div id="search-widget-wrapper"></div>
 
 <script>
 
@@ -389,6 +387,7 @@
     d3.select('#search-widget-wrapper').append('input')
       .attr("id", "name-input")
       .attr("class", "name-input")
+      .attr("placeholder", "Search for a name")
       .attr("value", popular_name);
 
     name_input = document.getElementById("name-input");
