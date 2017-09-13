@@ -19,7 +19,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
     <script src="http://colorbrewer2.org/export/colorbrewer.js"></script>
     <script src="https://unpkg.com/simple-statistics@4.1.0/dist/simple-statistics.min.js"></script>
-
     <script src="http://spin.js.org/spin.min.js"></script>
     <script src="js/spin_opt.js"></script>
 
@@ -192,20 +191,23 @@
         #edit-box {
           fill: #ffffff;
           stroke-width: 0;
+          rx: 5;
+          ry: 5;
         }
 
         #shuffle-box {
           fill: #ffffff;
           stroke-width: 0;
+          rx: 5;
+          ry: 5;
         }
+
 
     </style>
 </head>
 <body>
 
 <div id='map-wrapper'></div>
-
-<div id="spinner-wrapper"></div>
 
 <div id='slider-wrapper'></div>
 
@@ -693,7 +695,8 @@
     legend_root.append("rect")
       .attr("id", "edit-box")
       .attr("height", 38)
-      .attr("width", 90)
+      .attr("width", 88)
+      .attr("transform", "translate(2,2)")
       .on("mouseover", function() {
         d3.select('#icon-edit')
           .style('fill', '#ff0000');
@@ -721,9 +724,9 @@
     //shuffle icon
     legend_root.append("rect")
       .attr("id", "shuffle-box")
-      .attr("transform", "translate(90,0)")
+      .attr("transform", "translate(90,2)")
       .attr("height", 38)
-      .attr("width", 90)
+      .attr("width", 88)
       .on("mouseover", function() {
         d3.select('#icon-shuffle')
           .style('fill', '#ff0000');
