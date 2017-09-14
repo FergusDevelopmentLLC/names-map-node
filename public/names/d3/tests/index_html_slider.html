@@ -202,40 +202,6 @@
           ry: 5;
         }
 
-        /*d3 slider*/
-        .ticks {
-          font: 10px sans-serif;
-        }
-
-        .track,
-        .track-inset,
-        .track-overlay {
-          stroke-linecap: round;
-        }
-
-        .track {
-          stroke: #000;
-          stroke-opacity: 0.3;
-          stroke-width: 10px;
-        }
-
-        .track-inset {
-          stroke: #ddd;
-          stroke-width: 8px;
-        }
-
-        .track-overlay {
-          pointer-events: stroke;
-          stroke-width: 50px;
-          stroke: transparent;
-        }
-
-        .handle {
-          fill: #fff;
-          stroke: #000;
-          stroke-opacity: 0.5;
-          stroke-width: 1.25px;
-        }
 
     </style>
 </head>
@@ -278,8 +244,6 @@
       total_occurrences_for_year = 0,
       tooltip = '',
       name_list = '',
-      slider = '',
-      handle = '',
       spin_target = document.getElementById('map-wrapper'),
       spinner = '';
 
@@ -665,6 +629,50 @@
 
   }
 
+  function addSlider() {
+
+    //remove any previous slider
+    d3.select('#slider-wrapper').remove();
+
+    d3.select('body').append('div')
+      .attr('id', 'slider-wrapper');
+
+    var slider_wrapper = d3.select('#slider-wrapper');
+
+    slider_wrapper.append('div')
+      .attr('id','slider-div');
+
+    slider_wrapper.append('div')
+      .attr('id','slider-label-wrapper');
+
+    var slider_label_wrapper = d3.select('#slider-label-wrapper');
+
+    slider_label_wrapper.append('div')
+      .attr('id','slider-min-label')
+      .html(min_year);
+
+    slider_label_wrapper.append('div')
+      .attr('id','slider-max-label')
+      .html(max_year);
+
+    //add a new one back according to this name
+    d3.select('#slider-div').append('input')
+      .attr("type", "range")
+      .attr("id", "slider")
+      .attr("class", "slider")
+      .attr("min", min_year)
+      .attr("max", max_year)
+      .attr("value", this_year)
+      .attr("step", 1)
+      .on("input",function() {
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+        this_year = this.value;
+        updateMap();
+        highlightBarFor(this_year);
+      });
+
+  }
+
   function addLegend () {
 
     d3.select('#legend').remove();
@@ -830,6 +838,7 @@
         return fill;
       });
 
+    //document.getElementById("pop_name").blur();
   }
 
   function addBars (name_data, this_year) {
@@ -1028,81 +1037,6 @@
     d3.select('.legend-subtitle').remove();
     d3.select('.legend-subsubtitle').remove();
     d3.select('.legend-cells').remove();
-
-  }
-
-  function addSlider() {
-
-    var width = 200;
-    var height = 100;
-
-    //tick every 20 years if (1900-2020)
-    var span = 20;
-
-    //tick every 10 years if (1950-2020)
-    if(min_year >= 1950)
-      span = 10;
-
-    //tick every 5 years if (1990-2020)
-    if(min_year >= 1990)
-      span = 5;
-
-    var slider_min = Math.floor(min_year / span) * span;
-    var slider_max = Math.ceil(max_year / span) * span;
-    var r = slider_max - slider_min;
-    var ticks_amt = r / span;
-
-    var x = d3.scaleLinear()
-        .domain([slider_min, slider_max])
-        .range([0, width])
-        .clamp(true);
-
-    d3.select('#slider').remove();
-    slider = svg.append("g")
-      .attr("id", "slider")
-      .attr("class", "slider")
-      .attr("transform", "translate(500, 570)");
-
-    slider.append("line")
-        .attr("class", "track")
-        .attr("x1", x.range()[0])
-        .attr("x2", x.range()[1])
-      .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-        .attr("class", "track-inset")
-      .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-        .attr("class", "track-overlay")
-        .call(d3.drag()
-          .on("start.interrupt", function() {
-            slider.interrupt();
-          })
-          .on("start drag", function() {
-            var slider_position = x.invert(d3.event.x);
-            var slider_handle_year = Math.floor(slider_position);
-
-            if(this_year != slider_handle_year && slider_handle_year <= max_year && slider_handle_year >= min_year) {
-              this_year = slider_handle_year;
-              handle.attr("cx", x(slider_position));
-              highlightBarFor(this_year);
-              updateMap();
-            }
-
-          }));
-
-    slider.insert("g", ".track-overlay")
-        .attr("class", "ticks")
-        .attr("transform", "translate(0," + 18 + ")")
-      .selectAll("text")
-      .data(x.ticks(ticks_amt))
-      .enter().append("text")
-        .attr("x", x)
-        .attr("text-anchor", "middle")
-        .attr("transform", "translate(0,3)")
-        .text(function(d) { return d; });
-
-    handle = slider.insert("circle", ".track-overlay")
-      .attr("class", "handle")
-      .attr("r", 9)
-      .attr("cx", ((this_year - slider_min) / (slider_max - slider_min)) * x.range()[1]);
 
   }
 

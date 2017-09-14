@@ -236,7 +236,7 @@
           stroke-opacity: 0.5;
           stroke-width: 1.25px;
         }
-
+        
     </style>
 </head>
 <body>
@@ -378,7 +378,9 @@
 
     spinner.stop();
 
-    addSlider();
+    //addSlider();
+
+    addD3Slider();
 
     addLegend();
 
@@ -665,6 +667,50 @@
 
   }
 
+  function addSlider() {
+
+    //remove any previous slider
+    d3.select('#slider-wrapper').remove();
+
+    d3.select('body').append('div')
+      .attr('id', 'slider-wrapper');
+
+    var slider_wrapper = d3.select('#slider-wrapper');
+
+    slider_wrapper.append('div')
+      .attr('id','slider-div');
+
+    slider_wrapper.append('div')
+      .attr('id','slider-label-wrapper');
+
+    var slider_label_wrapper = d3.select('#slider-label-wrapper');
+
+    slider_label_wrapper.append('div')
+      .attr('id','slider-min-label')
+      .html(min_year);
+
+    slider_label_wrapper.append('div')
+      .attr('id','slider-max-label')
+      .html(max_year);
+
+    //add a new one back according to this name
+    d3.select('#slider-div').append('input')
+      .attr("type", "range")
+      .attr("id", "slider")
+      .attr("class", "slider")
+      .attr("min", min_year)
+      .attr("max", max_year)
+      .attr("value", this_year)
+      .attr("step", 1)
+      .on("input",function() {
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+        this_year = this.value;
+        updateMap();
+        highlightBarFor(this_year);
+      });
+
+  }
+
   function addLegend () {
 
     d3.select('#legend').remove();
@@ -830,6 +876,7 @@
         return fill;
       });
 
+    //document.getElementById("pop_name").blur();
   }
 
   function addBars (name_data, this_year) {
@@ -878,54 +925,22 @@
   function getObjectArrayOfYearAccumulations (name_data) {
 
     var year_accumulations = [];
-    var first_yr = name_data[0].yr;
-    var last_yr = name_data[name_data.length - 1].yr;
-
     var last_yr = name_data[0].yr;
     var year_accum = 0;
 
     for(var oc in name_data) {
       if(name_data[oc].yr == last_yr) {
         year_accum += name_data[oc].oc;
-        last_yr = name_data[oc].yr;
       }
       else {
+        var year = {};
+        year.yr = last_yr;
+        year.year_accum = year_accum;
+        year_accumulations.push(year);
         year_accum = name_data[oc].oc;
         last_yr = name_data[oc].yr;
       }
-
-      var year = {};
-      year.yr = last_yr;
-      year.year_accum = year_accum;
-      year_accumulations.push(year);
-
     }
-
-    //add back any 0 occurrence yrs
-    var missing_years = [];
-    for (i = first_yr; i <= last_yr; i++) {
-      var found = false;
-      for(var oc in name_data) {
-        if(i == name_data[oc].yr) {
-          found = true;
-        }
-      }
-      if(found == false)
-        missing_years.push(i);
-    }
-
-    if(missing_years && missing_years.length > 0) {
-      for(var yr in missing_years) {
-        var year = {};
-        year.yr = missing_years[yr];
-        year.year_accum = 0;
-        year_accumulations.push(year);
-      }
-    }
-
-    year_accumulations.sort(function(a, b) {
-      return a.yr - b.yr;
-    })
 
     return year_accumulations;
 
@@ -1031,7 +1046,7 @@
 
   }
 
-  function addSlider() {
+  function addD3Slider() {
 
     var width = 200;
     var height = 100;
@@ -1057,9 +1072,7 @@
         .range([0, width])
         .clamp(true);
 
-    d3.select('#slider').remove();
     slider = svg.append("g")
-      .attr("id", "slider")
       .attr("class", "slider")
       .attr("transform", "translate(500, 570)");
 
@@ -1078,14 +1091,12 @@
           .on("start drag", function() {
             var slider_position = x.invert(d3.event.x);
             var slider_handle_year = Math.floor(slider_position);
-
-            if(this_year != slider_handle_year && slider_handle_year <= max_year && slider_handle_year >= min_year) {
+            if(this_year != slider_handle_year) {
               this_year = slider_handle_year;
-              handle.attr("cx", x(slider_position));
-              highlightBarFor(this_year);
-              updateMap();
             }
-
+            handle.attr("cx", x(slider_position));
+            highlightBarFor(this_year);
+            updateMap();
           }));
 
     slider.insert("g", ".track-overlay")
@@ -1096,7 +1107,6 @@
       .enter().append("text")
         .attr("x", x)
         .attr("text-anchor", "middle")
-        .attr("transform", "translate(0,3)")
         .text(function(d) { return d; });
 
     handle = slider.insert("circle", ".track-overlay")
@@ -1105,6 +1115,9 @@
       .attr("cx", ((this_year - slider_min) / (slider_max - slider_min)) * x.range()[1]);
 
   }
+
+
+
 
 </script>
 
