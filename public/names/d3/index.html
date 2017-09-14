@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/slider.css">
     <link rel="stylesheet" type="text/css" href="css/switch-field.css">
     <link rel="stylesheet" href="css/awesomplete.css" />
 
@@ -23,8 +22,6 @@
     <script src="js/spin_opt.js"></script>
 
     <style>
-
-        /*HTML elements*/
 
         body {
           padding: 0;
@@ -43,26 +40,6 @@
           border: 1px solid grey;
           border-radius: 3px;
           pointer-events: none;
-        }
-
-        /*Slider*/
-        #slider-wrapper {
-          position: absolute;
-          font-family: 'Montserrat', sans-serif;
-          color: #808080;
-          padding: 0px;
-          margin: 0px;
-          top: 558px;
-          left: 510px;
-          display: none;
-        }
-
-        #slider-min-label {
-          float: left;
-        }
-
-        #slider-max-label {
-          float: right;
         }
 
         /*bar-chart*/
@@ -386,8 +363,6 @@
 
     //display html elements after everything loaded
     d3.select("#search-widget-wrapper").style("display","block");
-
-    d3.select("#slider-wrapper").style("display","block");
 
     d3.select("#switch-field").style("display","block");
 
@@ -1014,20 +989,17 @@
   }
 
   function clearMap() {
+
     svg.selectAll(".state")
       .style('fill', function(d) {
-        var fill = novaluecolor;
-        return fill;
+        return novaluecolor;
       });
 
-    d3.select('.legend-rect')
-      .attr('height', '80px');
-
+    d3.select('#legend').remove();
+    d3.select('#slider').remove();
     d3.select('#bar-chart').remove();
-    d3.select('#slider-wrapper').remove();
-    d3.select('.legend-subtitle').remove();
-    d3.select('.legend-subsubtitle').remove();
-    d3.select('.legend-cells').remove();
+    d3.select("#search-widget-wrapper").style("display","none");
+    d3.select("#switch-field").style("display","none");
 
   }
 
@@ -1071,6 +1043,7 @@
         .attr("class", "track-inset")
       .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
         .attr("class", "track-overlay")
+        .attr("id", "track-overlay")
         .call(d3.drag()
           .on("start.interrupt", function() {
             slider.interrupt();
@@ -1098,6 +1071,19 @@
         .attr("text-anchor", "middle")
         .attr("transform", "translate(0,3)")
         .text(function(d) { return d; });
+
+    slider.insert("g", ".track-overlay")
+      .attr("class", "tick-marks")
+      .attr("transform", "translate(0,5)")
+      .selectAll("line")
+      .data(x.ticks(ticks_amt))
+      .enter().append("line")
+        .style('stroke', '#000')
+        .style('stroke-opacity', 0.5)
+        .attr("x1", x)
+        .attr("y1", 0)
+        .attr("x2", x)
+        .attr("y2", 3);
 
     handle = slider.insert("circle", ".track-overlay")
       .attr("class", "handle")
