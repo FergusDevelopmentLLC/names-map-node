@@ -1,4 +1,4 @@
-# Popular U.S. Surnames of the Last Century
+# Popular U.S. Names of the Last Century (1910 - 2016)
 
 Final Project Proposal
 

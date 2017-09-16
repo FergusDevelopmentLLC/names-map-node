@@ -72,7 +72,7 @@
         #search-widget-wrapper {
           position: absolute;
           top: 175px;
-          left: 748px;
+          left: 728px;
           display: none;
         }
 
@@ -102,14 +102,14 @@
         	overflow: hidden;
           position: absolute;
           top: 205px;
-          left: 788px;
+          left: 768px;
           display: none;
         }
 
         #legend {
           fill: #696969;
           font-size: .7em;
-          transform: translate(720px, 170px);
+          transform: translate(700px, 170px);
         }
 
         #legend-rect {
@@ -224,13 +224,50 @@
           stroke-width: 1.25px;
         }
 
+        h1, h2, h3 {
+          font-size: 1.3em;
+          font-weight: 100;
+          color: #808080;
+          margin: 0;
+          margin-bottom: 3px;
+        }
 
+        h2 {
+          font-size: 1em;
+          margin-bottom: 3px;
+        }
+
+        h3 {
+          font-size: .65em;
+          margin-bottom: 10px;
+        }
+
+        h3 a {
+          color: #808080;
+        }
+
+        #title {
+          font-family: Montserrat, sans-serif;
+          position: absolute;
+          top: 10px;
+          left: 20px;
+          display: none;
+        }
 
     </style>
 </head>
 <body>
 
 <div id='map-wrapper'></div>
+
+<div id="title">
+  <h1>Popular U.S. Names of the Last Century (1910-2016)</h1>
+  <h3>
+    Source: <a href='https://www.ssa.gov/oact/babynames/limits.html/' target="_blank">U.S. Social Security Administration</a>
+    <br/>
+    Map prepared by: <a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a>
+  </h3>
+</div>
 
 <div id='slider-wrapper'></div>
 
@@ -387,6 +424,8 @@
     d3.select("#search-widget-wrapper").style("display","block");
 
     d3.select("#switch-field").style("display","block");
+
+    d3.select("#title").style("display","block");
 
     updateMap();
 
