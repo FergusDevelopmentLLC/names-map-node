@@ -96,8 +96,8 @@ http://104.236.16.91:8645/names/leaflet/
   * [Joi.js](#joi) - Validator for JavaScript objects. [link](http://mongoosejs.com/)
   * [REST API](#rest-api)
 * [Front End](#front-end) (/public folder)
-  * topojson
-  * SVG
+  * topojson [link](https://github.com/topojson/topojson)
+  * SVG [link](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)
   * [D3.js version 4](#d3js) - D3.js is a JavaScript library for manipulating documents based on data. [link](https://d3js.org/)
 
 ### TODO/Wish list
