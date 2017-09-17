@@ -37,43 +37,36 @@ http://storage9.static.itmages.com/i/17/0828/h_1503960370_4537145_c3520122ac.png
 
 U.S. State choropleth map, also a slider explore the name year by year.
 
-### Content and requirements and User interface
+### Content and User Interface requirements
 
-Map shows state name data by year for names in the Popular Name Database (1910 - present)
+Map shows state name data by year for names in the Popular Name Database (1910 - present).
 
-Random name/map produced on initial page load from a database query from over 33k distinct names.
+A Random name/map is produced on initial page load from a database query from over 33k distinct names.
 
-User can change name to see a new map and can request a random name.
+User can request a random name by clicking on the shuffle icon.
 
-User can select Male/Female for the name lookup.
+User can change name by clicking on the search icon.
+
+User can select Male/Female for the name search.
 
 User can slide year from when the name first entered the list to when/if it exited.
 
-histogram in progress. See http://104.236.16.91:8645/names/d3/histogram.html
+The barchart legend bars represent year and the current year is highlighted, based on the slider.
 
-The bars represent year, and highlight based on the slider.
-
-Tooltip affordance when hovering over state.
-
-The most popular year for a name should be signified/displayed.
-
-Bi-variate version is considered, in order to map 2 names simultaneously. Input 2 names.
-
-Button to get get to the most popular year
-
-Hover action on the icons so that they look like they can be interacted with.
+There is a Tooltip affordance when hovering over state that shows number of births in that state in the current slider year.
 
 ### Wireframes
 
-a series of low fidelity wireframes, paper prototypes, or mockups (in addition to the 1-2 pages)
+#### Leaflet prototype:
 
-Leaflet prototype
-![](http://storage3.static.itmages.com/i/17/0911/h_1505101581_7314008_10493da923.png "")
 http://104.236.16.91:8645/names/leaflet/
+![](http://storage3.static.itmages.com/i/17/0911/h_1505101581_7314008_10493da923.png "")
+
+#### Legend wireframe:
 
 ![](http://storage3.static.itmages.com/i/17/0911/h_1505097386_1540974_fef790703f.png "")
 
-![](http://storage1.static.itmages.com/i/17/0911/h_1505096468_4092358_b48c0cd0bd.png "")
+#### Experiments:
 
 ![](http://storage2.static.itmages.com/i/17/0911/h_1505096535_3247971_aa76d0e156.png "")
 
@@ -84,6 +77,10 @@ http://104.236.16.91:8645/names/leaflet/
 ![](http://storage3.static.itmages.com/i/17/0911/h_1505097046_2645969_c83f97308e.png "")
 
 ![](http://storage5.static.itmages.com/i/17/0911/h_1505097554_9759760_2522635eb1.png "")
+
+#### Bi-variate (map 2 names)
+
+![](http://storage1.static.itmages.com/i/17/0911/h_1505096468_4092358_b48c0cd0bd.png "")
 
 ###  Technology Stack
 
@@ -111,50 +108,23 @@ http://104.236.16.91:8645/names/leaflet/
 * [Utilities](#utilities)
   * [Postman](#postman) - Powerful HTTP client for testing web services. [link](https://www.getpostman.com/)
 
-### Map Notes/TODO items
+### Map Notes/TODO items/Wish list
 
-A random name is selected at at the start from this rest service...
-http://104.236.16.91:8645/popular_name/getRandomName
-
-So, if you refresh the page you get a random name each time.
-
-The edit (pencil) and shuffle icons in the legend are works in progress.
-
-If you can get a click to work on the shuffle icon, it simply reloads the page, producing a random name/map. This doesn't have to reload, could be written.
-
-You can change the name by clicking on it, entering a name and pressing enter. This is not as smooth as I think it could be. Using a new thing, an editable DIV.
-https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Editable_content
-
-The mouseout on the tooltip is inconsistent. Is there a better svg native way?
+The mouseout on the tooltip is inconsistent. Find a better svg native tooltip?
 
 Name pluralization on the tooltip could be better. Just appending an 's' currently.
 https://english.stackexchange.com/questions/39150/pluralization-of-names
 
-https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Editable_content
-
-The map loads at the most popular year for the name. There are asterisks surrounding the year in the legend when the map is on the most popular year.
-
-passing name/sex in url no longer works for some reason.
-http://104.236.16.91:8645/names/d3/?name=Will&sex=M
-
 The Male/Female switch is html styled with css over the svg. Maybe a native svg switch is better.
 
-Same with slider. Will try to implement.
+Make the number breaks rounded.
 
-I really don't like the woman, anything better than a floating html div?
+Normalization of data by total births per state per year. Data available?
 
-Is the ability to designate a sex even necessary?
+Double check on possible sql injection.
 
-I used this to make the Name entry work. New thing? Unsupported?
-https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Editable_content
-This probably breaks all sorts of https://www.w3.org/WAI/intro/accessibility.php rules.
+Bi-variate version map 2 names simultaneously. Input 2 names.
 
-Make the number breaks clean, round them in some way.
+Jigsaw Morphing, states become bubbles: https://bl.ocks.org/veltman/c582a31d347e04dd75d5331b0074558e
 
-Next step is to get histogram working...
-http://104.236.16.91:8645/names/d3/histogram.html
-(reload this page to get a randome name histogram, look at console to see name)
-
-Do a double check on possible sql injection, harden joi, knexjs.
-
-Background color on the slider not matching legend.
+States morph to appropriate sized bubbles: http://bestschoolday.huffingtonpost.com/#mt=map&filter=total&geo=US
