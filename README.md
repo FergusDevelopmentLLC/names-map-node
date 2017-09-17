@@ -101,7 +101,8 @@ http://104.236.16.91:8645/names/leaflet/
   * [D3.js version 4](#d3js) - D3.js is a JavaScript library for manipulating documents based on data. [link](https://d3js.org/)
   * [Awesomplete](#d3js) - Ultra lightweight, customizable, simple autocomplete widget with zero dependencies. [link](http://leaverou.github.io/awesomplete/)
   * [Moment.js]() - Parse, validate, manipulate, and display dates and times in JavaScript. [link](https://momentjs.com/)
-  * [Simple Statistics]() - Statistical methods in readable JavaScript for browsers, servers, and people. [link](https://simplestatistics.org/) 
+  * [Simple Statistics]() - Statistical methods in readable JavaScript for browsers, servers, and people. [link](https://simplestatistics.org/)
+  * [Colorbrewer.js]() - Predefined color scales. [link](https://bl.ocks.org/mbostock/5577023)
 
 ### TODO/Wish list
 
