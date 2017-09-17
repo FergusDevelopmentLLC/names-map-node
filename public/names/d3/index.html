@@ -173,14 +173,13 @@
           stroke-width:.3;
         }
 
+        /*bar chart*/
         #bar-chart {
           transform: translate(20px, 120px);
         }
-
         .bar {
           fill: #31a354;
         }
-
         .icon {
           fill: #696969;
         }
@@ -189,34 +188,28 @@
         #slider {
           transform: translate(20px, 245px);
         }
-
         .ticks {
           font: 10px sans-serif;
         }
-
         .track,
         .track-inset,
         .track-overlay {
           stroke-linecap: round;
         }
-
         .track {
           stroke: #000;
           stroke-opacity: 0.3;
           stroke-width: 10px;
         }
-
         .track-inset {
           stroke: #ddd;
           stroke-width: 8px;
         }
-
         .track-overlay {
           pointer-events: stroke;
           stroke-width: 50px;
           stroke: transparent;
         }
-
         .handle {
           fill: #fff;
           stroke: #000;
@@ -224,33 +217,34 @@
           stroke-width: 1.25px;
         }
 
-        h1, h2, h3 {
-          font-size: 1.3em;
-          font-weight: 100;
-          color: #808080;
-          margin: 0;
-          margin-bottom: 3px;
-        }
-
-        h2 {
-          font-size: 1em;
-          margin-bottom: 3px;
-        }
-
-        h3 {
-          font-size: .65em;
-          margin-bottom: 10px;
-        }
-
-        h3 a {
-          color: #808080;
-        }
-
-        #title {
+        /*titles*/
+        #titles {
           font-family: Montserrat, sans-serif;
+          fill: #696969;
+          font-size: 1em;
+          transform: translate(10px, 20px);
+        }
+        #title {
+          transform: translate(0px, 0px);
+        }
+        #subtitle {
+          font-size: .8em;
+          transform: translate(0px, 18px);
+        }
+        #subsubtitle {
+          font-size: .7em;
+          transform: translate(0px, 34px);
+        }
+        .link {
+          fill: #696969;
+          text-decoration: underline;
+        }
+
+        #spinner-wrapper {
           position: absolute;
-          top: 10px;
-          left: 20px;
+          top: 70px;
+          width: 750px;
+          height: 450px;
           display: none;
         }
 
@@ -260,16 +254,7 @@
 
 <div id='map-wrapper'></div>
 
-<div id="title">
-  <h1>Popular U.S. Names of the Last Century (1910-2016)</h1>
-  <h3>
-    Source: <a href='https://www.ssa.gov/oact/babynames/limits.html/' target="_blank">U.S. Social Security Administration</a>
-    <br/>
-    Map prepared by: <a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a>
-  </h3>
-</div>
-
-<div id='slider-wrapper'></div>
+<div id='spinner-wrapper'></div>
 
 <div class="switch-field" id="switch-field">
   <input type="radio" id="switch_left" name="switch_mf" value="M" checked/>
@@ -306,7 +291,7 @@
       name_list = '',
       slider = '',
       handle = '',
-      spin_target = document.getElementById('map-wrapper'),
+      spin_target = document.getElementById('spinner-wrapper'),
       spinner = '';
 
   var svg = d3.select("#map-wrapper")
@@ -331,7 +316,7 @@
     randomStart();//get a random name, if none passed.
   }
   else {
-    init();
+    getBlankMap();
   }
 
   function randomStart() {
@@ -340,8 +325,44 @@
       .await(setName);
   }
 
+  function setName (error, random_name_data) {
+
+    sex = random_name_data[0].sex;
+
+    popular_name = random_name_data[0].name;
+
+    getBlankMap();
+  }
+
+  function getBlankMap() {
+    d3.queue()
+      .defer(d3.json, 'data/states.topojson')
+      .await(setBlankMap);
+  }
+
+  function setBlankMap(error, statestopo) {
+
+    addBackgroundToMap();
+
+    d3.select('#states').remove();
+
+    svg.append("g")
+      .attr("id","states")
+      .selectAll("path")
+      .data( topojson.feature(statestopo, statestopo.objects.states).features )
+        .enter()
+        .append("path")
+        .attr("d",geoPath)
+        .attr("class", "state");
+
+    init();
+  }
+
   function init () {
 
+    addTitles();
+
+    d3.select('#spinner-wrapper').style("display","block");
     spinner = new Spinner(opts).spin(spin_target);
 
     clearMap();
@@ -356,9 +377,6 @@
 
     //this will repopulate the name lookup input with only the sex selected on the Boy/Girl switch
     handleAutocomplete();
-
-    //set legend name display
-    //d3.select(".name-input").html(popular_name);
 
     var data_url = '/popular_name/getOccurrences/' + popular_name + '/' + sex;
 
@@ -390,8 +408,6 @@
 
     joinDataToGeom(statestopo, name_data);
 
-    addBackgroundToMap();
-
     addStatesToMap(statestopo);
 
     populateMaxMinYear();
@@ -403,6 +419,8 @@
     populateBreaks(number_of_breaks, statestopo);
 
     spinner.stop();
+
+    d3.select('#spinner-wrapper').style("display","none");
 
     d3.select('#legend').remove();
 
@@ -424,8 +442,6 @@
     d3.select("#search-widget-wrapper").style("display","block");
 
     d3.select("#switch-field").style("display","block");
-
-    d3.select("#title").style("display","block");
 
     updateMap();
 
@@ -507,14 +523,38 @@
           if(entered_name != popular_name || selected_sex != sex) {
             popular_name = entered_name;
             sex = selected_sex;
-            init();
+            name_input = document.getElementById("name-input");
+            d3.select('#name-input').remove();
+            getBlankMap();
           }
-
         }
       });
-
   }
 
+  function nameSelected (evt) {
+
+    var selected_name = evt.text.value;
+    sex = "F"
+    if(selected_name.indexOf('(Boy)') > 0) {
+      sex = "M";
+    }
+
+    selected_name = selected_name.replace(' (Boy)','');
+    selected_name = selected_name.replace(' (Girl)','');
+    popular_name = selected_name;
+    document.querySelector('#name-input').value = popular_name;
+
+    d3.selectAll("input[name='switch_mf']").each(function(){
+      if(d3.select(this).node().value == sex)
+        d3.select(this).node().checked = true;
+    });
+
+    name_input = document.getElementById("name-input");
+    d3.select('#name-input').remove();
+    getBlankMap();
+
+  }
+  
   function getNameFromQS () {
     var name_query = gup('name', document.location.search);
     if(name_query != null)
@@ -532,12 +572,6 @@
     else {
       return default_sex;
     }
-  }
-
-  function setName (error, random_name_data) {
-    sex = random_name_data[0].sex;
-    popular_name = random_name_data[0].name;
-    init();
   }
 
   function setMaleFemaleSwitch () {
@@ -731,6 +765,49 @@
         return fill;
       });
 
+  }
+
+  function addTitles () {
+
+    d3.select('#titles').remove();
+
+    svg.append("g")
+      .attr("id", "titles");
+
+    var titles_root = d3.select('#titles');
+
+    titles_root.append("g")
+      .attr('id', 'title')
+      .append('text')
+        .attr('id', 'title')
+        .attr('class', 'title')
+        .text('Popular U.S. Names of the Last Century (1910-2016)');
+
+    titles_root.append('g')
+      .attr('id', 'subtitle')
+      .append('text')
+        .attr('id', 'subtitle-text')
+        .append('tspan')
+          .text('Data Source: ')
+        .append('tspan')
+          .append('a')
+            .attr('class', 'link')
+            .attr('xlink:href', 'https://www.ssa.gov/oact/babynames/limits.html')
+            .attr('target', '_blank')
+          .text('U.S. Social Security Administration ');
+
+    titles_root.append('g')
+      .attr('id', 'subsubtitle')
+      .append('text')
+        .attr('id', 'subtitle-text')
+        .append('tspan')
+          .text('Map prepared by: ')
+        .append('tspan')
+          .append('a')
+            .attr('class', 'link')
+            .attr('xlink:href', 'https://fergusdevelopmentllc.github.io/')
+            .attr('target', '_blank')
+          .text('Will Carter');
   }
 
   function addLegend () {
@@ -1127,30 +1204,6 @@
     return tooltip_msg;
   }
 
-  function nameSelected (evt) {
-
-    var selected_name = evt.text.value;
-    sex = "F"
-    if(selected_name.indexOf('(Boy)') > 0) {
-      sex = "M";
-    }
-
-    selected_name = selected_name.replace(' (Boy)','');
-    selected_name = selected_name.replace(' (Girl)','');
-    popular_name = selected_name;
-    document.querySelector('#name-input').value = popular_name;
-
-    d3.selectAll("input[name='switch_mf']").each(function(){
-      if(d3.select(this).node().value == sex)
-        d3.select(this).node().checked = true;
-    });
-
-    document.querySelector('#name-input').blur();
-
-    init();
-
-  }
-
   function clearMap() {
 
     svg.selectAll(".state")
@@ -1165,8 +1218,6 @@
     d3.select("#switch-field").style("display","none");
 
   }
-
-
 
 </script>
 
