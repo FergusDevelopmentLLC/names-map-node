@@ -1053,7 +1053,14 @@
             var slider_position = x.invert(d3.event.x);
             var slider_handle_year = Math.floor(slider_position);
 
-            if(this_year != slider_handle_year && slider_handle_year <= max_year && slider_handle_year >= min_year) {
+            // if(this_year != slider_handle_year && slider_handle_year <= max_year && slider_handle_year >= min_year) {
+            //   this_year = slider_handle_year;
+            //   handle.attr("cx", x(slider_position));
+            //   highlightBarForThisYear();
+            //   updateMap();
+            // }
+
+            if(this_year != slider_handle_year) {
               this_year = slider_handle_year;
               handle.attr("cx", x(slider_position));
               highlightBarForThisYear();
