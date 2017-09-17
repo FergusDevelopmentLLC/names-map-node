@@ -117,6 +117,6 @@ Double check on possible sql injection.
 
 Bi-variate version map 2 names simultaneously. Input 2 names.
 
-Jigsaw Morphing, states become bubbles: https://bl.ocks.org/veltman/c582a31d347e04dd75d5331b0074558e
-
-States morph to appropriate sized bubbles: http://bestschoolday.huffingtonpost.com/#mt=map&filter=total&geo=US
+Jigsaw Morphing, states become bubbles (examples):
+https://bl.ocks.org/veltman/c582a31d347e04dd75d5331b0074558e
+http://bestschoolday.huffingtonpost.com/#mt=map&filter=total&geo=US
