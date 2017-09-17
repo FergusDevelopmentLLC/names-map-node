@@ -106,12 +106,12 @@ http://104.236.16.91:8645/names/leaflet/
 * [Utilities](#utilities)
   * [Postman](#postman) - Powerful HTTP client for testing web services. [link](https://www.getpostman.com/)
 
-### Map Notes/TODO items/Wish list
-
-The mouseout on the tooltip is inconsistent. Find a better svg native tooltip?
+### TODO/Wish list
 
 Name pluralization on the tooltip could be better. Just appending an 's' currently.
 https://english.stackexchange.com/questions/39150/pluralization-of-names
+
+The mouseout on the tooltip is inconsistent. Find a better svg native tooltip?
 
 The Male/Female switch is html styled with css over the svg. Maybe a native svg switch is better.
 
