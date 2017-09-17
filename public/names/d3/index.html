@@ -465,7 +465,7 @@
         display_gender = "Girl";
 
       if(x.sex == sex)
-        return x.name + " (" + display_gender + ")";
+        return x.name + "&nbsp;(" + display_gender + ")";
     });
 
     //remove it if there
@@ -523,8 +523,9 @@
           if(entered_name != popular_name || selected_sex != sex) {
             popular_name = entered_name;
             sex = selected_sex;
-            name_input = document.getElementById("name-input");
-            d3.select('#name-input').remove();
+            new Awesomplete(name_input, {
+              list: []
+            });
             getBlankMap();
           }
         }
@@ -539,8 +540,8 @@
       sex = "M";
     }
 
-    selected_name = selected_name.replace(' (Boy)','');
-    selected_name = selected_name.replace(' (Girl)','');
+    selected_name = selected_name.replace('&nbsp;(Boy)','');
+    selected_name = selected_name.replace('&nbsp;(Girl)','');
     popular_name = selected_name;
     document.querySelector('#name-input').value = popular_name;
 
@@ -549,12 +550,10 @@
         d3.select(this).node().checked = true;
     });
 
-    name_input = document.getElementById("name-input");
-    d3.select('#name-input').remove();
     getBlankMap();
 
   }
-  
+
   function getNameFromQS () {
     var name_query = gup('name', document.location.search);
     if(name_query != null)
