@@ -83,26 +83,26 @@ http://104.236.16.91:8645/names/leaflet/
 ###  Technology Stack
 
 * [Backend Data wrangling](#backend)
-  * [PostgreSQL](#install-postgresql) - Powerful, open source object-relational database system. [link](https://www.postgresql.org/)
-    * [PostGIS](#install-postgis) - Geospatial database extender for PostgreSQL. [link](http://postgis.net/)
-  * Python
-  * MapShaper
-  * QGIS
+  * [PostgreSQL](#install-postgresql) - Powerful, open source object-relational database system. - [link](https://www.postgresql.org/)
+    * [PostGIS](#install-postgis) - Geospatial database extender for PostgreSQL. - [link](http://postgis.net/)
+  * Python(#python) - [link](https://www.python.org/)
+  * MapShaper - [link](http://mapshaper.org/)
+  * QGIS - A Free and Open Source Geographic Information System - [link](http://www.qgis.org/)
 * [Web framework](#web-framework)
-  * [Node.js](#install-node) - Runtime built on Chrome's V8 JavaScript engine. [link](https://nodejs.org/)
-  * [Git](#git) - Version control. [link](https://git-scm.com/)
-  * [Express.js](#express) - Web framework for Node.js. [link](https://expressjs.com/)
-  * [Knex.js](#knex) - Query builder for PostgreSQL/Node.js. [link](http://knexjs.org/)
-  * [Joi.js](#joi) - Validator for JavaScript objects. [link](http://mongoosejs.com/)
+  * [Node.js](#install-node) - Runtime built on Chrome's V8 JavaScript engine. - [link](https://nodejs.org/)
+  * [Git](#git) - Version control. - [link](https://git-scm.com/)
+  * [Express.js](#express) - Web framework for Node.js. - [link](https://expressjs.com/)
+  * [Knex.js](#knex) - Query builder for PostgreSQL/Node.js. - [link](http://knexjs.org/)
+  * [Joi.js](#joi) - Validator for JavaScript objects. - [link](http://mongoosejs.com/)
   * [REST API](#rest-api)
 * [Front End](#front-end) (/public folder)
   * topojson - An extension of GeoJSON that encodes topology! - [link](https://github.com/topojson/topojson)
   * SVG - [link](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)
-  * [D3.js version 4](#d3js) - D3.js is a JavaScript library for manipulating documents based on data. [link](https://d3js.org/)
-  * [Awesomplete](#d3js) - Ultra lightweight, customizable, simple autocomplete widget with zero dependencies. [link](http://leaverou.github.io/awesomplete/)
-  * [Moment.js]() - Parse, validate, manipulate, and display dates and times in JavaScript. [link](https://momentjs.com/)
-  * [Simple Statistics]() - Statistical methods in readable JavaScript for browsers, servers, and people. [link](https://simplestatistics.org/)
-  * [Colorbrewer.js]() - Predefined color scales. [link](https://bl.ocks.org/mbostock/5577023)
+  * [D3.js version 4](#d3js) - D3.js is a JavaScript library for manipulating documents based on data. - [link](https://d3js.org/)
+  * [Awesomplete](#d3js) - Ultra lightweight, customizable, simple autocomplete widget with zero dependencies. - [link](http://leaverou.github.io/awesomplete/)
+  * [Moment.js]() - Parse, validate, manipulate, and display dates and times in JavaScript. - [link](https://momentjs.com/)
+  * [Simple Statistics]() - Statistical methods in readable JavaScript for browsers, servers, and people. - [link](https://simplestatistics.org/)
+  * [Colorbrewer.js]() - Predefined color scales. - [link](https://bl.ocks.org/mbostock/5577023)
 
 ### TODO/Wish list
 
