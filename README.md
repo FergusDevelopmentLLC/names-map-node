@@ -8,21 +8,21 @@ Occurrences of male and female names in America from 1910 until 2016. The extent
 
 ### Title
 
-Popular American Surnames of the Last Century
+Popular U.S. Names of the Last Century (1910-2016)
 
 ### Map objectives
 
 The Names topic was chosen because I wanted something neutral that could be universally engaging (as long the name matches within the database behind the map). I wanted to be able to send it someone and say, "check out this map I made, it's about YOUR NAME."
 
-I want to find different ways for the data to be explored using different platforms (Leaflet, Mapbox, D3). By looking at the data in different ways, the final presentation and user interface can be create that is easily understandable and takes into account ideas from the design content in the class.
+I want to find different ways for the data to be explored using different platforms (Leaflet, D3.js). By looking at the data in different ways, the final presentation and user interface can be better created that is understandable and easy to use.
 
 ### User Persona
 
-Maybe this is a map that is provided as part of news article or post about the changing nature of baby names. The user is an expectant mother looking for a popular or unique name for her child. They can use the map to see names that are popular now and get an idea if the popularity is on the rise or fall. The user has low expertise and motivation, so the map should be as simple as possible to understand and manipulate.
+For instance, maybe this is a map that is provided as part of news article or post about the changing nature of baby names. The user is an expectant mother looking for a popular or unique name for her child. They can use the map to see names that are popular now and get an idea if the popularity is on the rise or fall. The user has low expertise and motivation, so the map should be as simple as possible to understand and manipulate.
 
-### Use case/scenario
+### Use case
 
-By using a slider to manipulate the year, users will need to see and understand how the changing colors on the map and highlighting of a histogram column signifies popularity over time. Also, the user needs to understand that the map is dynamic for any name, and that they can change it. Another goal is to possibly show how different name popularity is related over time.
+By using a slider to manipulate the year, users will need to see and understand how the changing colors on the map and highlighting of a bar chart column signifies popularity over time. Also, the user needs to understand that the map is dynamic for any name, and that they can change it.
 
 ### Data source
 
