@@ -480,7 +480,7 @@
 
     name_input = document.getElementById("name-input");
 
-    new Awesomplete(name_input, {
+    var autocomplete = new Awesomplete(name_input, {
       list: name_list
     });
 
@@ -523,9 +523,7 @@
           if(entered_name != popular_name || selected_sex != sex) {
             popular_name = entered_name;
             sex = selected_sex;
-            new Awesomplete(name_input, {
-              list: []
-            });
+            autocomplete.close();
             getBlankMap();
           }
         }
