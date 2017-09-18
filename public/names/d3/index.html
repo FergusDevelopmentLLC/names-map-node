@@ -393,10 +393,14 @@
     }
 
     if(name_data.length == 0) {
+      d3.select("#search-widget-wrapper").style("display","block");
+      d3.select("#switch-field").style("display","block");
       var name_input = document.getElementById("name-input");
-      popular_name = default_popular_name;
-      sex = default_sex;
       name_input.value = "* No Data *";
+      d3.select('#legend').remove();
+      addLegend();
+      addLegendSearchShuffleIcons();
+      d3.select("#legend-rect").style("height","80px");
       spinner.stop();
       return;
     }
