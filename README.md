@@ -104,23 +104,39 @@ http://104.236.16.91:8645/names/leaflet/
   * [Simple Statistics]() - Statistical methods in readable JavaScript for browsers, servers, and people. - [link](https://simplestatistics.org/)
   * [Colorbrewer.js]() - Predefined color scales. - [link](https://bl.ocks.org/mbostock/5577023)
 
-### TODO/Wish list
+### Overview
 
-Name pluralization on the tooltip could be better. Just appending an 's' currently.
-https://english.stackexchange.com/questions/39150/pluralization-of-names
+#### Introduction/Motivation
 
-The mouseout on the tooltip is inconsistent. Find a better svg native tooltip?
+I across this name topic early in the course when I Dogs of NYC map on reddit (https://project.wnyc.org/dogs-of-nyc/). After bit of searching I found Social Security administration name data for U.S. population from 1910 until 2016 (https://www.ssa.gov/oact/babynames/limits.html). I thought this topic would be a good one because I wanted it to be neutral, light subject that could be universally engaging. I wanted to be able to send the map to anyone and be able say, "check out this map I made, it's about YOUR NAME."
 
-The Male/Female switch is html styled with css over the svg. Maybe a native svg switch is better.
+#### Target user goals and objectives
 
-Make the number breaks rounded.
+I imagined expectant parents using the tool to research potential baby names for an upcoming birth. Because the map can give information about the name's geography and current trends (whether it's gaining or waning in popularity), prospective parents can get a better idea of the mix of names that their child will associate with. Maybe the parent is looking to research a family name or to find a name that was once popular, became unpopular, but is on the upswing like Maggie.
 
-Normalization of data by total births per state per year. Data available?
+#### Walk through
 
-Double check on possible sql injection.
+* Come in on the most popular year for the name.
+* Births for year
+* Births since beginning of data (1910)
+* Bar chart, each bar represents a year, so we see the trend
+* Slider to change year
+* Enter a name
+* Random name
+* URL entry
 
-Bi-variate version map 2 names simultaneously. Input 2 names.
+#### TODO/Wish list
 
-Jigsaw Morphing, states become bubbles (examples):
+1. Jigsaw Morphing, states become bubbles (examples):
 https://bl.ocks.org/veltman/c582a31d347e04dd75d5331b0074558e
 http://bestschoolday.huffingtonpost.com/#mt=map&filter=total&geo=US
+2. Normalization of data by total births per state per year. Data available?
+3. Bi-variate version map 2 names simultaneously. Allow input 2 names.
+4. Histogram instead of bar chart.
+5. The mouseout on the tooltip is inconsistent. Find a better svg native tooltip?
+6. Native svg switch.
+7. Rounded breaks
+8. Better formatting of legend text data
+9. Double check on possible sql injection.
+10. Name pluralization on the tooltip could be better. Just appending an 's' currently.
+https://english.stackexchange.com/questions/39150/pluralization-of-names
