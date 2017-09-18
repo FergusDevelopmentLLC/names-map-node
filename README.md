@@ -16,7 +16,7 @@ The Names topic was chosen because I wanted something neutral that could be univ
 
 I want to find different ways for the data to be explored using different platforms (Leaflet, D3.js). By looking at the data in different ways, the final presentation and user interface can be better created that is understandable and easy to use.
 
-### User Persona
+### User persona
 
 For instance, maybe this is a map that is provided as part of news article or post about the changing nature of baby names. The user is an expectant mother looking for a popular or unique name for her child. They can use the map to see names that are popular now and get an idea if the popularity is on the rise or fall. The user has low expertise and motivation, so the map should be as simple as possible to understand and manipulate.
 
@@ -26,10 +26,11 @@ By using a slider to manipulate the year, users will need to see and understand 
 
 ### Data source
 
+U.S. Social Security Administration
 https://www.ssa.gov/oact/babynames/limits.html
 
 Data screenshot:
-http://storage9.static.itmages.com/i/17/0828/h_1503960370_4537145_c3520122ac.png
+![](http://storage9.static.itmages.com/i/17/0828/h_1503960370_4537145_c3520122ac.png "")
 
 ### Thematic representation
 
@@ -37,21 +38,21 @@ U.S. State choropleth map, also a slider explore the name year by year.
 
 ### Content and User Interface requirements
 
-Map shows state name data by year for names in the Popular Name Database (1910 - present).
+* Map shows state name data by year for names in the Popular Name Database (1910 - present).
 
-A Random name/map is produced on initial page load from a database query from over 33k distinct names.
+* A Random name/map is produced on initial page load from a database query from over 33k distinct names.
 
-User can request a random name by clicking on the shuffle icon.
+* User can request a random name by clicking on the shuffle icon.
 
-User can change name by clicking on the search icon.
+* User can change name by clicking on the search icon.
 
-User can select Male/Female for the name search.
+* User can select Male/Female for the name search.
 
-User can slide year from when the name first entered the list to when/if it exited.
+* User can slide year from when the name first entered the list to when/if it exited.
 
-The barchart legend bars represent year and the current year is highlighted, based on the slider.
+* The bar chart legend bars represent year and the current year is highlighted, based on the slider.
 
-There is a Tooltip affordance when hovering over state that shows number of births in that state in the current slider year.
+* There is a state outline and tooltip affordance when hovering over state that shows number of births in that state in the current slider year.
 
 ### Wireframes
 
@@ -112,16 +113,19 @@ I across this name topic early in the course when I Dogs of NYC map on reddit (h
 
 #### Target user goals and objectives
 
-I imagined expectant parents using the tool to research potential baby names for an upcoming birth. Because the map can give information about the name's geography and current trends (whether it's gaining or waning in popularity), prospective parents can get a better idea of the mix of names that their child will associate with. Maybe the parent is looking to research a family name or to find a name that was once popular, became unpopular, but is on the upswing like Maggie.
+I imagined expectant parents using the tool to research potential baby names for an upcoming birth. Because the map can give information about the name's geography and current trends, prospective parents can get a better idea of the mix of names that their child will associate with. Maybe the parent is looking to research a family name or to find one that has a certain pattern such as, was once popular and became unpopular but is on the upswing. For example 'Maggie (Girl)'.
 
 #### Walk through
 
-* Come in on the most popular year for the name.
+* Map loads at the most popular year for the name
 * Births for year
 * Births since beginning of data (1910)
 * Bar chart, each bar represents a year, so we see the trend
+* Swatch color shows the popularity within a state
+* Tool-tip to show state details
 * Slider to change year
 * Enter a name
+* Autocomplete
 * Random name
 * URL entry
 
