@@ -131,16 +131,37 @@ I imagined expectant parents using the tool to research potential baby names for
 
 #### TODO/Wish list
 
-1. Jigsaw Morphing, states become bubbles (examples):
+1. Improve error handling (Oprah error?)
+2. Jigsaw Morphing, states become bubbles (examples):
 https://bl.ocks.org/veltman/c582a31d347e04dd75d5331b0074558e
 http://bestschoolday.huffingtonpost.com/#mt=map&filter=total&geo=US
-2. Normalization of data by total births per state per year. Data available?
-3. Bi-variate version map 2 names simultaneously. Allow input 2 names.
-4. Histogram instead of bar chart.
-5. The mouseout on the tooltip is inconsistent. Find a better svg native tooltip?
-6. Native svg switch.
-7. Rounded breaks
-8. Better formatting of legend text data
-9. Double check on possible sql injection.
-10. Name pluralization on the tooltip could be better. Just appending an 's' currently.
+3. Normalization of data by total births per state per year. Data available?
+4. Bi-variate version map 2 names simultaneously. Allow input 2 names.
+5. Histogram instead of bar chart.
+6. The mouseout on the tooltip is inconsistent. Find a better svg native tooltip?
+7. Native svg switch.
+8. Rounded breaks
+9. Better formatting of legend text data
+10. Double check on possible sql injection.
+11. Name pluralization on the tooltip could be better. Just appending an 's' currently.
 https://english.stackexchange.com/questions/39150/pluralization-of-names
+
+#### Interesting names
+* Old Southern Names:
+  * http://104.236.16.91:8645/names/d3/?name=Dollie&sex=F
+  * http://104.236.16.91:8645/names/d3/?name=Earnestine&sex=F
+  * http://104.236.16.91:8645/names/d3/?name=Charley&sex=M
+  * http://104.236.16.91:8645/names/d3/?name=Nettie&sex=F
+  * http://104.236.16.91:8645/names/d3/?name=Leia&sex=F (Only in KY/TN)
+* Theodore Roosevelt effect?
+  * http://104.236.16.91:8645/names/d3/?name=Roosevelt&sex=M
+* Elvis Presley effect?
+  * http://104.236.16.91:8645/names/d3/?name=Elvis&sex=M
+* Elon Musk effect?
+  * http://104.236.16.91:8645/names/d3/?name=Elon&sex=M
+* Kiefer Sutherland effect?
+  * http://104.236.16.91:8645/names/d3/?name=Kiefer&sex=M
+* Channing Tatum effect?
+  * http://104.236.16.91:8645/names/d3/?name=Channing&sex=M
+* Star Wars effect (bump in 1978)?
+  * http://104.236.16.91:8645/names/d3/?name=Leia&sex=F
