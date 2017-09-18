@@ -1060,7 +1060,7 @@
             //   updateMap();
             // }
 
-            if(this_year != slider_handle_year) {
+            if(this_year != slider_handle_year && slider_handle_year <= max_year) {
               this_year = slider_handle_year;
               handle.attr("cx", x(slider_position));
               highlightBarForThisYear();
