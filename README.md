@@ -163,7 +163,7 @@ https://english.stackexchange.com/questions/39150/pluralization-of-names
   * http://104.236.16.91:8645/names/d3/?name=Earnestine&sex=F
   * http://104.236.16.91:8645/names/d3/?name=Charley&sex=M
   * http://104.236.16.91:8645/names/d3/?name=Nettie&sex=F
-  * http://104.236.16.91:8645/names/d3/?name=Leia&sex=F (Only in KY/TN)
+  * http://104.236.16.91:8645/names/d3/?name=Earnestine&sex=F
 * Theodore Roosevelt effect?
   * http://104.236.16.91:8645/names/d3/?name=Roosevelt&sex=M
 * Elvis Presley effect?
