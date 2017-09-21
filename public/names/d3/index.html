@@ -78,6 +78,7 @@
           height: 25px;
           padding:3px;
           font-family: 'Montserrat', sans-serif;
+          background-color: #ffffff;
           text-align: center;
           font-size: 1em;
           font-weight: bold;
@@ -89,6 +90,7 @@
           height: 25px;
           padding: 3px;
           border: 1px solid #696969;
+          background-color: #ffffff;
           font-family: sans-serif;
           text-align: left;
         }
@@ -110,14 +112,14 @@
         }
 
         #legend-rect {
-          fill: #ffffff;
+          /*fill: #ffffff;
           fill-opacity: 1;
           stroke-width: .3;
           stroke: #696969;
           rx: 5;
           ry: 5;
           width: 240px;
-          height: 280px;
+          height: 280px;*/
         }
 
         #edit-box {
@@ -183,10 +185,12 @@
 
         /*d3 slider*/
         #slider {
-          transform: translate(20px, 245px);
+          /*transform: translate(20px, 245px);*/
         }
         .ticks {
-          font: 10px sans-serif;
+          font-family: 'Arimo', sans-serif;
+          font-size: .65em;
+          fill: #696969;
         }
         .track,
         .track-inset,
@@ -400,7 +404,7 @@
       d3.select('#legend').remove();
       addLegend();
       addLegendSearchShuffleIcons();
-      d3.select("#legend-rect").style("height","80px");
+      d3.select("#legend-rect").attr("height","80px");
       spinner.stop();
       return;
     }
@@ -443,6 +447,8 @@
     d3.select("#search-widget-wrapper").style("display","block");
 
     d3.select("#switch-field").style("display","block");
+
+    d3.select("#slider").style("display","block");
 
     updateMap();
 
@@ -819,7 +825,15 @@
     var legend_root = d3.select('#legend');
 
     legend_root.append("rect")
-      .attr("id", "legend-rect");
+      .attr('id', 'legend-rect')
+      .attr('width', 240)
+      .attr('height', 280)
+      .attr('rx', 5)
+      .attr('ry', 5)
+      .style('fill', '#ffffff')
+      .style('fill-opacity', 1)
+      .style('stroke-width', .3)
+      .style('stroke-width', '#696969');
 
   }
 
@@ -1032,12 +1046,13 @@
         .range([0, width])
         .clamp(true);
 
-    var legend_root = d3.select('#legend');
+    var svg_root = d3.select('svg');
 
     d3.select('#slider').remove();
-    legend_root.append("g")
+    svg_root.append("g")
       .attr("id", "slider")
-      .attr("class", "slider");
+      .style("display", "none")
+      .attr("transform", "translate(721, 415)")
 
     var slider = d3.select('#slider');
     slider.append("line")

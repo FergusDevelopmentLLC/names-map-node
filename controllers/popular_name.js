@@ -62,6 +62,24 @@ module.exports = {
     const result = await knex.raw(sql);
     res.status(200).json(result.rows);
 
-  }
+  },
+
+  //gets data for top_name map
+  // getTopNamesForSex: async (req, res, next) => {
+  //
+  //   const sex = req.value.params.sex;
+  //
+  //   var sql = `
+  //   select date_part('year', year) as yr, state as st, top_name as name, total
+  //   from top_name
+  //   where sex = '#sex#'
+  //   order by year, state, total;
+  //   `;
+  //
+  //   sql = sql.replace('#sex#', sex);
+  //   const result = await knex.raw(sql);
+  //   res.status(200).json(result.rows);
+  //
+  // }
 
 };
