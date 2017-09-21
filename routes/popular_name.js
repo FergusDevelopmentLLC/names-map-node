@@ -11,7 +11,7 @@ router.route('/getRandomName')
 router.route('/getMostPopularNames/:threshold')
   .get(validateParam(schemas.thresholdSchema, 'threshold'), PopularNameController.getMostPopularNames);
 
-router.route('/getTopNames/:sex')
-  .get(validateParam(schemas.sexSchema, 'sex'), PopularNameController.getTopNamesForSex);
+// router.route('/getTopNames/:sex')
+//   .get(validateParam(schemas.sexSchema, 'sex'), PopularNameController.getTopNamesForSex);
 
 module.exports = router;
