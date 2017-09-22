@@ -265,11 +265,6 @@
 
 <script>
 
-  d3.selectAll("input[name='switch_mf']").on("change", function(){
-    sex = this.value;
-    handleAutocomplete();
-  });
-
   var width = 1000,
       height = 600,
       default_popular_name = 'Quinn',
@@ -290,7 +285,14 @@
       slider = '',
       handle = '',
       spin_target = document.getElementById('spinner-wrapper'),
-      spinner = '';
+      spinner = '',
+      mode = 'display';
+
+  d3.selectAll("input[name='switch_mf']").on("change", function(){
+    sex = this.value;
+    mode = 'edit';
+    handleAutocomplete();
+  });
 
   var svg = d3.select("#map-wrapper")
     .append("svg")
@@ -374,7 +376,7 @@
     popular_name = toCamelCase(popular_name);
 
     //this will repopulate the name lookup input with only the sex selected on the Boy/Girl switch
-    handleAutocomplete();
+    handleAutocomplete('display');
 
     var data_url = '/popular_name/getOccurrences/' + popular_name + '/' + sex;
 
@@ -452,7 +454,6 @@
   };
 
   function handleAutocomplete() {
-
     d3.queue()
       .defer(d3.json, 'data/names_by_popularity.json')
       .await(addAutoCompleteInput);
@@ -461,25 +462,22 @@
 
   function addAutoCompleteInput (error, most_pop_names) {
 
+    //filter based on current sex
     name_list = most_pop_names.map(function(x) {
-
-      var display_gender = "Boy";
-
-      if(sex == 'F')
-        display_gender = "Girl";
-
       if(x.sex == sex)
-        return x.name + "&nbsp;(" + display_gender + ")";
+        return x.name + "&nbsp;(" + getDisplayGender() + ")";
     });
 
     //remove it if there
     d3.select('#name-input').remove();
 
+    var placeholder_text = "Search for a " + getDisplayGender().toLowerCase() + "s name"
+
     //add it back
     d3.select('#search-widget-wrapper').append('input')
       .attr("id", "name-input")
       .attr("class", "name-input")
-      .attr("placeholder", "Search for a name")
+      .attr("placeholder", placeholder_text)
       .attr("value", popular_name);
 
     name_input = document.getElementById("name-input");
@@ -490,14 +488,12 @@
 
     Awesomplete.$.bind(name_input, { "awesomplete-selectcomplete": nameSelected });
 
-    d3.select("#name-input")
-      .on("focus", function() {
+    d3.select("#name-input").on("focus", function() {
         this.value = '';
         d3.select(this).attr('class', 'name-input-edit');
       });
 
-    d3.select("#name-input")
-      .on("blur", function() {
+    d3.select("#name-input").on("blur", function() {
         d3.select(this).attr('class', 'name-input');
         var entered_value = this.value.replace(/\s/g,'');
         if(entered_value == '') {
@@ -506,8 +502,7 @@
       });
 
     //handle when user doesn't select autocomplete option, enters own name and presses enter.
-    d3.select("#name-input")
-      .on("keydown", function() {
+    d3.select("#name-input").on("keydown", function() {
         if(d3.event.keyCode == 13) {
 
           var entered_name = '';
@@ -532,6 +527,13 @@
           }
         }
       });
+
+    if(mode == 'edit') {
+      d3.select("#name-input").attr('class','name-input-edit');
+      document.getElementById('name-input').focus();
+      mode = 'display';
+    }
+
   }
 
   function nameSelected (evt) {
@@ -1228,6 +1230,12 @@
     d3.select("#search-widget-wrapper").style("display","none");
     d3.select("#switch-field").style("display","none");
 
+  }
+
+  function getDisplayGender() {
+    var display_gender = "Boy";
+    if(sex == 'F') { display_gender = "Girl"; }
+    return display_gender;
   }
 
 </script>
