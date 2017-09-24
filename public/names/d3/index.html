@@ -106,7 +106,7 @@
         	overflow: hidden;
           position: absolute;
           top: 290px;
-          left: 778px;
+          left: 780px;
           display: none;
         }
 
@@ -124,10 +124,9 @@
         }
 
         #edit-box {
-          height: 38px;
-          width: 116px;
           transform: translate(2px, 2px);
           fill: #ffffff;
+          /*fill:blue;*/
           stroke-width: 0;
           rx: 5;
           ry: 5;
@@ -135,10 +134,8 @@
         }
 
         #shuffle-box {
-          height: 38px;
-          width: 118px;
-          transform: translate(120px, 2px);
           fill: #ffffff;
+          /*fill: red;*/
           stroke-width: 0;
           rx: 5;
           ry: 5;
@@ -925,6 +922,10 @@
     //edit icon box
     legend_search_shuffle_root.append("rect")
       .attr("id", "edit-box")
+      .attr('width', 116)
+      .attr('height', 38)
+      .attr('transform', 'translate(0, 2)')
+      .style('fill','#ffffff')
       .on("mouseover", function() {
         d3.select('#icon-edit')
           .style('fill', '#ff0000');
@@ -952,6 +953,10 @@
     //shuffle icon
     legend_search_shuffle_root.append("rect")
       .attr("id", "shuffle-box")
+      .attr('width', 116)
+      .attr('height', 38)
+      .attr('transform', 'translate(120, 2)')
+      .style('fill','#ffffff')
       .on("mouseover", function() {
         d3.select('#icon-shuffle')
           .style('fill', '#ff0000');
