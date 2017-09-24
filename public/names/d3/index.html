@@ -798,6 +798,9 @@
       }
     }
 
+    if(year_accumulations.length == 0)
+      return;
+
     var most_pop_year = year_accumulations[0][0];
     var most_pop_acc = year_accumulations[0][1];
 
@@ -1250,6 +1253,12 @@
   }
 
   function getColor (d, breaks) {
+
+    var br = breaks[breaks.length - 1];
+
+    while(breaks.length < 3) {
+      breaks.push(br);
+    }
 
     var colors = d3.entries(eval('colorbrewer.' + colorbrewer_key));
     var k = breaks.length - 3; //breaks can't be < 3
