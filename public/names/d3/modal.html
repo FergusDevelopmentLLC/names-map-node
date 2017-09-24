@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/tingle.min.css" media="all">
+  <script src="js/tingle.min.js"></script>
+  <style>
+
+    .modal {
+      /*display:none;*/
+      color:red;
+    }
+
+    .tingle-demo-tiny {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container tingle-content-wrapper content">
+    <a id="click-me" href="#">click me</a>
+    <div class="tingle-demo tingle-demo-tiny">
+      <h1>About</h1>
+      <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+    var modalTinyNoFooter = new tingle.modal({
+      onClose: function() { console.log('close'); },
+      onOpen: function() { console.log('open'); },
+      beforeOpen: function() { console.log('before open'); },
+      beforeClose: function() { console.log('before close'); return true; },
+      cssClass: ['modal']
+    });
+    var lnk = document.querySelector('#click-me');
+
+    lnk.onclick = function(e){
+      modalTinyNoFooter.open();
+    }
+
+    modalTinyNoFooter.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
+
+  </script>
+
+</body>
+</html>

@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/switch-field.css" />
     <link rel="stylesheet" href="css/awesomplete.css" />
+    <link rel="stylesheet" href="css/tingle.min.css" media="all">
 
     <script src="js/utils.js"></script>
     <script src="js/awesomplete.js"></script>
@@ -17,6 +18,7 @@
     <script src="https://unpkg.com/simple-statistics@4.1.0/dist/simple-statistics.min.js"></script>
     <script src="http://spin.js.org/spin.min.js"></script>
     <script src="js/spin_opt.js"></script>
+    <script src="js/tingle.min.js"></script>
 
     <style>
 
@@ -250,6 +252,20 @@
           display: none;
         }
 
+        .modal {
+          font-family: Montserrat, sans-serif;
+          color:696969;
+          font-size: .9em;
+        }
+
+        .modal a {
+          color:696969;
+        }
+
+        .tingle-demo-tiny {
+          display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -266,6 +282,37 @@
 </div>
 
 <div id="search-widget-wrapper"></div>
+
+<div class="container tingle-content-wrapper content">
+  <div class="tingle-demo tingle-demo-tiny">
+    <h1>About this Map</h1>
+    <h3>Popular U.S. Names of the Last Century (1910-2016)</h3>
+    <p>
+      The idea came from the various name maps seen periodically on <a href='https://www.reddit.com/r/MapPorn/' target='_blank'>Reddit</a>. <a href='https://www.reddit.com/r/MapPorn/comments/70u7c4/most_popular_girl_names_in_usa_757568/' target='_blank'>This</a> one and <a href='https://www.reddit.com/r/MapPorn/comments/1p4swf/most_popular_boys_names_by_state_gif970x615/' target='_blank'>this one</a> are good examples. For a similar map on Top U.S. Boys/Girls Names from 1910-2016, see this <a   href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>. The data for this map came from the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
+    </p>
+    <p>
+      Thank you for checking out my project!<br/>
+      -<a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a>
+    </p>
+    <p>Some interesting maps/names to check out:</p>
+    <ul>
+      <li>
+        Old Southern Names:
+        <a href='/names/d3/?name=Dollie&sex=F'>Dollie</a>,
+        <a href='/names/d3/?name=Earnestine&sex=F'>Earnestine</a>,
+        <a href='/names/d3/?name=Charley&sex=M'>Charley</a>,
+        <a href='/names/d3/?name=Nettie&sex=F'>Nettie</a>
+      </li>
+      <li><a href='/names/d3/?name=Roosevelt&sex=M'>Theodore Roosevelt</a> effect?</li>
+      <li><a href='/names/d3/?name=Elvis&sex=M'>Elvis Presley</a> effect?</li>
+      <li><a href='/names/d3/?name=Elon&sex=M'>Elon Musk</a> effect?</li>
+      <li><a href='/names/d3/?name=Kiefer&sex=M'>Kiefer Sutherland</a> effect?</li>
+      <li><a href='/names/d3/?name=Channing&sex=M'>Channing Tatum</a> effect?</li>
+      <li><a href='/names/d3/?name=Leia&sex=F'>Star Wars effect</a> (small boomlet in 1979-80)?</li>
+    </ul>
+
+  </div>
+</div>
 
 <script>
 
@@ -454,6 +501,29 @@
     d3.select("#slider").style("display","block");
 
     updateMap();
+
+    var modalTinyNoFooter = new tingle.modal({
+      onClose: function() {
+        // console.log('close');
+      },
+      onOpen: function() {
+        // console.log('open');
+      },
+      beforeOpen: function() {
+        // console.log('before open');
+      },
+      beforeClose: function() {
+        // console.log('before close');
+        return true;
+      },
+      cssClass: ['modal']
+    });
+
+    var lnk = document.querySelector('#about-link');
+
+    lnk.onclick = function(e){ modalTinyNoFooter.open(); }
+
+    modalTinyNoFooter.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
 
   };
 
@@ -806,15 +876,20 @@
     titles_root.append('g')
       .attr('id', 'subsubtitle')
       .append('text')
-        .attr('id', 'subtitle-text')
-        .append('tspan')
-          .text('Map prepared by: ')
-        .append('tspan')
-          .append('a')
-            .attr('class', 'link')
-            .attr('xlink:href', 'https://fergusdevelopmentllc.github.io/')
-            .attr('target', '_blank')
-          .text('Will Carter');
+        .attr('id', 'subsubtitle-text');
+
+    d3.select('#subsubtitle-text')
+      .append('tspan')
+      .text(' ');
+
+    d3.select('#subsubtitle-text')
+      .append('tspan')
+      .append('a')
+        .attr('class', 'link')
+        .attr('id', 'about-link')
+        .attr('xlink:href', '#')
+      .text('About this map');
+
   }
 
   function addLegend () {
