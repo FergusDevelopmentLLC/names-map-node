@@ -51,9 +51,9 @@
         /*Map background*/
         #map-background {
           fill: #EEEEEE;
-          /*fill: blue;*/
-          stroke: none;
-          width: 1000px;
+          /*fill: none;*/
+          /*stroke: red;*/
+          width: 960px;
           height: 600px;
           transform: translate(0,0);
         }
@@ -71,8 +71,8 @@
         /*Legend*/
         #search-widget-wrapper {
           position: absolute;
-          top: 175px;
-          left: 728px;
+          top: 260px;
+          left: 742px;
           display: none;
         }
 
@@ -105,15 +105,15 @@
           padding: 0;
         	overflow: hidden;
           position: absolute;
-          top: 205px;
-          left: 768px;
+          top: 290px;
+          left: 778px;
           display: none;
         }
 
         #legend {
           fill: #696969;
           font-size: .7em;
-          transform: translate(700px, 170px);
+          transform: translate(715px, 255px) scale(1);
         }
 
         #legend-rect {
@@ -225,19 +225,19 @@
         #titles {
           font-family: Montserrat, sans-serif;
           fill: #696969;
-          font-size: 1em;
-          transform: translate(10px, 20px);
+          transform: translate(20px, 30px);
         }
         #title {
+          font-size: 1.1em;
           transform: translate(0px, 0px);
         }
         #subtitle {
-          font-size: .8em;
-          transform: translate(0px, 18px);
+          font-size: .9em;
+          transform: translate(0px, 23px);
         }
         #subsubtitle {
-          font-size: .7em;
-          transform: translate(0px, 34px);
+          font-size: .8em;
+          transform: translate(0px, 43px);
         }
         .link {
           fill: #696969;
@@ -247,8 +247,10 @@
         #spinner-wrapper {
           position: absolute;
           top: 70px;
+          left: 70px;
           width: 750px;
           height: 450px;
+          /*border: 1px solid blue;*/
           display: none;
         }
 
@@ -307,7 +309,7 @@
       <li><a href='/names/d3/?name=Channing&sex=M'>Channing Tatum</a> effect?</li>
       <li><a href='/names/d3/?name=Leia&sex=F'>Star Wars effect</a> (small boomlet in 1979-80)?</li>
     </ul>
-    <p>Find an interesting name? <a href='https://twitter.com/zippyFerguson' target='_blank''>Let me know</a>!</p>
+    <p>Find an interesting name? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>!</p>
 
   </div>
 </div>
@@ -325,7 +327,7 @@
       most_popular_year = this_year,
       breaks = [],
       occurrences = '',
-      colorbrewer_key = 'Greens';
+      colorbrewer_key = 'Oranges';
       novaluecolor = '#ffffff',
       total_occurrences_all_time = 0,
       total_occurrences_for_year = 0,
@@ -351,7 +353,7 @@
   var geoPath = d3.geoPath()
     .projection(d3.geoAlbersUsa()
       .scale(900)
-      .translate([width / 2 - 100, height / 2]));
+      .translate([width / 2 - 45, height / 2]));
 
   tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
@@ -489,7 +491,7 @@
 
     addLegendCells();
 
-    addSlider();
+    addSlider(738, 510);
 
     //display html elements after everything loaded
     d3.select("#search-widget-wrapper").style("display","block");
@@ -762,7 +764,7 @@
             .style("top", (d3.event.pageY - 28) + "px");
 
           d3.select(this).style("stroke", "#FF0000");//make st outline red
-          d3.select(this).style("stroke-width", "1.2");
+          d3.select(this).style("stroke-width", "2");
 
           //https://stackoverflow.com/questions/17917072/choropleth-maps-changing-stroke-color-in-mouseover-shows-overlapping-boundari
           this.parentNode.appendChild(this);//append it to parent to make it move to top, otherwise outline is covered by bordering state lines
@@ -903,7 +905,7 @@
     legend_root.append("rect")
       .attr('id', 'legend-rect')
       .attr('width', 240)
-      .attr('height', 280)
+      .attr('height', 290)
       .attr('rx', 5)
       .attr('ry', 5);
     }
@@ -1047,8 +1049,8 @@
     d3.selectAll('.bar').each(function(d) {
       var bar = d3.select(this);
       var bar_id = bar._groups[0][0].id;
-      if ( bar_id == 'bar-' + this_year ) { bar.style('fill','#FF0000'); }
-      else { bar.style('fill', '#31a354'); }
+      if ( bar_id == 'bar-' + this_year ) { bar.style('fill','#ff0000'); }
+      else { bar.style('fill', '#fd8d3c'); }
     });
   }
 
@@ -1091,7 +1093,7 @@
 
   }
 
-  function addSlider() {
+  function addSlider(left_margin, top_margin) {
 
     var width = 200;
     var height = 100;
@@ -1119,11 +1121,12 @@
 
     var svg_root = d3.select('svg');
 
+    var translate = "translate(" + left_margin + ", " + top_margin + ")";
     d3.select('#slider').remove();
     svg_root.append("g")
       .attr("id", "slider")
       .style("display", "none")
-      .attr("transform", "translate(721, 415)")
+      .attr("transform", translate)
 
     var slider = d3.select('#slider');
     slider.append("line")
