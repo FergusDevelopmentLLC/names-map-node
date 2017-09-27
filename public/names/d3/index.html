@@ -428,6 +428,10 @@
     handleAutocomplete('display');
 
     var data_url = '/popular_name/getOccurrences/' + popular_name + '/' + sex;
+    var test_query = gup('test', document.location.search);
+    if(test_query != null) {
+      data_url = '/popular_name/getNameData/' + popular_name + '/' + sex;
+    }
 
     console.log(data_url);
 
@@ -467,7 +471,7 @@
 
     setMostPopularYear();
 
-    this_year = most_popular_year;
+    this_year = getYearFromQS();
 
     populateBreaks(number_of_breaks, statestopo);
 
@@ -646,6 +650,16 @@
     }
     else {
       return default_sex;
+    }
+  }
+
+  function getYearFromQS () {
+    var yr_query = gup('yr', document.location.search);
+    if(yr_query != null) {
+      return yr_query;
+    }
+    else {
+      return most_popular_year;
     }
   }
 

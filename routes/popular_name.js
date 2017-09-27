@@ -5,6 +5,9 @@ const { validateParam, validateBody, schemas } = require('../helpers/routeHelper
 router.route('/getOccurrences/:name/:sex')
   .get(validateParam(schemas.nameSchema, 'name'), validateParam(schemas.sexSchema, 'sex'), PopularNameController.getOccurancesByNameSex);
 
+router.route('/getNameData/:name/:sex')
+  .get(validateParam(schemas.nameSchema, 'name'), validateParam(schemas.sexSchema, 'sex'), PopularNameController.getNameData);
+
 router.route('/getRandomName')
   .get(PopularNameController.getRandomName);
 

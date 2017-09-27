@@ -21,15 +21,6 @@ module.exports = {
     const name = req.value.params.name;
     const sex = req.value.params.sex;
 
-    // var sql = `
-    //   select date_part('year', year) as yr, pop_name.state as st, pop_name.occurrences as oc
-    //   from pop_name
-    //   where pop_name.name = '#name#'
-    //   and pop_name.state != 'DC'
-    //   and sex = '#sex#'
-    //   order by year;
-    // `;
-
     var sql = `
       select date_part('year', year) as yr, pop_name.state as st, pop_name.occurrences as oc, cast(name_tot_sex_st_year.total_for_state as INTEGER) as tot
       from pop_name
@@ -48,6 +39,30 @@ module.exports = {
 
     const result = await knex.raw(sql);
     res.status(200).json(result.rows);
+  },
+
+  getNameData: async (req, res, next) => {
+
+    const name = req.value.params.name;
+    const sex = req.value.params.sex;
+
+    var sql = `
+      select data
+      from name
+      where name = '#name#'
+      and sex = '#sex#';
+    `;
+
+    sql = sql.replace('#name#', name);
+    sql = sql.replace('#sex#', sex);
+
+    const result = await knex.raw(sql);
+    //res.status(200).json(result.rows);
+
+    console.log(result.rows[0].data);
+
+    res.status(200).send(result.rows[0].data);
+
   },
 
   getMostPopularNames: async (req, res, next) => {
