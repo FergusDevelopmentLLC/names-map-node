@@ -21,13 +21,26 @@ module.exports = {
     const name = req.value.params.name;
     const sex = req.value.params.sex;
 
+    // var sql = `
+    //   select date_part('year', year) as yr, pop_name.state as st, pop_name.occurrences as oc
+    //   from pop_name
+    //   where pop_name.name = '#name#'
+    //   and pop_name.state != 'DC'
+    //   and sex = '#sex#'
+    //   order by year;
+    // `;
+
     var sql = `
-      select date_part('year', year) as yr, pop_name.state as st, pop_name.occurrences as oc
+      select date_part('year', year) as yr, pop_name.state as st, pop_name.occurrences as oc, cast(name_tot_sex_st_year.total_for_state as INTEGER) as tot
       from pop_name
+      inner join name_tot_sex_st_year
+      	on date_part('year', year) = name_tot_sex_st_year.yr
+      	and pop_name.state = name_tot_sex_st_year.state
+      	and pop_name.sex = name_tot_sex_st_year.sex
       where pop_name.name = '#name#'
       and pop_name.state != 'DC'
-      and sex = '#sex#'
-      order by year;
+      and pop_name.sex = '#sex#'
+      order by pop_name.year, pop_name.state;
     `;
 
     sql = sql.replace('#name#', name);
