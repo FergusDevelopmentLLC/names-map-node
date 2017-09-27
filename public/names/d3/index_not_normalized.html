@@ -21,14 +21,12 @@
     <script src="js/tingle.min.js"></script>
 
     <style>
-
         body {
           padding: 0;
           margin: 0;
           /*background: #E8E8E8;*/
           background: #EEEEEE;
         }
-
         div.tooltip {
           position: absolute;
           max-width: 300px;
@@ -41,13 +39,11 @@
           border-radius: 3px;
           pointer-events: none;
         }
-
         #map-wrapper {
           position:absolute;
           width: 1000px;
           height: 600px;
         }
-
         /*Map background*/
         #map-background {
           fill: #EEEEEE;
@@ -57,25 +53,21 @@
           height: 600px;
           transform: translate(0,0);
         }
-
         /*States*/
         #states {
           transform: translate(-20px, -20px);
         }
-
         .state {
           stroke: #696969;
           stroke-width: 1;
         }
-
         /*Legend*/
         #search-widget-wrapper {
           position: absolute;
-          top: 240px;
+          top: 260px;
           left: 742px;
           display: none;
         }
-
         .name-input {
           width: 186px;
           height: 25px;
@@ -88,7 +80,6 @@
           border: 0;
           cursor: pointer; cursor: hand;
         }
-
         .name-input-edit {
           width: 186px;
           height: 25px;
@@ -99,30 +90,26 @@
           text-align: left;
           cursor: pointer; cursor: hand;
         }
-
         .switch-field {
           font-family: 'Montserrat', sans-serif;
           padding: 0;
         	overflow: hidden;
           position: absolute;
-          top: 270px;
+          top: 290px;
           left: 780px;
           display: none;
         }
-
         #legend {
           fill: #696969;
           font-size: .7em;
-          transform: translate(715px, 235px) scale(1);
+          transform: translate(715px, 255px) scale(1);
         }
-
         #legend-rect {
           fill: #ffffff;
           fill-opacity: 1;
           stroke-width: .3;
           stroke: #696969;
         }
-
         #edit-box {
           transform: translate(2px, 2px);
           fill: #ffffff;
@@ -132,7 +119,6 @@
           ry: 5;
           cursor: pointer; cursor: hand;
         }
-
         #shuffle-box {
           fill: #ffffff;
           /*fill: red;*/
@@ -141,42 +127,33 @@
           ry: 5;
           cursor: pointer; cursor: hand;
         }
-
         #legend-text {
           fill: #000000;
           text-anchor: middle;
           font-family: 'Arimo', sans-serif;
         }
-
         #legend-subtitle {
           font-size: 1.3em;
           transform: translate(120px, 85px);
         }
-
         #legend-subsubtitle {
           font-size: 1.1em;
           transform: translate(120px, 105px);
         }
-
         #legend-cells {
-          transform: translate(18px, 200px);
+          transform: translate(20px, 200px);
         }
-
         .legend-swatch-label {
           fill: #000000;
-          fill-opacity: .9;
           font-family: 'Overpass Mono', monospace;
-          font-size: .85em;
         }
-
         .legend-swatch {
           stroke: #696969;
           stroke-width:.3;
         }
-
         /*bar chart*/
         #bar-chart {
-          transform: translate(18px, 120px);
+          transform: translate(20px, 120px);
         }
         .bar {
           fill: #31a354;
@@ -184,7 +161,6 @@
         .icon {
           fill: #696969;
         }
-
         /*d3 slider*/
         #slider {
           /*transform: translate(20px, 245px);*/
@@ -219,7 +195,6 @@
           stroke-opacity: 0.5;
           stroke-width: 1.25px;
         }
-
         /*titles*/
         #titles {
           font-family: Montserrat, sans-serif;
@@ -242,7 +217,6 @@
           fill: #696969;
           text-decoration: underline;
         }
-
         #spinner-wrapper {
           position: absolute;
           top: 70px;
@@ -252,21 +226,17 @@
           /*border: 1px solid blue;*/
           display: none;
         }
-
         .modal {
           font-family: Montserrat, sans-serif;
           color:696969;
           font-size: .9em;
         }
-
         .modal a {
           color:696969;
         }
-
         .tingle-demo-tiny {
           display: none;
         }
-
     </style>
 </head>
 <body>
@@ -309,11 +279,11 @@
       <li><a href='/names/d3/?name=Leia&sex=F'>Star Wars effect</a> (small boomlet in 1979-80)?</li>
     </ul>
     <p>Find an interesting name? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>!</p>
+
   </div>
 </div>
 
 <script>
-
   var width = 1000,
       height = 600,
       default_popular_name = 'Quinn',
@@ -336,65 +306,48 @@
       spin_target = document.getElementById('spinner-wrapper'),
       spinner = '',
       mode = 'display';
-
   d3.selectAll("input[name='switch_mf']").on("change", function(){
     sex = this.value;
     mode = 'edit';
     handleAutocomplete();
   });
-
   var svg = d3.select("#map-wrapper")
     .append("svg")
       .attr("width", width)
       .attr("height", height);
-
   var geoPath = d3.geoPath()
     .projection(d3.geoAlbersUsa()
       .scale(900)
       .translate([width / 2 - 45, height / 2]));
-
   tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
-
   popular_name = getNameFromQS();
-
   sex = getSexFromQS();
-
   if(popular_name == default_popular_name && sex == default_sex) {
     randomStart();//get a random name, if none passed.
   }
   else {
     getBlankMap();
   }
-
   function randomStart() {
     d3.queue()
       .defer(d3.json, "/popular_name/getRandomName")
       .await(setName);
   }
-
   function setName (error, random_name_data) {
-
     sex = random_name_data[0].sex;
-
     popular_name = random_name_data[0].name;
-
     getBlankMap();
   }
-
   function getBlankMap() {
     d3.queue()
       .defer(d3.json, 'data/states.topojson')
       .await(setBlankMap);
   }
-
   function setBlankMap(error, statestopo) {
-
     addBackgroundToMap();
-
     d3.select('#states').remove();
-
     svg.append("g")
       .attr("id","states")
       .selectAll("path")
@@ -403,47 +356,32 @@
         .append("path")
         .attr("d",geoPath)
         .attr("class", "state");
-
     init();
   }
-
   function init () {
-
     addTitles();
-
     d3.select('#spinner-wrapper').style("display","block");
     spinner = new Spinner(opts).spin(spin_target);
-
     clearMap();
-
     setMaleFemaleSwitch();
-
     //set sex to match switch
     sex = d3.select('input[name="switch_mf"]:checked').node().value;
-
     //force name to be camel case
     popular_name = toCamelCase(popular_name);
-
     //this will repopulate the name lookup input with only the sex selected on the Boy/Girl switch
     handleAutocomplete('display');
-
     var data_url = '/popular_name/getOccurrences/' + popular_name + '/' + sex;
-
     console.log(data_url);
-
     d3.queue()
       .defer(d3.json, 'data/states.topojson')
       .defer(d3.json, data_url)
       .await(makeMap);
   }
-
   function makeMap (error, statestopo, name_data) {
-
     if(error) {
       console.log(error);
       return;
     }
-
     if(name_data.length == 0) {
       d3.select("#search-widget-wrapper").style("display","block");
       d3.select("#switch-field").style("display","block");
@@ -456,50 +394,28 @@
       spinner.stop();
       return;
     }
-
     populateOccurencesFrom(name_data);
-
     joinDataToGeom(statestopo, name_data);
-
     addStatesToMap(statestopo);
-
     populateMaxMinYear();
-
     setMostPopularYear();
-
     this_year = most_popular_year;
-
     populateBreaks(number_of_breaks, statestopo);
-
     spinner.stop();
-
     d3.select('#spinner-wrapper').style("display","none");
-
     d3.select('#legend').remove();
-
     addLegend();
-
     addLegendSearchShuffleIcons();
-
     addLegendText();
-
     addLegendBars(name_data);
-
     highlightBarForThisYear();
-
     addLegendCells();
-
-    addSlider(738, 490);
-
+    addSlider(738, 510);
     //display html elements after everything loaded
     d3.select("#search-widget-wrapper").style("display","block");
-
     d3.select("#switch-field").style("display","block");
-
     d3.select("#slider").style("display","block");
-
     updateMap();
-
     var modalTinyNoFooter = new tingle.modal({
       onClose: function() {
         // console.log('close');
@@ -516,55 +432,39 @@
       },
       cssClass: ['modal']
     });
-
     var lnk = document.querySelector('#about-link');
-
     lnk.onclick = function(e){ modalTinyNoFooter.open(); }
-
     modalTinyNoFooter.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
-
   };
-
   function handleAutocomplete() {
     d3.queue()
       .defer(d3.json, 'data/names_by_popularity.json')
       .await(addAutoCompleteInput);
-
   }
-
   function addAutoCompleteInput (error, most_pop_names) {
-
     //filter based on current sex
     name_list = most_pop_names.map(function(x) {
       if(x.sex == sex)
         return x.name + "&nbsp;(" + getDisplayGender() + ")";
     });
-
     //remove it if there
     d3.select('#name-input').remove();
-
     var placeholder_text = "Search for a " + getDisplayGender().toLowerCase() + "s name"
-
     //add it back
     d3.select('#search-widget-wrapper').append('input')
       .attr("id", "name-input")
       .attr("class", "name-input")
       .attr("placeholder", placeholder_text)
       .attr("value", popular_name);
-
     name_input = document.getElementById("name-input");
-
     var autocomplete = new Awesomplete(name_input, {
       list: name_list
     });
-
     Awesomplete.$.bind(name_input, { "awesomplete-selectcomplete": nameSelected });
-
     d3.select("#name-input").on("focus", function() {
         this.value = '';
         d3.select(this).attr('class', 'name-input-edit');
       });
-
     d3.select("#name-input").on("blur", function() {
         d3.select(this).attr('class', 'name-input');
         var entered_value = this.value.replace(/\s/g,'');
@@ -572,15 +472,11 @@
           this.value = popular_name;
         }
       });
-
     //handle when user doesn't select autocomplete option, enters own name and presses enter.
     d3.select("#name-input").on("keydown", function() {
         if(d3.event.keyCode == 13) {
-
           var entered_name = '';
-
           var selected_sex = '';
-
           if(this.value == '') {
             this.value = popular_name;
             this.blur();
@@ -590,7 +486,6 @@
             entered_name = this.value.replace(/\s/g,'');
             selected_sex = d3.select('input[name="switch_mf"]:checked').node().value;
           }
-
           if(entered_name != popular_name || selected_sex != sex) {
             popular_name = entered_name;
             sex = selected_sex;
@@ -599,37 +494,28 @@
           }
         }
       });
-
     if(mode == 'edit') {
       d3.select("#name-input").attr('class','name-input-edit');
       document.getElementById('name-input').focus();
       mode = 'display';
     }
-
   }
-
   function nameSelected (evt) {
-
     var selected_name = evt.text.value;
     sex = "F"
     if(selected_name.indexOf('(Boy)') > 0) {
       sex = "M";
     }
-
     selected_name = selected_name.replace('&nbsp;(Boy)','');
     selected_name = selected_name.replace('&nbsp;(Girl)','');
     popular_name = selected_name;
     document.querySelector('#name-input').value = popular_name;
-
     d3.selectAll("input[name='switch_mf']").each(function(){
       if(d3.select(this).node().value == sex)
         d3.select(this).node().checked = true;
     });
-
     getBlankMap();
-
   }
-
   function getNameFromQS () {
     var name_query = gup('name', document.location.search);
     if(name_query != null)
@@ -638,7 +524,6 @@
       return default_popular_name;
     }
   }
-
   function getSexFromQS () {
     var sex_query = gup('sex', document.location.search);
     if(sex_query != null) {
@@ -648,36 +533,22 @@
       return default_sex;
     }
   }
-
   function setMaleFemaleSwitch () {
-
     d3.selectAll("input[name='switch_mf']").each(function(){
       if(d3.select(this).node().value == sex)
         d3.select(this).node().checked = true;
     });
-
   }
-
   function populateOccurencesFrom (name_data) {
-
     //append date to the name_data as the last day of occurrence yr
     occurrences = name_data;
-
     //add actual date field to occurrences for easier processing later
     for (occurrence in occurrences) {
       var dt = "12/31/" + occurrences[occurrence].yr;
       occurrences[occurrence].date = new Date(dt);
     }
-
-    for (occurrence in occurrences) {
-      var normalized = ((occurrences[occurrence].oc / occurrences[occurrence].tot) * 100).toFixed(2);
-      occurrences[occurrence].normalized = normalized;
-    }
-
   }
-
   function joinDataToGeom (states, name_data) {
-
     states.objects.states.geometries.forEach(function(d) {
       var layer_stusps = d.properties.stusps;
       d.properties.occurrences = [];
@@ -689,52 +560,33 @@
         }
       }
     });
-
   }
-
   function populateMaxMinYear () {
-
     var first_date = new Date(occurrences[0].date);
     var last_date = new Date(occurrences[occurrences.length-1].date);
-
     min_year = first_date.getFullYear();
     max_year = last_date.getFullYear();
     this_year = min_year;
-
     d3.select("#slider-min-label").html(min_year);
     d3.select("#slider-max-label").html(max_year);
-
   }
-
   function populateBreaks (number_of_classes, states) {
-
     var occurrences_acc = [];
-
     states.objects.states.geometries.forEach(function(d) {
       for (occurrence in d.properties.occurrences) {
-        //occurrences_acc.push(d.properties.occurrences[occurrence].oc);
-        occurrences_acc.push(d.properties.occurrences[occurrence].normalized);
+        occurrences_acc.push(d.properties.occurrences[occurrence].oc);
       }
     });
-
     if(occurrences_acc.length <= number_of_classes) {
       number_of_classes = occurrences_acc.length;
     }
-
-    //console.log(states);
-
     var clusters = ss.ckmeans(occurrences_acc, number_of_classes);
     var brks = clusters.map(function(cluster) {
       return [cluster[0], cluster.pop()];
     });
-
     breaks = multiDimensionalUnique(brks);
-
-    //console.log(breaks);
   }
-
   function addBackgroundToMap () {
-
     //this is to catch when the mouse goes off the map, turn tooltip off. hack.
     d3.select('#map-background').remove();
     svg.append("rect")
@@ -742,15 +594,10 @@
       .on("mouseover",function(d) {
         tooltip.style("opacity", 0);//TODO, figure a better tooltip
       });
-
   }
-
   function addStatesToMap (statestopo) {
-
     //if another map had been drawn and populated previously, remove it to make room for this one
-
     d3.select('#states').remove();
-
     svg.append("g")
       .attr("id","states")
       .selectAll("path")
@@ -760,40 +607,27 @@
         .attr("d",geoPath)
         .attr("class", "state")
         .on('mouseover', function(d) {
-
           var tooltip_msg = getTooltipMessage(d);
-
           tooltip.transition()
             .style("opacity", .9);
-
           tooltip.html(tooltip_msg)
             .style("left", (d3.event.pageX + 15) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
-
           d3.select(this).style("stroke", "#FF0000");//make st outline red
           d3.select(this).style("stroke-width", "2");
-
           //https://stackoverflow.com/questions/17917072/choropleth-maps-changing-stroke-color-in-mouseover-shows-overlapping-boundari
           this.parentNode.appendChild(this);//append it to parent to make it move to top, otherwise outline is covered by bordering state lines
-
         })
         .on("mouseout",function(d) {
-
           d3.select(this).style("stroke", "#696969");//return st outline to gray
           d3.select(this).style("stroke-width", "1");
-
           tooltip.style("opacity", 0);
-
         });
-
   }
-
   function setMostPopularYear () {
-
     var year_accumulations = [];
     var last_yr = occurrences[0].yr;
     var year_accum = 0;
-
     for(var oc in occurrences) {
       if(occurrences[oc].yr == last_yr) {
         year_accum += occurrences[oc].oc;
@@ -804,40 +638,30 @@
         last_yr = occurrences[oc].yr;
       }
     }
-
     if(year_accumulations.length == 0)
       return;
-
     var most_pop_year = year_accumulations[0][0];
     var most_pop_acc = year_accumulations[0][1];
-
     for(var acc in year_accumulations) {
       if(year_accumulations[acc][1] > most_pop_acc) {
         most_pop_acc = year_accumulations[acc][1];
         most_pop_year = year_accumulations[acc][0];
       }
     }
-
     most_popular_year = most_pop_year;
-
   }
-
   function updateMap () {
-
     total_occurrences_for_year = 0;
     total_occurrences_all_time = 0;
-
     svg.selectAll(".state")
       .style('fill', function(d) {
         var fill = novaluecolor;
-        //console.log(d);
         if (d.properties.occurrences.length > 0) {
           for (var occurrence in d.properties.occurrences) {
             var occurrence_date = new Date(d.properties.occurrences[occurrence].date);
             if(occurrence_date.getFullYear() == this_year && d.properties.occurrences[occurrence].oc > 0) {
               total_occurrences_for_year += d.properties.occurrences[occurrence].oc;
-              // var this_fill = getColor(d.properties.occurrences[occurrence].oc, breaks);
-              var this_fill = getColor(d.properties.occurrences[occurrence].normalized, breaks);
+              var this_fill = getColor(d.properties.occurrences[occurrence].oc, breaks);
               fill = this_fill;
             }
             if(occurrence_date.getFullYear() <= this_year) {
@@ -853,25 +677,18 @@
         d3.select(".legend-subsubtitle").text(total_occurrences_all_time.toLocaleString() + " births since " + min_year);
         return fill;
       });
-
   }
-
   function addTitles () {
-
     d3.select('#titles').remove();
-
     svg.append("g")
       .attr("id", "titles");
-
     var titles_root = d3.select('#titles');
-
     titles_root.append("g")
       .attr('id', 'title')
       .append('text')
         .attr('id', 'title')
         .attr('class', 'title')
         .text('Popular U.S. Names of the Last Century (1910-2016)');
-
     titles_root.append('g')
       .attr('id', 'subtitle')
       .append('text')
@@ -884,16 +701,13 @@
             .attr('xlink:href', 'https://www.ssa.gov/oact/babynames/limits.html')
             .attr('target', '_blank')
           .text('U.S. Social Security Administration ');
-
     titles_root.append('g')
       .attr('id', 'subsubtitle')
       .append('text')
         .attr('id', 'subsubtitle-text');
-
     d3.select('#subsubtitle-text')
       .append('tspan')
       .text(' ');
-
     d3.select('#subsubtitle-text')
       .append('tspan')
       .append('a')
@@ -901,19 +715,14 @@
         .attr('id', 'about-link')
         .attr('xlink:href', '#')
       .text('About this map');
-
   }
-
   function addLegend () {
-
     svg.append("g")
       .attr("id", "legend")
       .on("mouseover",function(d) {
         tooltip.style("opacity", 0);//TODO, figure a better tooltip
       });
-
     var legend_root = d3.select('#legend');
-
     legend_root.append("rect")
       .attr('id', 'legend-rect')
       .attr('width', 240)
@@ -921,16 +730,11 @@
       .attr('rx', 5)
       .attr('ry', 5);
     }
-
   function addLegendSearchShuffleIcons () {
-
     var legend_root = d3.select('#legend');
-
     legend_root.append("g")
       .attr("id", "legend-search-shuffle");
-
     var legend_search_shuffle_root = d3.select('#legend-search-shuffle');
-
     //edit icon box
     legend_search_shuffle_root.append("rect")
       .attr("id", "edit-box")
@@ -951,7 +755,6 @@
         d3.select('#icon-edit')
           .style('fill', '#696969');
       });
-
     legend_search_shuffle_root.append("g")
       .attr("transform", "translate(-2,-2) scale(.065)")
         .append("path")
@@ -961,7 +764,6 @@
           .on("click", function() {
             document.getElementById('name-input').focus();
           });
-
     //shuffle icon
     legend_search_shuffle_root.append("rect")
       .attr("id", "shuffle-box")
@@ -980,7 +782,6 @@
       .on("click", function() {
         randomStart();
       });
-
     legend_search_shuffle_root.append("g")
       .attr("transform", "translate(217,7) scale(.04)")
         .append("path")
@@ -990,68 +791,50 @@
           .on("click", function() {
             randomStart();
           });
-
     legend_search_shuffle_root.append("g")
       .attr("class", "legend-text")
       .attr("transform", "translate(90,25)")
   }
-
   function addLegendText () {
-
     var legend_root = d3.select('#legend');
-
     //text
     legend_root.append("g")
       .attr('id', 'legend-text')
       .attr('class', 'legend-text');
-
     var legend_text = d3.select('#legend-text');
-
     legend_text.append('g')
       .append('text')
         .attr('id', 'legend-subtitle')
         .attr('class', 'legend-subtitle')
         .text('');
-
     legend_text.append('g')
       .append('text')
         .attr('id', 'legend-subsubtitle')
         .attr('class', 'legend-subsubtitle')
         .text('');
-
   }
-
   function addLegendBars (name_data) {
-
     //get array of years, with each years total occurrences, regardless of state
     var year_accumulations = getObjectArrayOfYearAccumulations(name_data);
-
     // set the dimensions and margins of the graph
     var margin = {top: 0, right: 0, bottom: 0, left: 0},
-        width = 205 - margin.left - margin.right,
+        width = 200 - margin.left - margin.right,
         height = 75 - margin.top - margin.bottom;
-
     // set the ranges
     var x = d3.scaleBand()
       .range([0, width])
       .padding(0.01);
     var y = d3.scaleLinear()
       .range([height, 0]);
-
     // remove any previous bar charts
     d3.select('#bar-chart').remove();
-
     var legend_root = d3.select('#legend');
-
     legend_root.append("g")
       .attr('id', 'bar-chart');
-
     // Scale the range of the data in the domains
     x.domain(year_accumulations.map(function(d) { return d.yr; }));
     y.domain([0, d3.max(year_accumulations, function(d) { return d.year_accum; })]);
-
     var bar_chart_group = d3.select('#bar-chart');
-
     // append the rectangles for the bar chart
     bar_chart_group.selectAll(".bar")
       .data(year_accumulations)
@@ -1062,9 +845,7 @@
       .attr("width", x.bandwidth())
       .attr("y", function(d) { return y(d.year_accum); })
       .attr("height", function(d) { return height - y(d.year_accum); });
-
   }
-
   function highlightBarForThisYear () {
     d3.selectAll('.bar').each(function(d) {
       var bar = d3.select(this);
@@ -1073,82 +854,61 @@
       else { bar.style('fill', '#fd8d3c'); }
     });
   }
-
   function addLegendCells () {
-
     //cells
     var legend_root = d3.select('#legend');
-
     legend_root.append("g")
       .attr("id", "legend-cells");
-
     var legend_cells = d3.select('#legend-cells');
-
     var i = 0;
     for(var br in breaks) {
       legend_cells.append("g")
         .attr("id", "cell" + i)
-        .attr("transform", "translate(" + i * 41.5 + ",0)")
+        .attr("transform", "translate(" + i * 40.5 + ",0)")
       i++;
     }
-
     i = 0;
     for(var br in breaks) {
       var cell = d3.select('#cell' + i);
-
       cell.append('rect')
         .attr('class', 'legend-swatch')
         .attr('height', 15)
-        .attr('width', 39.5)
+        .attr('width', 38.5)
         .attr('fill', getColor(breaks[br][1], breaks));
-
       cell.append('text')
-        // .text(breaks[br][1])
-        .text(breaks[br][1] + '%')
+        .text(breaks[br][1])
         .attr('class', 'legend-swatch-label')
-        .attr('transform', 'translate(39.5,30)')
+        .attr('transform', 'translate(40.5,30)')
         .style('text-anchor', 'end');
-
       i++;
     }
-
   }
-
   function addSlider(left_margin, top_margin) {
-
     var width = 200;
     var height = 100;
-
     //tick every 20 years if (1900-2020)
     var span = 20;
-
     //tick every 10 years if (1950-2020)
     if(min_year >= 1950)
       span = 10;
-
     //tick every 5 years if (1990-2020)
     if(min_year >= 1990)
       span = 5;
-
     var slider_min = Math.floor(min_year / span) * span;
     var slider_max = Math.ceil(max_year / span) * span;
     var r = slider_max - slider_min;
     var ticks_amt = r / span;
-
     var x = d3.scaleLinear()
         .domain([slider_min, slider_max])
         .range([0, width])
         .clamp(true);
-
     var svg_root = d3.select('svg');
-
     var translate = "translate(" + left_margin + ", " + top_margin + ")";
     d3.select('#slider').remove();
     svg_root.append("g")
       .attr("id", "slider")
       .style("display", "none")
       .attr("transform", translate)
-
     var slider = d3.select('#slider');
     slider.append("line")
         .attr("class", "track")
@@ -1166,23 +926,19 @@
           .on("start drag", function() {
             var slider_position = x.invert(d3.event.x);
             var slider_handle_year = Math.floor(slider_position);
-
             // if(this_year != slider_handle_year && slider_handle_year <= max_year && slider_handle_year >= min_year) {
             //   this_year = slider_handle_year;
             //   handle.attr("cx", x(slider_position));
             //   highlightBarForThisYear();
             //   updateMap();
             // }
-
             if(this_year != slider_handle_year && slider_handle_year <= max_year) {
               this_year = slider_handle_year;
               handle.attr("cx", x(slider_position));
               highlightBarForThisYear();
               updateMap();
             }
-
           }));
-
     slider.insert("g", ".track-overlay")
         .attr("class", "ticks")
         .attr("transform", "translate(0," + 18 + ")")
@@ -1193,7 +949,6 @@
         .attr("text-anchor", "middle")
         .attr("transform", "translate(0,3)")
         .text(function(d) { return d; });
-
     slider.insert("g", ".track-overlay")
       .attr("class", "tick-marks")
       .attr("transform", "translate(0,5)")
@@ -1206,23 +961,17 @@
         .attr("y1", 0)
         .attr("x2", x)
         .attr("y2", 3);
-
     handle = slider.insert("circle", ".track-overlay")
       .attr("class", "handle")
       .attr("r", 9)
       .attr("cx", ((this_year - slider_min) / (slider_max - slider_min)) * x.range()[1]);
-
   }
-
   function getObjectArrayOfYearAccumulations (name_data) {
-
     var year_accumulations = [];
     var first_yr = name_data[0].yr;
     var last_yr = name_data[name_data.length - 1].yr;
-
     var last_yr = name_data[0].yr;
     var year_accum = 0;
-
     for(var oc in name_data) {
       if(name_data[oc].yr == last_yr) {
         year_accum += name_data[oc].oc;
@@ -1232,14 +981,11 @@
         year_accum = name_data[oc].oc;
         last_yr = name_data[oc].yr;
       }
-
       var year = {};
       year.yr = last_yr;
       year.year_accum = year_accum;
       year_accumulations.push(year);
-
     }
-
     //add back any 0 occurrence yrs
     var missing_years = [];
     for (i = first_yr; i <= last_yr; i++) {
@@ -1252,7 +998,6 @@
       if(found == false)
         missing_years.push(i);
     }
-
     if(missing_years && missing_years.length > 0) {
       for(var yr in missing_years) {
         var year = {};
@@ -1261,35 +1006,23 @@
         year_accumulations.push(year);
       }
     }
-
     year_accumulations.sort(function(a, b) {
       return a.yr - b.yr;
     })
-
     return year_accumulations;
-
   }
-
   function getColor (d, breaks) {
-
-    //console.log(d);
-
     var br = breaks[breaks.length - 1];
-
     while(breaks.length < 3) {
       breaks.push(br);
     }
-
     var colors = d3.entries(eval('colorbrewer.' + colorbrewer_key));
     var k = breaks.length - 3; //breaks can't be < 3
     var color_scale = colors[k];
     var returncolor = novaluecolor;
-
-    d = parseFloat(d);
-
+    d = parseInt(d);
     if(d == 0)
       returncolor = novaluecolor;
-
     if (breaks[0] && d <= breaks[0][1]) {
       returncolor = color_scale.value[0];
     } else if (breaks[1] && d <= breaks[1][1]) {
@@ -1311,57 +1044,33 @@
     } else if (breaks[9] && d <= breaks[9][1]) {
       returncolor = color_scale.value[9];
     }
-
     return returncolor;
-
   }
-
   function getTooltipMessage (d) {
     //TODO: make this pluralization better. https://english.stackexchange.com/questions/39150/pluralization-of-names
     var tooltip_msg = "No " + popular_name + "s were born in " + abbrRegion(d.properties.stusps, 'name')  + " in " + this_year;
     for(var oc in occurrences) {
-        if(occurrences[oc].yr == this_year && occurrences[oc].st == d.properties.stusps) {
-          tooltip_msg = 'In #state# in #year#, there were #total_for_state# #genderplural# popular name births, #total_for_name# named #the_name# [#pct#].';
-          tooltip_msg = tooltip_msg.replace('#year#', this_year);
-          tooltip_msg = tooltip_msg.replace('#state#', abbrRegion(occurrences[oc].st, 'name'));
-          tooltip_msg = tooltip_msg.replace('#total_for_state#', occurrences[oc].tot.toLocaleString());
-          tooltip_msg = tooltip_msg.replace('#genderplural#', getDisplayGenderMF().toLowerCase());
-          tooltip_msg = tooltip_msg.replace('#total_for_name#', occurrences[oc].oc.toLocaleString());
-          tooltip_msg = tooltip_msg.replace('#the_name#', popular_name);
-          var pct = occurrences[oc].normalized;
-          tooltip_msg = tooltip_msg.replace('#pct#', pct + '%');
-        }
+      if(occurrences[oc].yr == this_year && occurrences[oc].st == d.properties.stusps) {
+        tooltip_msg = occurrences[oc].oc + " " + popular_name + "s were born in " + abbrRegion(d.properties.stusps, 'name') + " in " + this_year;
+      }
     }
-
     return tooltip_msg;
   }
-
   function clearMap() {
-
     svg.selectAll(".state")
       .style('fill', function(d) {
         return novaluecolor;
       });
-
     d3.select('#legend').remove();
     d3.select('#slider').remove();
     d3.select("#search-widget-wrapper").style("display","none");
     d3.select("#switch-field").style("display","none");
-
   }
-
   function getDisplayGender() {
     var display_gender = "Boy";
     if(sex == 'F') { display_gender = "Girl"; }
     return display_gender;
   }
-
-  function getDisplayGenderMF() {
-    var display_gender = "Male";
-    if(sex == 'F') { display_gender = "Female"; }
-    return display_gender;
-  }
-
 </script>
 
 </body>
