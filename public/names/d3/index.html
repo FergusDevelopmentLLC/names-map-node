@@ -25,7 +25,6 @@
         body {
           padding: 0;
           margin: 0;
-          /*background: #E8E8E8;*/
           background: #EEEEEE;
         }
 
@@ -64,7 +63,7 @@
         }
 
         .state {
-          stroke: #696969;
+          stroke: #888888;
           stroke-width: 1;
         }
 
@@ -178,41 +177,49 @@
         #bar-chart {
           transform: translate(18px, 120px);
         }
+
         .bar {
           fill: #31a354;
         }
+
         .icon {
           fill: #696969;
         }
 
         /*d3 slider*/
         #slider {
-          /*transform: translate(20px, 245px);*/
+
         }
+
         .ticks {
           font-family: 'Arimo', sans-serif;
           font-size: .65em;
           fill: #696969;
         }
+
         .track,
         .track-inset,
         .track-overlay {
           stroke-linecap: round;
         }
+
         .track {
           stroke: #000;
           stroke-opacity: 0.3;
           stroke-width: 10px;
         }
+
         .track-inset {
           stroke: #ddd;
           stroke-width: 8px;
         }
+
         .track-overlay {
           pointer-events: stroke;
           stroke-width: 50px;
           stroke: transparent;
         }
+
         .handle {
           fill: #fff;
           stroke: #000;
@@ -221,23 +228,28 @@
         }
 
         /*titles*/
+
         #titles {
           font-family: Montserrat, sans-serif;
           fill: #696969;
           transform: translate(20px, 30px);
         }
+
         #title {
           font-size: 1.1em;
           transform: translate(0px, 0px);
         }
+
         #subtitle {
           font-size: .9em;
           transform: translate(0px, 23px);
         }
+
         #subsubtitle {
           font-size: .8em;
           transform: translate(0px, 43px);
         }
+
         .link {
           fill: #696969;
           text-decoration: underline;
@@ -249,7 +261,6 @@
           left: 70px;
           width: 750px;
           height: 450px;
-          /*border: 1px solid blue;*/
           display: none;
         }
 
@@ -288,7 +299,9 @@
   <div class="tingle-demo tingle-demo-tiny">
     <h3>Popular U.S. Names of the Last Century (1910-2016)</h3>
     <p>
-      The idea came from the various name maps seen periodically on <a href='https://www.reddit.com/r/MapPorn/' target='_blank'>Reddit</a>. <a href='https://www.reddit.com/r/MapPorn/comments/70u7c4/most_popular_girl_names_in_usa_757568/' target='_blank'>This</a> one and <a href='https://www.reddit.com/r/MapPorn/comments/1p4swf/most_popular_boys_names_by_state_gif970x615/' target='_blank'>this one</a> are good examples. For a similar map on Top U.S. Boys/Girls Names from 1910-2016, see this <a   href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>. The data for this map came from the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
+      The idea came from the various name maps seen periodically on <a href='https://www.reddit.com/r/MapPorn/' target='_blank'>Reddit</a>.
+      <a href='https://www.reddit.com/r/MapPorn/comments/70u7c4/most_popular_girl_names_in_usa_757568/' target='_blank'>This</a> one is a good example. The data for this map came from the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
+      <p>For a similar map on Top U.S. Boys/Girls Names from 1910-2016, see this <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>.</p>
     </p>
     <p>Thank you for checking out my project. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>gitHub repo</a> for a deeper look at how this map was created.</p>
     <p>-<a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a></p>
@@ -427,11 +440,7 @@
     //this will repopulate the name lookup input with only the sex selected on the Boy/Girl switch
     handleAutocomplete('display');
 
-    var data_url = '/popular_name/getOccurrences/' + popular_name + '/' + sex;
-    var test_query = gup('test', document.location.search);
-    if(test_query != null) {
-      data_url = '/popular_name/getNameData/' + popular_name + '/' + sex;
-    }
+    data_url = '/popular_name/getNameData/' + popular_name + '/' + sex;
 
     console.log(data_url);
 
