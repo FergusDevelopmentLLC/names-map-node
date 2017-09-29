@@ -11,10 +11,11 @@
 
     <script src="js/utils.js"></script>
     <script src="js/awesomplete.js"></script>
+    <script src="js/colorbrewer.js"></script>
+    <script src="js/cartocolor.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
-    <script src="http://colorbrewer2.org/export/colorbrewer.js"></script>
     <script src="https://unpkg.com/simple-statistics@4.1.0/dist/simple-statistics.min.js"></script>
     <script src="http://spin.js.org/spin.min.js"></script>
     <script src="js/spin_opt.js"></script>
@@ -63,7 +64,6 @@
         }
 
         .state {
-          stroke: #888888;
           stroke-width: 1;
         }
 
@@ -178,9 +178,7 @@
           transform: translate(18px, 120px);
         }
 
-        .bar {
-          fill: #31a354;
-        }
+
 
         .icon {
           fill: #696969;
@@ -274,7 +272,7 @@
           color:696969;
         }
 
-        .tingle-demo-tiny {
+        .tingle-content {
           display: none;
         }
 
@@ -296,14 +294,17 @@
 <div id="search-widget-wrapper"></div>
 
 <div class="container tingle-content-wrapper content">
-  <div class="tingle-demo tingle-demo-tiny">
+  <div class="tingle tingle-content">
     <h3>Popular U.S. Names of the Last Century (1910-2016)</h3>
     <p>
       The idea came from the various name maps seen periodically on <a href='https://www.reddit.com/r/MapPorn/' target='_blank'>Reddit</a>.
-      <a href='https://www.reddit.com/r/MapPorn/comments/70u7c4/most_popular_girl_names_in_usa_757568/' target='_blank'>This</a> one is a good example. The data for this map came from the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
-      <p>For a similar map on Top U.S. Boys/Girls Names from 1910-2016, see this <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>.</p>
+      <a href='https://www.reddit.com/r/MapPorn/comments/70u7c4/most_popular_girl_names_in_usa_757568/' target='_blank'>This</a> one is a good example. The data source for this map is the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
     </p>
-    <p>Thank you for checking out my project. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>gitHub repo</a> for a deeper look at how this map was created.</p>
+    <p>
+        For a similar map on Top U.S. Boys/Girls Names from 1910-2016, check out the following <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>.<br/>
+        <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'><img src='images/top_names.png' /></a>
+    </p>
+    <p>Thank you for checking out my project. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>GitHub repo</a> for a deeper look.</p>
     <p>-<a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a></p>
     <h4>Some interesting maps/names to check out:</h4>
     <ul>
@@ -338,8 +339,8 @@
       most_popular_year = this_year,
       breaks = [],
       occurrences = '',
-      colorbrewer_key = 'Oranges';
-      novaluecolor = '#ffffff',
+      color_key = 'cartocolor.Mint' //https://github.com/CartoDB/CartoColor/wiki/CARTOColor-Scheme-Names or colorbrewer.Greens http://127.0.0.1:8645/names/d3/?ck=colorbrewer.Greens
+      novalue_color = '#ffffff',
       total_occurrences_all_time = 0,
       total_occurrences_for_year = 0,
       tooltip = '',
@@ -348,13 +349,20 @@
       handle = '',
       spin_target = document.getElementById('spinner-wrapper'),
       spinner = '',
-      mode = 'display';
+      mode = 'display',
+      bar_fill_color = '#ffffff',
+      highlight_color = '#e6550d',
+      state_stroke_color = '#696969';
 
   d3.selectAll("input[name='switch_mf']").on("change", function(){
     sex = this.value;
     mode = 'edit';
     handleAutocomplete();
   });
+
+  color_key = getColorKeyFromQS();
+
+  highlight_color = getHighlightColorFromQS();
 
   var svg = d3.select("#map-wrapper")
     .append("svg")
@@ -415,7 +423,8 @@
         .enter()
         .append("path")
         .attr("d",geoPath)
-        .attr("class", "state");
+        .attr("class", "state")
+        .style("stroke", state_stroke_color);
 
     init();
   }
@@ -484,6 +493,19 @@
 
     populateBreaks(number_of_breaks, statestopo);
 
+    //set the bar_fill_color to the midrange color
+    shift = 3;
+    if (breaks.length < 4) { shift = 1; }
+    bar_fill_color = getColor(breaks[breaks.length - shift][1], breaks);
+
+    //set the background-color of the switch to the midrange color - 1
+    var shift = 4;
+    if (breaks.length < 4) { shift = 1; }
+    var switch_color = getColor(breaks[breaks.length - shift][1], breaks);
+    var cssRuleCode = document.all ? 'rules' : 'cssRules'; //account for IE and FF
+    var rule = document.styleSheets[3][cssRuleCode][4];//brittle, depends on order css is loaded
+    rule.style['background-color'] = switch_color;
+
     spinner.stop();
 
     d3.select('#spinner-wrapper').style("display","none");
@@ -534,7 +556,7 @@
 
     lnk.onclick = function(e){ modalTinyNoFooter.open(); }
 
-    modalTinyNoFooter.setContent(document.querySelector('.tingle-demo-tiny').innerHTML);
+    modalTinyNoFooter.setContent(document.querySelector('.tingle-content').innerHTML);
 
   };
 
@@ -672,6 +694,26 @@
     }
   }
 
+  function getColorKeyFromQS () {
+    var ck_query = gup('ck', document.location.search);
+    if(ck_query != null) {
+      return ck_query;
+    }
+    else {
+      return color_key;
+    }
+  }
+
+  function getHighlightColorFromQS () {
+    var hl_query = gup('hl', document.location.search);
+    if(hl_query != null) {
+      return hl_query;
+    }
+    else {
+      return highlight_color;
+    }
+  }
+
   function setMaleFemaleSwitch () {
 
     d3.selectAll("input[name='switch_mf']").each(function(){
@@ -782,31 +824,23 @@
         .append("path")
         .attr("d",geoPath)
         .attr("class", "state")
+        .style("stroke", state_stroke_color)
         .on('mouseover', function(d) {
-
           var tooltip_msg = getTooltipMessage(d);
-
           tooltip.transition()
             .style("opacity", .9);
-
           tooltip.html(tooltip_msg)
             .style("left", (d3.event.pageX + 15) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
-
-          d3.select(this).style("stroke", "#FF0000");//make st outline red
+          d3.select(this).style("stroke", highlight_color);//make st outline red
           d3.select(this).style("stroke-width", "2");
-
           //https://stackoverflow.com/questions/17917072/choropleth-maps-changing-stroke-color-in-mouseover-shows-overlapping-boundari
           this.parentNode.appendChild(this);//append it to parent to make it move to top, otherwise outline is covered by bordering state lines
-
         })
         .on("mouseout",function(d) {
-
-          d3.select(this).style("stroke", "#696969");//return st outline to gray
+          d3.select(this).style("stroke", state_stroke_color);//return st outline to gray
           d3.select(this).style("stroke-width", "1");
-
           tooltip.style("opacity", 0);
-
         });
 
   }
@@ -852,14 +886,13 @@
 
     svg.selectAll(".state")
       .style('fill', function(d) {
-        var fill = novaluecolor;
+        var fill = novalue_color;
         //console.log(d);
         if (d.properties.occurrences.length > 0) {
           for (var occurrence in d.properties.occurrences) {
             var occurrence_date = new Date(d.properties.occurrences[occurrence].date);
             if(occurrence_date.getFullYear() == this_year && d.properties.occurrences[occurrence].oc > 0) {
               total_occurrences_for_year += d.properties.occurrences[occurrence].oc;
-              // var this_fill = getColor(d.properties.occurrences[occurrence].oc, breaks);
               var this_fill = getColor(d.properties.occurrences[occurrence].normalized, breaks);
               fill = this_fill;
             }
@@ -1078,13 +1111,14 @@
     // append the rectangles for the bar chart
     bar_chart_group.selectAll(".bar")
       .data(year_accumulations)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("id", function(d) { return 'bar-' + d.yr; })
-      .attr("x", function(d) { return x(d.yr); })
-      .attr("width", x.bandwidth())
-      .attr("y", function(d) { return y(d.year_accum); })
-      .attr("height", function(d) { return height - y(d.year_accum); });
+        .enter().append("rect")
+          .style('fill', bar_fill_color)
+          .attr('class', 'bar')
+          .attr('id', function(d) { return 'bar-' + d.yr; })
+          .attr('x', function(d) { return x(d.yr); })
+          .attr('width', x.bandwidth())
+          .attr('y', function(d) { return y(d.year_accum); })
+          .attr('height', function(d) { return height - y(d.year_accum); });
 
   }
 
@@ -1092,8 +1126,8 @@
     d3.selectAll('.bar').each(function(d) {
       var bar = d3.select(this);
       var bar_id = bar._groups[0][0].id;
-      if ( bar_id == 'bar-' + this_year ) { bar.style('fill','#ff0000'); }
-      else { bar.style('fill', '#fd8d3c'); }
+      if ( bar_id == 'bar-' + this_year ) { bar.style('fill', highlight_color); }
+      else { bar.style('fill', bar_fill_color); }
     });
   }
 
@@ -1303,15 +1337,13 @@
       breaks.push(br);
     }
 
-    var colors = d3.entries(eval('colorbrewer.' + colorbrewer_key));
-    var k = breaks.length - 3; //breaks can't be < 3
-    var color_scale = colors[k];
-    var returncolor = novaluecolor;
-
+    var colors = d3.entries(eval(color_key));
+    var color_scale = colors[breaks.length - 1];
+    var returncolor = novalue_color;
     d = parseFloat(d);
 
     if(d == 0)
-      returncolor = novaluecolor;
+      returncolor = novalue_color;
 
     if (breaks[0] && d <= breaks[0][1]) {
       returncolor = color_scale.value[0];
@@ -1363,7 +1395,7 @@
 
     svg.selectAll(".state")
       .style('fill', function(d) {
-        return novaluecolor;
+        return novalue_color;
       });
 
     d3.select('#legend').remove();

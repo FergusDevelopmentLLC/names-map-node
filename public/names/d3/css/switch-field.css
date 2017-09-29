@@ -37,7 +37,9 @@
 
 .switch-field input:checked + label {
   /*background-color: #A5DC86;*/
-  background-color: #fdbe85;
+  /*background-color: #fdbe85;*/
+  /*background-color: #FFFFFF;*/
+  background-color: #bdbdbd;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
