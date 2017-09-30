@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>Names</title>
-    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/switch-field.css" />
@@ -26,7 +26,7 @@
         body {
           padding: 0;
           margin: 0;
-          background: #eeeeee;
+          background: #EEEEEE;
         }
 
         div.tooltip {
@@ -44,9 +44,8 @@
 
         #map-wrapper {
           position:absolute;
-          width: 950px;
-          height: 500px;
-          border: 1px solid #dddddd;
+          width: 1000px;
+          height: 600px;
         }
 
         /*Map background*/
@@ -59,175 +58,62 @@
           transform: translate(0,0);
         }
 
-        #spinner-wrapper {
-          position: absolute;
-          top: 70px;
-          left: 250px;
-          width: 750px;
-          height: 420px;
-          display: none;
+        /*States*/
+        #states {
+          transform: translate(-20px, -20px);
         }
 
         .state {
           stroke-width: 1;
         }
 
-        /*search widget*/
+        /*Legend*/
         #search-widget-wrapper {
           position: absolute;
-          left: 42px;
-          top: 92px;
+          top: 240px;
+          left: 742px;
           display: none;
         }
+
         .name-input {
-          width: 165px;
-          height: 38px;
+          width: 186px;
+          height: 25px;
           padding:3px;
           font-family: 'Montserrat', sans-serif;
           background-color: #ffffff;
           text-align: center;
-          font-size: 1.5em;
-          font-weight: 600;
+          font-size: 1em;
+          font-weight: bold;
           border: 0;
           cursor: pointer; cursor: hand;
         }
+
         .name-input-edit {
-          width: 165px;
-          height: 38px;
+          width: 186px;
+          height: 25px;
           padding: 3px;
           border: 1px solid #696969;
           background-color: #ffffff;
           font-family: sans-serif;
-          font-size: .9em;
           text-align: left;
           cursor: pointer; cursor: hand;
         }
 
-        /*search button*/
-        #search-box {
-          fill: #ffffff;
-          /*fill: #72a1d4;*/
-          stroke-width: 0;
-          rx: 5;
-          ry: 5;
-          cursor: pointer; cursor: hand;
-        }
-
-        /*shuffle button*/
-        #shuffle-box {
-          fill: #ffffff;
-          /*fill: #72a1d4;*/
-          stroke-width: 0;
-          rx: 5;
-          ry: 5;
-          cursor: pointer; cursor: hand;
-        }
-
-        /*boy/girl switch*/
         .switch-field {
           font-family: 'Montserrat', sans-serif;
           padding: 0;
         	overflow: hidden;
           position: absolute;
-          top: 138px;
-          left: 73px;
+          top: 270px;
+          left: 780px;
           display: none;
         }
 
-        /*slider*/
-        #slider { }
-        .ticks {
-          font-family: 'Arimo', sans-serif;
-          font-size: .65em;
-          fill: #696969;
-        }
-        .track,
-        .track-inset,
-        .track-overlay {
-          stroke-linecap: round;
-        }
-        .track {
-          stroke: #000;
-          stroke-opacity: 0.3;
-          stroke-width: 10px;
-        }
-        .track-inset {
-          stroke: #ddd;
-          stroke-width: 8px;
-        }
-        .track-overlay {
-          pointer-events: stroke;
-          stroke-width: 50px;
-          stroke: transparent;
-        }
-        .handle {
-          fill: #fff;
-          stroke: #000;
-          stroke-opacity: 0.5;
-          stroke-width: 1.25px;
-        }
-
-        /*header*/
-        #header-rect {
-          fill: #247f80;
-        }
-
-        /*title*/
-        #title {
-          font-family: Montserrat, sans-serif;
-          fill: #FFFFFF;
-          font-size: 1.3em;
-          font-weight: 600;
-        }
-
-        /*data source link*/
-        #source-root {
-          font-family: Montserrat, sans-serif;
-          fill: #696969;
-          font-size: .6em;
-        }
-        #source-link {
-          text-decoration: underline;
-          fill: #696969;
-        }
-
-        /*about this map link - header*/
-        #about-header-root {
-          font-family: Montserrat, sans-serif;
-          fill: #FFFFFF;
-          font-size: .8em;
-          font-weight: 600;
-        }
-        #about-header-link {
-          text-decoration: underline;
-          fill: #FFFFFF;
-        }
-
-        /*about this map link - legend*/
-        #about-legend-root {
-          font-family: Montserrat, sans-serif;
+        #legend {
           fill: #696969;
           font-size: .7em;
-          text-anchor: middle;
+          transform: translate(715px, 235px) scale(1);
         }
-        #about-legend-link {
-          text-decoration: underline;
-          fill: #696969;
-        }
-
-        /*modal about this map content*/
-        .modal {
-          font-family: Montserrat, sans-serif;
-          color: #696969;
-          font-size: .9em;
-        }
-        .modal a {
-          color: #696969;
-        }
-        .tingle-content {
-          display: none;
-        }
-
 
         #legend-rect {
           fill: #ffffff;
@@ -236,32 +122,50 @@
           stroke: #696969;
         }
 
-        #year {
-          font-family: Montserrat, sans-serif;
-          font-weight: 800;
-          font-size: 1.5em;
-          text-anchor: middle;
+        #edit-box {
+          transform: translate(2px, 2px);
+          fill: #ffffff;
+          /*fill:blue;*/
+          stroke-width: 0;
+          rx: 5;
+          ry: 5;
+          cursor: pointer; cursor: hand;
         }
 
-        #births {
-          font-family: Montserrat, sans-serif;
-          font-size: 1em;
-          text-anchor: middle;
+        #shuffle-box {
+          fill: #ffffff;
+          /*fill: red;*/
+          stroke-width: 0;
+          rx: 5;
+          ry: 5;
+          cursor: pointer; cursor: hand;
         }
 
-        #since {
-          font-family: Montserrat, sans-serif;
-          font-size: .8em;
+        #legend-text {
+          fill: #000000;
           text-anchor: middle;
+          font-family: 'Arimo', sans-serif;
         }
 
+        #legend-subtitle {
+          font-size: 1.3em;
+          transform: translate(120px, 85px);
+        }
 
-        .swatch-label {
-          font-family: 'Overpass Mono', monospace;
+        #legend-subsubtitle {
+          font-size: 1.1em;
+          transform: translate(120px, 105px);
+        }
+
+        #legend-cells {
+          transform: translate(18px, 200px);
+        }
+
+        .legend-swatch-label {
           fill: #000000;
           fill-opacity: .9;
-          font-size: .65em;
-          text-anchor: end;
+          font-family: 'Overpass Mono', monospace;
+          font-size: .85em;
         }
 
         .legend-swatch {
@@ -269,9 +173,108 @@
           stroke-width:.3;
         }
 
+        /*bar chart*/
+        #bar-chart {
+          transform: translate(18px, 120px);
+        }
 
 
 
+        .icon {
+          fill: #696969;
+        }
+
+        /*d3 slider*/
+        #slider {
+
+        }
+
+        .ticks {
+          font-family: 'Arimo', sans-serif;
+          font-size: .65em;
+          fill: #696969;
+        }
+
+        .track,
+        .track-inset,
+        .track-overlay {
+          stroke-linecap: round;
+        }
+
+        .track {
+          stroke: #000;
+          stroke-opacity: 0.3;
+          stroke-width: 10px;
+        }
+
+        .track-inset {
+          stroke: #ddd;
+          stroke-width: 8px;
+        }
+
+        .track-overlay {
+          pointer-events: stroke;
+          stroke-width: 50px;
+          stroke: transparent;
+        }
+
+        .handle {
+          fill: #fff;
+          stroke: #000;
+          stroke-opacity: 0.5;
+          stroke-width: 1.25px;
+        }
+
+        /*titles*/
+
+        #titles {
+          font-family: Montserrat, sans-serif;
+          fill: #696969;
+          transform: translate(20px, 30px);
+        }
+
+        #title {
+          font-size: 1.1em;
+          transform: translate(0px, 0px);
+        }
+
+        #subtitle {
+          font-size: .9em;
+          transform: translate(0px, 23px);
+        }
+
+        #subsubtitle {
+          font-size: .8em;
+          transform: translate(0px, 43px);
+        }
+
+        .link {
+          fill: #696969;
+          text-decoration: underline;
+        }
+
+        #spinner-wrapper {
+          position: absolute;
+          top: 70px;
+          left: 70px;
+          width: 750px;
+          height: 450px;
+          display: none;
+        }
+
+        .modal {
+          font-family: Montserrat, sans-serif;
+          color:696969;
+          font-size: .9em;
+        }
+
+        .modal a {
+          color:696969;
+        }
+
+        .tingle-content {
+          display: none;
+        }
 
     </style>
 </head>
@@ -325,8 +328,8 @@
 
 <script>
 
-  var width = 950,
-      height = 500,
+  var width = 1000,
+      height = 600,
       default_popular_name = 'Quinn',
       default_sex = 'M',
       number_of_breaks = 5,
@@ -349,7 +352,7 @@
       mode = 'display',
       bar_fill_color = '#ffffff',
       highlight_color = '#e6550d',
-      default_gray = '#696969';
+      state_stroke_color = '#696969';
 
   d3.selectAll("input[name='switch_mf']").on("change", function(){
     sex = this.value;
@@ -368,7 +371,8 @@
 
   var geoPath = d3.geoPath()
     .projection(d3.geoAlbersUsa()
-      .scale(800));
+      .scale(900)
+      .translate([width / 2 - 45, height / 2]));
 
   tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
@@ -382,7 +386,7 @@
     randomStart();//get a random name, if none passed.
   }
   else {
-    init();
+    getBlankMap();
   }
 
   function randomStart() {
@@ -391,35 +395,50 @@
       .await(setName);
   }
 
-  function setName(error, random_name_data) {
+  function setName (error, random_name_data) {
 
     sex = random_name_data[0].sex;
 
     popular_name = random_name_data[0].name;
 
+    getBlankMap();
+  }
+
+  function getBlankMap() {
+    d3.queue()
+      .defer(d3.json, 'data/states.topojson')
+      .await(setBlankMap);
+  }
+
+  function setBlankMap(error, statestopo) {
+
+    addBackgroundToMap();
+
+    d3.select('#states').remove();
+
+    svg.append("g")
+      .attr("id","states")
+      .selectAll("path")
+      .data( topojson.feature(statestopo, statestopo.objects.states).features )
+        .enter()
+        .append("path")
+        .attr("d",geoPath)
+        .attr("class", "state")
+        .style("stroke", state_stroke_color);
+
     init();
   }
 
-  function init() {
+  function init () {
+
+    addTitles();
 
     d3.select('#spinner-wrapper').style("display","block");
     spinner = new Spinner(opts).spin(spin_target);
 
+    clearMap();
+
     setMaleFemaleSwitch();
-
-    addBackgroundToMap();
-
-    addheader(0, 0);
-
-    addTitle(20, 45);
-
-    addAboutHeader(830, 40);
-
-    addLegendBackground(0, 70);
-
-    addAboutLegend(125, 475);
-
-    addSource(715, 490);
 
     //set sex to match switch
     sex = d3.select('input[name="switch_mf"]:checked').node().value;
@@ -438,25 +457,25 @@
       .defer(d3.json, 'data/states.topojson')
       .defer(d3.json, data_url)
       .await(makeMap);
-
   }
 
-  function makeMap(error, statestopo, name_data) {
+  function makeMap (error, statestopo, name_data) {
 
-    if(error || parseInt(name_data.length) == 0) {
-      addLegendBackground(0, 70);
-      addAboutLegend(125, 475);
-      addSearchButton(5, 90);
-      addShuffleButton(205, 90);
+    if(error) {
+      console.log(error);
+      return;
+    }
+
+    if(name_data.length == 0) {
+      d3.select("#search-widget-wrapper").style("display","block");
+      d3.select("#switch-field").style("display","block");
+      var name_input = document.getElementById("name-input");
+      name_input.value = "* No Data *";
+      d3.select('#legend').remove();
+      addLegend();
+      addLegendSearchShuffleIcons();
+      d3.select("#legend-rect").attr("height","80px");
       spinner.stop();
-      d3.select('#spinner-wrapper').style('display','none');
-      d3.select('#search-widget-wrapper').style('display','block');
-      d3.select('#switch-field').style('display','block');
-      //setting a delay here, intermittently wouldn't work. autocomplete?
-      setTimeout(function(){
-        var name_input = document.getElementById('name-input');
-        name_input.value = '* No Data *';
-      }, 100);
       return;
     }
 
@@ -464,7 +483,7 @@
 
     joinDataToGeom(statestopo, name_data);
 
-    addStatesToMap(statestopo, 135, 30);
+    addStatesToMap(statestopo);
 
     populateMaxMinYear();
 
@@ -474,90 +493,81 @@
 
     populateBreaks(number_of_breaks, statestopo);
 
-    setBarFillColor();
+    //set the bar_fill_color to the midrange color
+    shift = 3;
+    if (breaks.length < 4) { shift = 1; }
+    bar_fill_color = getColor(breaks[breaks.length - shift][1], breaks);
 
-    setBoyGirlSwitchBackgroundColor();
+    //set the background-color of the switch to the midrange color - 1
+    var shift = 4;
+    if (breaks.length < 4) { shift = 1; }
+    var switch_color = getColor(breaks[breaks.length - shift][1], breaks);
+    var cssRuleCode = document.all ? 'rules' : 'cssRules'; //account for IE and FF
+    var rule = document.styleSheets[3][cssRuleCode][4];//brittle, depends on order css is loaded
+    rule.style['background-color'] = switch_color;
 
-    addSearchButton(5, 90);
+    spinner.stop();
 
-    addShuffleButton(205, 90);
+    d3.select('#spinner-wrapper').style("display","none");
 
-    addYear(125, 190);
+    d3.select('#legend').remove();
 
-    addBirths(125, 215);
+    addLegend();
 
-    addSince(125, 235);
+    addLegendSearchShuffleIcons();
 
-    addBars(20, 265);
+    addLegendText();
+
+    addLegendBars(name_data);
 
     highlightBarForThisYear();
 
-    addCells(20, 345);
+    addLegendCells();
 
-    addSlider(23, 390);
+    addSlider(738, 490);
 
-    attachModalToAboutLinks();
+    //display html elements after everything loaded
+    d3.select("#search-widget-wrapper").style("display","block");
 
-    spinner.stop();
-    d3.select('#spinner-wrapper').style('display','none');
+    d3.select("#switch-field").style("display","block");
 
-    d3.select('#search-widget-wrapper').style('display','block');
-
-    d3.select('#switch-field').style('display','block');
-
-    d3.select('#slider').style('display','block');
+    d3.select("#slider").style("display","block");
 
     updateMap();
 
+    var modalTinyNoFooter = new tingle.modal({
+      onClose: function() {
+        // console.log('close');
+      },
+      onOpen: function() {
+        // console.log('open');
+      },
+      beforeOpen: function() {
+        // console.log('before open');
+      },
+      beforeClose: function() {
+        // console.log('before close');
+        return true;
+      },
+      cssClass: ['modal']
+    });
+
+    var lnk = document.querySelector('#about-link');
+
+    lnk.onclick = function(e){ modalTinyNoFooter.open(); }
+
+    modalTinyNoFooter.setContent(document.querySelector('.tingle-content').innerHTML);
+
   };
-
-  function updateMap() {
-
-    total_occurrences_for_year = 0;
-    total_occurrences_all_time = 0;
-
-    svg.selectAll(".state")
-      .style('fill', function(d) {
-        var fill = novalue_color;
-        //console.log(d);
-        if (d.properties.occurrences.length > 0) {
-          for (var occurrence in d.properties.occurrences) {
-            var occurrence_date = new Date(d.properties.occurrences[occurrence].date);
-            if(occurrence_date.getFullYear() == this_year && d.properties.occurrences[occurrence].oc > 0) {
-              total_occurrences_for_year += d.properties.occurrences[occurrence].oc;
-              var this_fill = getColor(d.properties.occurrences[occurrence].normalized, breaks);
-              fill = this_fill;
-            }
-            if(occurrence_date.getFullYear() <= this_year) {
-              total_occurrences_all_time += d.properties.occurrences[occurrence].oc;
-            }
-          }
-
-          if(this_year == most_popular_year) {
-            d3.select("#year").text(this_year).style('fill', highlight_color);
-          }
-          else {
-            d3.select("#year").text(this_year).style('fill', '#000000');
-          }
-
-          var births_text = total_occurrences_for_year.toLocaleString() + " births ";
-          d3.select("#births").text(births_text);
-
-        }
-        var since_txt = total_occurrences_all_time.toLocaleString() + " since " + min_year;
-        d3.select("#since").text(since_txt);
-        return fill;
-      });
-
-  }
 
   function handleAutocomplete() {
     d3.queue()
       .defer(d3.json, 'data/names_by_popularity.json')
       .await(addAutoCompleteInput);
+
   }
 
-  function addAutoCompleteInput(error, most_pop_names) {
+  function addAutoCompleteInput (error, most_pop_names) {
 
     //filter based on current sex
     name_list = most_pop_names.map(function(x) {
@@ -568,14 +578,14 @@
     //remove it if there
     d3.select('#name-input').remove();
 
-    var placeholder_text = "Search for " + getDisplayGender().toLowerCase() + "s name"
+    var placeholder_text = "Search for a " + getDisplayGender().toLowerCase() + "s name"
 
     //add it back
     d3.select('#search-widget-wrapper').append('input')
-      .attr('id', 'name-input')
-      .attr('class', 'name-input')
-      .attr('placeholder', placeholder_text)
-      .attr('value', popular_name);
+      .attr("id", "name-input")
+      .attr("class", "name-input")
+      .attr("placeholder", placeholder_text)
+      .attr("value", popular_name);
 
     name_input = document.getElementById("name-input");
 
@@ -600,30 +610,30 @@
 
     //handle when user doesn't select autocomplete option, enters own name and presses enter.
     d3.select("#name-input").on("keydown", function() {
-      if(d3.event.keyCode == 13) {
+        if(d3.event.keyCode == 13) {
 
-        var entered_name = '';
-        var selected_sex = '';
+          var entered_name = '';
 
-        if(this.value == '') {
-          this.value = popular_name;
-          this.blur();
-          return;
+          var selected_sex = '';
+
+          if(this.value == '') {
+            this.value = popular_name;
+            this.blur();
+            return;
+          }
+          else {
+            entered_name = this.value.replace(/\s/g,'');
+            selected_sex = d3.select('input[name="switch_mf"]:checked').node().value;
+          }
+
+          if(entered_name != popular_name || selected_sex != sex) {
+            popular_name = entered_name;
+            sex = selected_sex;
+            autocomplete.close();
+            getBlankMap();
+          }
         }
-        else {
-          entered_name = this.value.replace(/\s/g,'');
-          selected_sex = d3.select('input[name="switch_mf"]:checked').node().value;
-        }
-
-        if(entered_name != popular_name || selected_sex != sex) {
-          popular_name = entered_name;
-          sex = selected_sex;
-          autocomplete.close();
-          init();
-        }
-
-      }
-    });
+      });
 
     if(mode == 'edit') {
       d3.select("#name-input").attr('class','name-input-edit');
@@ -633,7 +643,7 @@
 
   }
 
-  function nameSelected(evt) {
+  function nameSelected (evt) {
 
     var selected_name = evt.text.value;
     sex = "F"
@@ -651,11 +661,60 @@
         d3.select(this).node().checked = true;
     });
 
-    init();
+    getBlankMap();
 
   }
 
-  function setMaleFemaleSwitch() {
+  function getNameFromQS () {
+    var name_query = gup('name', document.location.search);
+    if(name_query != null)
+      return name_query;
+    else {
+      return default_popular_name;
+    }
+  }
+
+  function getSexFromQS () {
+    var sex_query = gup('sex', document.location.search);
+    if(sex_query != null) {
+      return sex_query;
+    }
+    else {
+      return default_sex;
+    }
+  }
+
+  function getYearFromQS () {
+    var yr_query = gup('yr', document.location.search);
+    if(yr_query != null) {
+      return yr_query;
+    }
+    else {
+      return most_popular_year;
+    }
+  }
+
+  function getColorKeyFromQS () {
+    var ck_query = gup('ck', document.location.search);
+    if(ck_query != null) {
+      return ck_query;
+    }
+    else {
+      return color_key;
+    }
+  }
+
+  function getHighlightColorFromQS () {
+    var hl_query = gup('hl', document.location.search);
+    if(hl_query != null) {
+      return hl_query;
+    }
+    else {
+      return highlight_color;
+    }
+  }
+
+  function setMaleFemaleSwitch () {
 
     d3.selectAll("input[name='switch_mf']").each(function(){
       if(d3.select(this).node().value == sex)
@@ -664,7 +723,7 @@
 
   }
 
-  function populateOccurencesFrom(name_data) {
+  function populateOccurencesFrom (name_data) {
 
     //append date to the name_data as the last day of occurrence yr
     occurrences = name_data;
@@ -682,7 +741,7 @@
 
   }
 
-  function joinDataToGeom(states, name_data) {
+  function joinDataToGeom (states, name_data) {
 
     states.objects.states.geometries.forEach(function(d) {
       var layer_stusps = d.properties.stusps;
@@ -698,7 +757,7 @@
 
   }
 
-  function populateMaxMinYear() {
+  function populateMaxMinYear () {
 
     var first_date = new Date(occurrences[0].date);
     var last_date = new Date(occurrences[occurrences.length-1].date);
@@ -712,7 +771,7 @@
 
   }
 
-  function populateBreaks(number_of_classes, states) {
+  function populateBreaks (number_of_classes, states) {
 
     var occurrences_acc = [];
 
@@ -739,7 +798,7 @@
     //console.log(breaks);
   }
 
-  function addBackgroundToMap() {
+  function addBackgroundToMap () {
 
     //this is to catch when the mouse goes off the map, turn tooltip off. hack.
     d3.select('#map-background').remove();
@@ -751,20 +810,21 @@
 
   }
 
-  function addStatesToMap(statestopo, left, top) {
+  function addStatesToMap (statestopo) {
+
+    //if another map had been drawn and populated previously, remove it to make room for this one
 
     d3.select('#states').remove();
 
     svg.append("g")
-      .attr('id','states')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
+      .attr("id","states")
       .selectAll("path")
       .data( topojson.feature(statestopo, statestopo.objects.states).features )
         .enter()
-        .append('path')
-        .attr('d',geoPath)
-        .attr('class', 'state')
-        .style('stroke', default_gray)
+        .append("path")
+        .attr("d",geoPath)
+        .attr("class", "state")
+        .style("stroke", state_stroke_color)
         .on('mouseover', function(d) {
           var tooltip_msg = getTooltipMessage(d);
           tooltip.transition()
@@ -777,15 +837,15 @@
           //https://stackoverflow.com/questions/17917072/choropleth-maps-changing-stroke-color-in-mouseover-shows-overlapping-boundari
           this.parentNode.appendChild(this);//append it to parent to make it move to top, otherwise outline is covered by bordering state lines
         })
-        .on('mouseout', function(d) {
-          d3.select(this).style("stroke", default_gray);//return st outline to gray
+        .on("mouseout",function(d) {
+          d3.select(this).style("stroke", state_stroke_color);//return st outline to gray
           d3.select(this).style("stroke-width", "1");
           tooltip.style("opacity", 0);
         });
 
   }
 
-  function setMostPopularYear() {
+  function setMostPopularYear () {
 
     var year_accumulations = [];
     var last_yr = occurrences[0].yr;
@@ -819,116 +879,91 @@
 
   }
 
-  function addheader(left, top) {
+  function updateMap () {
 
-    d3.select('#header').remove();
+    total_occurrences_for_year = 0;
+    total_occurrences_all_time = 0;
 
-    svg.append("g")
-      .attr('id', 'header')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
+    svg.selectAll(".state")
+      .style('fill', function(d) {
+        var fill = novalue_color;
+        //console.log(d);
+        if (d.properties.occurrences.length > 0) {
+          for (var occurrence in d.properties.occurrences) {
+            var occurrence_date = new Date(d.properties.occurrences[occurrence].date);
+            if(occurrence_date.getFullYear() == this_year && d.properties.occurrences[occurrence].oc > 0) {
+              total_occurrences_for_year += d.properties.occurrences[occurrence].oc;
+              var this_fill = getColor(d.properties.occurrences[occurrence].normalized, breaks);
+              fill = this_fill;
+            }
+            if(occurrence_date.getFullYear() <= this_year) {
+              total_occurrences_all_time += d.properties.occurrences[occurrence].oc;
+            }
+          }
+          var subtitle_text = total_occurrences_for_year.toLocaleString() + " births in " + this_year;
+          if(this_year == most_popular_year) {
+            subtitle_text = total_occurrences_for_year.toLocaleString() + " births in *" + this_year + "*";
+          }
+          d3.select(".legend-subtitle").text(subtitle_text);
+        }
+        d3.select(".legend-subsubtitle").text(total_occurrences_all_time.toLocaleString() + " births since " + min_year);
+        return fill;
+      });
 
-    var header_root = d3.select('#header');
-
-    header_root.append("rect")
-      .attr('id', 'header-rect')
-      .attr('width', 950)
-      .attr('height', 70);
   }
 
-  function addTitle(left, top) {
+  function addTitles () {
 
-    d3.select('#title-root').remove();
+    d3.select('#titles').remove();
 
-    svg.append('g')
-      .attr('id', 'title-root')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
+    svg.append("g")
+      .attr("id", "titles");
 
-    var title_root = d3.select('#title-root');
+    var titles_root = d3.select('#titles');
 
-    title_root.append('g')
+    titles_root.append("g")
       .attr('id', 'title')
       .append('text')
         .attr('id', 'title')
         .attr('class', 'title')
-        .text('American Names Over Time (1910-2016)');
+        .text('Popular U.S. Names of the Last Century (1910-2016)');
 
-  }
+    titles_root.append('g')
+      .attr('id', 'subtitle')
+      .append('text')
+        .attr('id', 'subtitle-text')
+        .append('tspan')
+          .text('Data Source: ')
+        .append('tspan')
+          .append('a')
+            .attr('class', 'link')
+            .attr('xlink:href', 'https://www.ssa.gov/oact/babynames/limits.html')
+            .attr('target', '_blank')
+          .text('U.S. Social Security Administration ');
 
-  function addSource(left, top) {
+    titles_root.append('g')
+      .attr('id', 'subsubtitle')
+      .append('text')
+        .attr('id', 'subsubtitle-text');
 
-    d3.select('#source-root').remove();
+    d3.select('#subsubtitle-text')
+      .append('tspan')
+      .text(' ');
 
-    svg.append('g')
-      .attr('id', 'source-root')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
-
-    var source_root = d3.select('#source-root');
-
-    source_root.append('text')
-      .attr('id', 'source');
-
-    var source = d3.select('#source');
-
-    source.append('tspan').text('Data Source: ');
-
-    source.append('tspan')
+    d3.select('#subsubtitle-text')
+      .append('tspan')
       .append('a')
-        .attr('id', 'source-link')
-        .attr('xlink:href', 'https://www.ssa.gov/oact/babynames/limits.html')
-        .attr('target', '_blank')
-      .text('U.S. Social Security Administration ');
+        .attr('class', 'link')
+        .attr('id', 'about-link')
+        .attr('xlink:href', '#')
+      .text('About this map');
 
   }
 
-  function addAboutHeader(left, top) {
-
-    d3.select('#about-header-root').remove();
-
-    svg.append('g')
-      .attr('id', 'about-header-root')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
-
-    var about_header_root = d3.select('#about-header-root');
-
-    about_header_root.append('text')
-      .attr('id', 'about-header')
-      .append('tspan')
-        .append('a')
-          .attr('id', 'about-header-link')
-          .attr('class', 'about-link')
-          .attr('xlink:href', '#')
-          .text('About this map');
-
-  }
-
-  function addAboutLegend(left, top) {
-
-    d3.select('#about-legend-root').remove();
-
-    svg.append('g')
-      .attr('id', 'about-legend-root')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
-
-    var about_legend_root = d3.select('#about-legend-root');
-
-    about_legend_root.append('text')
-      .attr('id', 'about-legend')
-      .append('tspan')
-        .append('a')
-          .attr('id', 'about-legend-link')
-          .attr('class', 'about-link')
-          .attr('xlink:href', '#')
-          .text('About this map');
-
-  }
-
-  function addLegendBackground(left, top) {
-
-    d3.select('#legend').remove();
+  function addLegend () {
 
     svg.append("g")
-      .attr('id', 'legend')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
+      .attr("id", "legend")
       .on("mouseover",function(d) {
         tooltip.style("opacity", 0);//TODO, figure a better tooltip
       });
@@ -937,130 +972,115 @@
 
     legend_root.append("rect")
       .attr('id', 'legend-rect')
-      .attr('width', 250)
-      .attr('height', 430);
+      .attr('width', 240)
+      .attr('height', 290)
+      .attr('rx', 5)
+      .attr('ry', 5);
+    }
 
-  }
+  function addLegendSearchShuffleIcons () {
 
-  function addSearchButton(left, top) {
+    var legend_root = d3.select('#legend');
 
-    d3.select('#legend-search').remove();
+    legend_root.append("g")
+      .attr("id", "legend-search-shuffle");
 
-    svg.append('g')
-      .attr('id', 'legend-search')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
+    var legend_search_shuffle_root = d3.select('#legend-search-shuffle');
 
-    var legend_search_root = d3.select('#legend-search');
-
-    //search button box
-    legend_search_root.append('rect')
-      .attr('id', 'search-box')
-      .attr('width', 38)
+    //edit icon box
+    legend_search_shuffle_root.append("rect")
+      .attr("id", "edit-box")
+      .attr('width', 116)
       .attr('height', 38)
-      .on('mouseover', function() { d3.select('#icon-search').style('fill', highlight_color); })
-      .on('mouseout', function() {  d3.select('#icon-search').style('fill', default_gray); })
-      .on('click', function() {
+      .attr('transform', 'translate(0, 2)')
+      .style('fill','#ffffff')
+      .on("mouseover", function() {
+        d3.select('#icon-edit')
+          .style('fill', '#ff0000');
+      })
+      .on("mouseout", function() {
+        d3.select('#icon-edit')
+          .style('fill', '#696969');
+      })
+      .on("click", function() {
         document.getElementById('name-input').focus();
-        d3.select('#icon-edit').style('fill', default_gray);
+        d3.select('#icon-edit')
+          .style('fill', '#696969');
       });
 
-    legend_search_root.append('g')
-      .attr('transform', 'translate(0, 0) scale(.075)')
-      .append('path')
-        .attr('id', 'icon-search')
-        .style('fill', default_gray)
-        .attr('d', 'M320.913,226.507c0.022,21.651-4.695,39.784-15.146,56.013c-3.742,5.81-2.55,8.812,1.91,13.206  c26.929,26.533,53.571,53.359,80.294,80.101c7.526,7.531,7.729,11.243,0.741,19.402c-2.481,2.897-5.254,5.629-8.247,7.985  c-5.373,4.229-10.117,4.16-15.426-1.233c-27.139-27.576-54.7-54.738-81.869-82.286c-4.136-4.193-6.865-5.336-12.494-1.956  c-69.966,42.02-156.498-5.812-158.882-87.615c-1.494-51.276,40.176-98.76,90.404-104.987  c55.818-6.919,105.888,29.727,116.785,82.585C320.422,214.698,321.142,221.715,320.913,226.507z M146.788,228.876  c-0.024,38.293,31.658,70.1,69.786,70.061c37.851-0.039,70.022-32.216,70.044-70.056c0.022-38.141-31.776-69.804-70.073-69.774  C177.973,159.137,146.812,190.304,146.788,228.876z')
-        .on('click', function() {
-          document.getElementById('name-input').focus();
-          d3.select('#icon-edit').style('fill', default_gray);
-        });
+    legend_search_shuffle_root.append("g")
+      .attr("transform", "translate(-2,-2) scale(.065)")
+        .append("path")
+          .attr("id", "icon-edit")
+          .attr("class", "icon edit")
+          .attr("d", "M320.913,226.507c0.022,21.651-4.695,39.784-15.146,56.013c-3.742,5.81-2.55,8.812,1.91,13.206  c26.929,26.533,53.571,53.359,80.294,80.101c7.526,7.531,7.729,11.243,0.741,19.402c-2.481,2.897-5.254,5.629-8.247,7.985  c-5.373,4.229-10.117,4.16-15.426-1.233c-27.139-27.576-54.7-54.738-81.869-82.286c-4.136-4.193-6.865-5.336-12.494-1.956  c-69.966,42.02-156.498-5.812-158.882-87.615c-1.494-51.276,40.176-98.76,90.404-104.987  c55.818-6.919,105.888,29.727,116.785,82.585C320.422,214.698,321.142,221.715,320.913,226.507z M146.788,228.876  c-0.024,38.293,31.658,70.1,69.786,70.061c37.851-0.039,70.022-32.216,70.044-70.056c0.022-38.141-31.776-69.804-70.073-69.774  C177.973,159.137,146.812,190.304,146.788,228.876z")
+          .on("click", function() {
+            document.getElementById('name-input').focus();
+          });
 
-  }
-
-  function addShuffleButton(left, top) {
-
-    d3.select('#legend-shuffle').remove();
-
-    svg.append('g')
-      .attr('id', 'legend-shuffle')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
-
-    var legend_shuffle_root = d3.select('#legend-shuffle');
-
-    //search button box
-    legend_shuffle_root.append('rect')
-      .attr('id', 'shuffle-box')
-      .attr('width', 38)
+    //shuffle icon
+    legend_search_shuffle_root.append("rect")
+      .attr("id", "shuffle-box")
+      .attr('width', 116)
       .attr('height', 38)
-      .on('mouseover', function() { d3.select('#icon-shuffle').style('fill', highlight_color); })
-      .on('mouseout', function() {  d3.select('#icon-shuffle').style('fill', default_gray); })
-      .on('click', function() {
+      .attr('transform', 'translate(120, 2)')
+      .style('fill','#ffffff')
+      .on("mouseover", function() {
+        d3.select('#icon-shuffle')
+          .style('fill', '#ff0000');
+      })
+      .on("mouseout", function() {
+        d3.select('#icon-shuffle')
+          .style('fill', '#696969');
+      })
+      .on("click", function() {
         randomStart();
-        d3.select('#icon-shuffle').style('fill', default_gray);
       });
 
-    legend_shuffle_root.append('g')
-      .attr('transform', 'translate(5, 5) scale(.055)')
-      .append('path')
-        .attr('id', 'icon-shuffle')
-        .style('fill', default_gray)
-        .attr('d', 'M370.1,181.3H399v47.3l81-83.2L399,64v54h-28.9c-82.7,0-129.4,61.9-170.6,116.5c-37,49.1-69,95.4-120.6,95.4H32v63.3h46.9  c82.7,0,129.4-65.8,170.6-120.4C286.5,223.7,318.4,181.3,370.1,181.3z M153.2,217.5c3.5-4.6,7.1-9.3,10.7-14.1  c8.8-11.6,18-23.9,28-36.1c-29.6-27.9-65.3-48.5-113-48.5H32v63.3c0,0,13.3-0.6,46.9,0C111.4,182.8,131.8,196.2,153.2,217.5z   M399,330.4h-28.9c-31.5,0-55.7-15.8-78.2-39.3c-2.2,3-4.5,6-6.8,9c-9.9,13.1-20.5,27.2-32.2,41.1c30.4,29.9,67.2,52.5,117.2,52.5  H399V448l81-81.4l-81-83.2V330.4z')
-        .on('click', function() {
-          randomStart();
-          d3.select('#icon-shuffle').style('fill', default_gray);
-        });
+    legend_search_shuffle_root.append("g")
+      .attr("transform", "translate(217,7) scale(.04)")
+        .append("path")
+          .attr("class", "icon-shuffle")
+          .attr("id", "icon-shuffle")
+          .attr("d", "M370.1,181.3H399v47.3l81-83.2L399,64v54h-28.9c-82.7,0-129.4,61.9-170.6,116.5c-37,49.1-69,95.4-120.6,95.4H32v63.3h46.9  c82.7,0,129.4-65.8,170.6-120.4C286.5,223.7,318.4,181.3,370.1,181.3z M153.2,217.5c3.5-4.6,7.1-9.3,10.7-14.1  c8.8-11.6,18-23.9,28-36.1c-29.6-27.9-65.3-48.5-113-48.5H32v63.3c0,0,13.3-0.6,46.9,0C111.4,182.8,131.8,196.2,153.2,217.5z   M399,330.4h-28.9c-31.5,0-55.7-15.8-78.2-39.3c-2.2,3-4.5,6-6.8,9c-9.9,13.1-20.5,27.2-32.2,41.1c30.4,29.9,67.2,52.5,117.2,52.5  H399V448l81-81.4l-81-83.2V330.4z")
+          .on("click", function() {
+            randomStart();
+          });
+
+    legend_search_shuffle_root.append("g")
+      .attr("class", "legend-text")
+      .attr("transform", "translate(90,25)")
+  }
+
+  function addLegendText () {
+
+    var legend_root = d3.select('#legend');
+
+    //text
+    legend_root.append("g")
+      .attr('id', 'legend-text')
+      .attr('class', 'legend-text');
+
+    var legend_text = d3.select('#legend-text');
+
+    legend_text.append('g')
+      .append('text')
+        .attr('id', 'legend-subtitle')
+        .attr('class', 'legend-subtitle')
+        .text('');
+
+    legend_text.append('g')
+      .append('text')
+        .attr('id', 'legend-subsubtitle')
+        .attr('class', 'legend-subsubtitle')
+        .text('');
 
   }
 
-  function addYear(left, top) {
-
-    d3.select('#year-root').remove();
-
-    svg.append('g')
-      .attr('id', 'year-root')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
-
-    var year_root = d3.select('#year-root');
-
-    year_root.append('text')
-      .attr('id', 'year')
-      .text(this_year);
-  }
-
-  function addBirths(left, top) {
-
-    d3.select('#births-root').remove();
-
-    svg.append('g')
-      .attr('id', 'births-root')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
-
-    var births_root = d3.select('#births-root');
-
-    births_root.append('text')
-      .attr('id', 'births')
-      .text('');
-  }
-
-  function addSince(left, top) {
-
-    d3.select('#since-root').remove();
-
-    svg.append('g')
-      .attr('id', 'since-root')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
-
-    var since_root = d3.select('#since-root');
-
-    since_root.append('text')
-      .attr('id', 'since')
-      .text('');
-  }
-
-  function addBars(left, top) {
+  function addLegendBars (name_data) {
 
     //get array of years, with each years total occurrences, regardless of state
-    var year_accumulations = getObjectArrayOfYearAccumulations(occurrences);
+    var year_accumulations = getObjectArrayOfYearAccumulations(name_data);
 
     // set the dimensions and margins of the graph
     var margin = {top: 0, right: 0, bottom: 0, left: 0},
@@ -1074,22 +1094,19 @@
     var y = d3.scaleLinear()
       .range([height, 0]);
 
-    d3.select('#bar-chart-root').remove();
+    // remove any previous bar charts
+    d3.select('#bar-chart').remove();
 
-    svg.append('g')
-      .attr('id', 'bar-chart-root')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
+    var legend_root = d3.select('#legend');
 
-    var bar_chart_root = d3.select('#bar-chart-root');
-
-    bar_chart_root.append("g")
+    legend_root.append("g")
       .attr('id', 'bar-chart');
 
     // Scale the range of the data in the domains
     x.domain(year_accumulations.map(function(d) { return d.yr; }));
     y.domain([0, d3.max(year_accumulations, function(d) { return d.year_accum; })]);
 
-    var bar_chart_group = d3.select('#bar-chart-root');
+    var bar_chart_group = d3.select('#bar-chart');
 
     // append the rectangles for the bar chart
     bar_chart_group.selectAll(".bar")
@@ -1105,7 +1122,7 @@
 
   }
 
-  function highlightBarForThisYear() {
+  function highlightBarForThisYear () {
     d3.selectAll('.bar').each(function(d) {
       var bar = d3.select(this);
       var bar_id = bar._groups[0][0].id;
@@ -1114,19 +1131,19 @@
     });
   }
 
-  function addCells(left, top) {
+  function addLegendCells () {
 
-    d3.select('#cells-root').remove();
+    //cells
+    var legend_root = d3.select('#legend');
 
-    svg.append('g')
-      .attr('id', 'cells-root')
-      .attr('transform', 'translate(' + left + ', ' + top + ')')
+    legend_root.append("g")
+      .attr("id", "legend-cells");
 
-    var cells_root = d3.select('#cells-root');
+    var legend_cells = d3.select('#legend-cells');
 
     var i = 0;
     for(var br in breaks) {
-      cells_root.append("g")
+      legend_cells.append("g")
         .attr("id", "cell" + i)
         .attr("transform", "translate(" + i * 41.5 + ",0)")
       i++;
@@ -1137,22 +1154,24 @@
       var cell = d3.select('#cell' + i);
 
       cell.append('rect')
-        .attr('class', 'swatch')
+        .attr('class', 'legend-swatch')
         .attr('height', 15)
         .attr('width', 39.5)
         .attr('fill', getColor(breaks[br][1], breaks));
 
       cell.append('text')
+        // .text(breaks[br][1])
         .text(breaks[br][1] + '%')
-        .attr('class', 'swatch-label')
-        .attr('transform', 'translate(39.5, 30)');
+        .attr('class', 'legend-swatch-label')
+        .attr('transform', 'translate(39.5,30)')
+        .style('text-anchor', 'end');
 
       i++;
     }
 
   }
 
-  function addSlider(left, top) {
+  function addSlider(left_margin, top_margin) {
 
     var width = 200;
     var height = 100;
@@ -1180,7 +1199,7 @@
 
     var svg_root = d3.select('svg');
 
-    var translate = "translate(" + left + ", " + top + ")";
+    var translate = "translate(" + left_margin + ", " + top_margin + ")";
     d3.select('#slider').remove();
     svg_root.append("g")
       .attr("id", "slider")
@@ -1204,6 +1223,13 @@
           .on("start drag", function() {
             var slider_position = x.invert(d3.event.x);
             var slider_handle_year = Math.floor(slider_position);
+
+            // if(this_year != slider_handle_year && slider_handle_year <= max_year && slider_handle_year >= min_year) {
+            //   this_year = slider_handle_year;
+            //   handle.attr("cx", x(slider_position));
+            //   highlightBarForThisYear();
+            //   updateMap();
+            // }
 
             if(this_year != slider_handle_year && slider_handle_year <= max_year) {
               this_year = slider_handle_year;
@@ -1245,7 +1271,7 @@
 
   }
 
-  function getObjectArrayOfYearAccumulations(name_data) {
+  function getObjectArrayOfYearAccumulations (name_data) {
 
     var year_accumulations = [];
     var first_yr = name_data[0].yr;
@@ -1301,7 +1327,7 @@
 
   }
 
-  function getColor(d, breaks) {
+  function getColor (d, breaks) {
 
     //console.log(d);
 
@@ -1345,10 +1371,9 @@
 
   }
 
-  function getTooltipMessage(d) {
-
-    var tooltip_msg = "No " + getPluralized(popular_name) + " were born in " + abbrRegion(d.properties.stusps, 'name')  + " in " + this_year + ".";
-
+  function getTooltipMessage (d) {
+    //TODO: make this pluralization better. https://english.stackexchange.com/questions/39150/pluralization-of-names
+    var tooltip_msg = "No " + popular_name + "s were born in " + abbrRegion(d.properties.stusps, 'name')  + " in " + this_year;
     for(var oc in occurrences) {
         if(occurrences[oc].yr == this_year && occurrences[oc].st == d.properties.stusps) {
           tooltip_msg = 'In #state# in #year#, there were #total_for_state# #genderplural# popular name births, #total_for_name# named #the_name# [#pct#].';
@@ -1366,6 +1391,20 @@
     return tooltip_msg;
   }
 
+  function clearMap() {
+
+    svg.selectAll(".state")
+      .style('fill', function(d) {
+        return novalue_color;
+      });
+
+    d3.select('#legend').remove();
+    d3.select('#slider').remove();
+    d3.select("#search-widget-wrapper").style("display","none");
+    d3.select("#switch-field").style("display","none");
+
+  }
+
   function getDisplayGender() {
     var display_gender = "Boy";
     if(sex == 'F') { display_gender = "Girl"; }
@@ -1376,127 +1415,6 @@
     var display_gender = "Male";
     if(sex == 'F') { display_gender = "Female"; }
     return display_gender;
-  }
-
-  function attachModalToAboutLinks() {
-
-    var modalTinyNoFooter = new tingle.modal({
-      onClose: function() {
-        // console.log('close');
-      },
-      onOpen: function() {
-        // console.log('open');
-      },
-      beforeOpen: function() {
-        // console.log('before open');
-      },
-      beforeClose: function() {
-        // console.log('before close');
-        return true;
-      },
-      cssClass: ['modal']
-    });
-
-    var lnks = document.querySelectorAll('.about-link');
-
-    if(lnks) {
-      lnks[0].onclick = function(e){ modalTinyNoFooter.open(); }
-      lnks[1].onclick = function(e){ modalTinyNoFooter.open(); }
-    }
-
-    modalTinyNoFooter.setContent(document.querySelector('.tingle-content').innerHTML);
-
-  }
-
-  function setBarFillColor() {
-    //set the bar_fill_color to the midrange color
-    var shift = 3;
-    if (breaks.length < 4) { shift = 1; }
-    bar_fill_color = getColor(breaks[breaks.length - shift][1], breaks);
-  }
-
-  function setBoyGirlSwitchBackgroundColor() {
-    //set the background-color of the switch to the midrange color - 1
-    var shift = 4;
-    if (breaks.length < 4) { shift = 1; }
-    var switch_color = getColor(breaks[breaks.length - shift][1], breaks);
-    var cssRuleCode = document.all ? 'rules' : 'cssRules'; //account for IE and FF
-    var rule = document.styleSheets[3][cssRuleCode][4];//brittle, depends on order css is loaded
-    rule.style['background-color'] = switch_color;
-  }
-
-  function getPluralized(name) {
-
-    //https://english.stackexchange.com/questions/39150/pluralization-of-names
-    //If the name ends in s, sh, ch, x or z, add es.
-
-    var plural_append = "s";
-    if(popular_name.endsWith('s')) {
-      plural_append = "es";
-    }
-    else if (popular_name.endsWith('sh')) {
-      plural_append = "es";
-    }
-    else if (popular_name.endsWith('ch')) {
-      plural_append = "es";
-    }
-    else if (popular_name.endsWith('x')) {
-      plural_append = "es";
-    }
-    else if (popular_name.endsWith('z')) {
-      plural_append = "es";
-    }
-
-    return name + plural_append;
-  }
-
-  function getNameFromQS() {
-    var name_query = gup('name', document.location.search);
-    if(name_query != null)
-      return name_query;
-    else {
-      return default_popular_name;
-    }
-  }
-
-  function getSexFromQS() {
-    var sex_query = gup('sex', document.location.search);
-    if(sex_query != null) {
-      return sex_query;
-    }
-    else {
-      return default_sex;
-    }
-  }
-
-  function getYearFromQS() {
-    var yr_query = gup('yr', document.location.search);
-    if(yr_query != null) {
-      return yr_query;
-    }
-    else {
-      return most_popular_year;
-    }
-  }
-
-  function getColorKeyFromQS() {
-    var ck_query = gup('ck', document.location.search);
-    if(ck_query != null) {
-      return ck_query;
-    }
-    else {
-      return color_key;
-    }
-  }
-
-  function getHighlightColorFromQS() {
-    var hl_query = gup('hl', document.location.search);
-    if(hl_query != null) {
-      return hl_query;
-    }
-    else {
-      return highlight_color;
-    }
   }
 
 </script>

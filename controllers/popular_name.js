@@ -57,11 +57,11 @@ module.exports = {
     sql = sql.replace('#sex#', sex);
 
     const result = await knex.raw(sql);
-    //res.status(200).json(result.rows);
 
-    console.log(result.rows[0].data);
+    var returnData = [];
+    if(result.rowCount > 0) { returnData = result.rows[0].data; }
 
-    res.status(200).send(result.rows[0].data);
+    res.status(200).send(returnData);
 
   },
 
