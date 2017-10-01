@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Names</title>
+    <title>American Names of the Last Century (1910-2016)</title>
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet" />
@@ -46,7 +46,7 @@
           position:absolute;
           width: 950px;
           height: 500px;
-          border: 1px solid #dddddd;
+          /*border: 1px solid #dddddd;*/
         }
 
         /*Map background*/
@@ -169,7 +169,7 @@
 
         /*header*/
         #header-rect {
-          fill: #247f80;
+          /*fill: #247f80;*/
         }
 
         /*title*/
@@ -197,6 +197,7 @@
           fill: #FFFFFF;
           font-size: .8em;
           font-weight: 600;
+          text-anchor: end;
         }
         #about-header-link {
           text-decoration: underline;
@@ -269,10 +270,6 @@
           stroke-width:.3;
         }
 
-
-
-
-
     </style>
 </head>
 <body>
@@ -292,34 +289,31 @@
 
 <div class="container tingle-content-wrapper content">
   <div class="tingle tingle-content">
-    <h3>Popular U.S. Names of the Last Century (1910-2016)</h3>
+    <h3>American Names of the Last Century (1910-2016)</h3>
     <p>
-      The idea came from the various name maps seen periodically on <a href='https://www.reddit.com/r/MapPorn/' target='_blank'>Reddit</a>.
-      <a href='https://www.reddit.com/r/MapPorn/comments/70u7c4/most_popular_girl_names_in_usa_757568/' target='_blank'>This</a> one is a good example. The data source for this map is the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
+      The idea came from the various name maps seen periodically on <a href='https://www.reddit.com/r/MapPorn/' target='_blank'>Reddit</a>. This <a href='https://patch.com/new-york/new-york-city/map-nycs-most-popular-dog-names-neighborhood' target='_blank'>map of popular dog names</a> in New York City was an inspriation as well. The data source for this map is the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
     </p>
-    <p>
-        For a similar map on Top U.S. Boys/Girls Names from 1910-2016, check out the following <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>.<br/>
-        <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'><img src='images/top_names.png' /></a>
-    </p>
-    <p>Thank you for checking out my project. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>GitHub repo</a> for a deeper look.</p>
-    <p>-<a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a></p>
-    <h4>Some interesting maps/names to check out:</h4>
+    <h4>Some interesting / unusual names to check out:</h4>
     <ul>
-      <li>
+      <li><a href='/names/d3/?name=Roosevelt&sex=M'>FDR</a> effect?</li>
+      <li><a href='/names/d3/?name=Elvis&sex=M'>Elvis Presley</a> effect?</li>
+      <li><a href='/names/d3/?name=Barbra&sex=F'>Barbra Streisand</a> effect?</li>
+      <li><a href='/names/d3/?name=Kiefer&sex=M'>Kiefer Sutherland</a> effect?</li>
+      <li><a href='/names/d3/?name=Channing&sex=M'>Channing Tatum</a> effect?</li>
+      <li>Star Wars effect [<a href='/names/d3/?name=Luke&sex=M'>Luke</a>, <a href='/names/d3/?name=Leia&sex=F'>Leia</a>] (small spikes in 1979-80)?</li>
+      <!-- <li>
         Old Southern Names:
         <a href='/names/d3/?name=Dollie&sex=F'>Dollie</a>,
         <a href='/names/d3/?name=Earnestine&sex=F'>Earnestine</a>,
-        <a href='/names/d3/?name=Charley&sex=M'>Charley</a>,
         <a href='/names/d3/?name=Nettie&sex=F'>Nettie</a>
-      </li>
-      <li><a href='/names/d3/?name=Roosevelt&sex=M'>Theodore Roosevelt</a> effect?</li>
-      <li><a href='/names/d3/?name=Elvis&sex=M'>Elvis Presley</a> effect?</li>
-      <li><a href='/names/d3/?name=Elon&sex=M'>Elon Musk</a> effect?</li>
-      <li><a href='/names/d3/?name=Kiefer&sex=M'>Kiefer Sutherland</a> effect?</li>
-      <li><a href='/names/d3/?name=Channing&sex=M'>Channing Tatum</a> effect?</li>
-      <li><a href='/names/d3/?name=Leia&sex=F'>Star Wars effect</a> (small boomlet in 1979-80)?</li>
+      </li> -->
     </ul>
-    <p>Find an interesting name? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>!</p>
+    <p>Thank you for checking out my project. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>GitHub repo</a> for a deeper look. Check out <a href='https://fergusdevelopmentllc.github.io/'>my portfolio</a> for more of my work. Find an interesting name, have a question or suggestion? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>!</p>
+    <p>
+        For a similar project on the most popular U.S. Boys/Girls Names (1910-2016), check out the following <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>.<br/>
+        <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'><img src='images/top_names.png' /></a>
+    </p>
+    <p>-<a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a></p>
   </div>
 </div>
 
@@ -329,6 +323,8 @@
       height = 500,
       default_popular_name = 'Quinn',
       default_sex = 'M',
+      sex = 'M',
+      prev_sex = 'M',
       number_of_breaks = 5,
       this_year = 1910,
       min_year = 1910,
@@ -352,9 +348,22 @@
       default_gray = '#696969';
 
   d3.selectAll("input[name='switch_mf']").on("change", function(){
+
+    tooltip.style("opacity", 0);
+
+    prev_sex = sex;
+
     sex = this.value;
+
     mode = 'edit';
+
+    svg.selectAll('.state')
+      .style('fill', function(d) {
+        return novalue_color;
+      });
+
     handleAutocomplete();
+
   });
 
   color_key = getColorKeyFromQS();
@@ -413,7 +422,7 @@
 
     addTitle(20, 45);
 
-    addAboutHeader(830, 40);
+    addAboutHeader(930, 40);
 
     addLegendBackground(0, 70);
 
@@ -488,13 +497,13 @@
 
     addSince(125, 235);
 
-    addBars(20, 265);
+    addBars(20, 255);
 
     highlightBarForThisYear();
 
-    addCells(20, 345);
+    addCells(20, 335);
 
-    addSlider(23, 390);
+    addSlider(23, 380);
 
     attachModalToAboutLinks();
 
@@ -595,6 +604,10 @@
         var entered_value = this.value.replace(/\s/g,'');
         if(entered_value == '') {
           this.value = popular_name;
+          sex = prev_sex;
+          setMaleFemaleSwitch();
+          handleAutocomplete();
+          updateMap();
         }
       });
 
@@ -829,10 +842,11 @@
 
     var header_root = d3.select('#header');
 
-    header_root.append("rect")
+    header_root.append('rect')
       .attr('id', 'header-rect')
       .attr('width', 950)
-      .attr('height', 70);
+      .attr('height', 70)
+      .style('fill', eval(color_key)['5'][3]);
   }
 
   function addTitle(left, top) {
@@ -850,7 +864,7 @@
       .append('text')
         .attr('id', 'title')
         .attr('class', 'title')
-        .text('American Names Over Time (1910-2016)');
+        .text('American Names of the Last Century (1910-2016)');
 
   }
 
@@ -1416,10 +1430,7 @@
   }
 
   function setBoyGirlSwitchBackgroundColor() {
-    //set the background-color of the switch to the midrange color - 1
-    var shift = 4;
-    if (breaks.length < 4) { shift = 1; }
-    var switch_color = getColor(breaks[breaks.length - shift][1], breaks);
+    var switch_color = eval(color_key)['5'][1];
     var cssRuleCode = document.all ? 'rules' : 'cssRules'; //account for IE and FF
     var rule = document.styleSheets[3][cssRuleCode][4];//brittle, depends on order css is loaded
     rule.style['background-color'] = switch_color;
