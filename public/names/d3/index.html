@@ -4,7 +4,7 @@
     <title>American Names of the Last Century (1910-2016)</title>
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/switch-field.css" />
     <link rel="stylesheet" href="css/awesomplete.css" />
     <link rel="stylesheet" href="css/tingle.min.css" media="all">
@@ -34,7 +34,7 @@
           max-width: 300px;
           padding: 3px 6px;
           color: grey;
-          font-family: 'Overpass Mono', monospace;
+          font-family: 'Roboto Mono', monospace;
           font-size: .7em;
           background: whitesmoke;
           border: 1px solid grey;
@@ -238,7 +238,7 @@
         }
 
         #year {
-          font-family: Montserrat, sans-serif;
+          font-family: 'Roboto Mono', monospace;
           font-weight: 800;
           font-size: 1.5em;
           text-anchor: middle;
@@ -258,7 +258,7 @@
 
 
         .swatch-label {
-          font-family: 'Overpass Mono', monospace;
+          font-family: 'Roboto Mono', monospace;
           fill: #000000;
           fill-opacity: .9;
           font-size: .65em;
@@ -568,7 +568,7 @@
 
     addYear(125, 190);
 
-    addFlame1(77, 174);
+    addFlame1(80, 174);
 
     addFlame2(160, 174);
 
@@ -622,7 +622,7 @@
           }
 
           if(this_year == most_popular_year) {
-            d3.select('#year').text(this_year).style('fill', highlight_color);
+            //d3.select('#year').text(this_year).style('fill', highlight_color);
             d3.select('#flame1').style('opacity', 1);
             d3.select('#flame2').style('opacity', 1);
           }
@@ -1167,7 +1167,7 @@
       .attr('id', 'year')
       .text(this_year)
       .on('mouseover', function() {
-        if(this_year = most_popular_year) showFlameTooltip();
+        if(this_year == most_popular_year) showFlameTooltip();
       })
       .on('mouseoout', function() {
         if(this_year = most_popular_year) tooltip.style("opacity", 0);//TODO, figure a better tooltip
@@ -1194,7 +1194,9 @@
         .style('fill', highlight_color)
         .attr('d', flame_svg_path)
         .on('mouseover', function() {
-          showFlameTooltip();
+          if(this_year == most_popular_year) {
+            showFlameTooltip();
+          }
         })
         .on('mouseoout', function() {
           tooltip.style("opacity", 0);//TODO, figure a better tooltip
@@ -1219,7 +1221,9 @@
         .style('fill', highlight_color)
         .attr('d', flame_svg_path)
         .on('mouseover', function() {
-          showFlameTooltip();
+          if(this_year == most_popular_year) {
+            showFlameTooltip();
+          }
         })
         .on('mouseoout', function() {
           tooltip.style("opacity", 0);//TODO, figure a better tooltip
@@ -1227,9 +1231,10 @@
   }
 
   function showFlameTooltip() {
-    var tooltip_msg = '#yr# was the most popular year for #gender#s named #popular_name#.'
+    var tooltip_msg = '#cnt# #nameplural# were born in #yr#, more than any other year on record.';
+    tooltip_msg = tooltip_msg.replace('#cnt#', total_occurrences_for_year.toLocaleString());
     tooltip_msg = tooltip_msg.replace('#yr#', this_year);
-    tooltip_msg = tooltip_msg.replace('#gender#', getDisplayGender().toLowerCase());
+    tooltip_msg = tooltip_msg.replace('#nameplural#', getPluralized(popular_name));
     tooltip_msg = tooltip_msg.replace('#popular_name#', popular_name);
     tooltip.transition()
       .style("opacity", .9);
@@ -1418,6 +1423,7 @@
 
             if(this_year != slider_handle_year && slider_handle_year <= max_year) {
               this_year = slider_handle_year;
+              d3.select('#year').text(this_year);
               handle.attr("cx", x(slider_position));
               highlightBarForThisYear();
               updateMap();
