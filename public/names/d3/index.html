@@ -183,12 +183,12 @@
         /*data source link*/
         #source-root {
           font-family: Montserrat, sans-serif;
-          fill: #696969;
+          fill: #FFFFFF;
           font-size: .6em;
         }
         #source-link {
           text-decoration: underline;
-          fill: #696969;
+          fill: #FFFFFF;
         }
 
         /*about this map link - header*/
@@ -270,6 +270,50 @@
           stroke-width:.3;
         }
 
+        /*headshot bullets*/
+        div.headshot
+        {
+          margin-bottom: 1px;
+        }
+
+        span.effect
+        {
+          height: 38px;
+          width: 30px;
+          display: inline-block;
+          vertical-align: middle;
+          margin-bottom: 0.25em;
+          margin-right: 10px;
+        }
+        span.fdr
+        {
+          background: url('images/fdr_30x38.png');
+        }
+        span.jfk
+        {
+          background: url('images/jfk_30x38.png');
+        }
+        span.elvis
+        {
+          background: url('images/elvis_30x38.png');
+        }
+        span.streisand
+        {
+          background: url('images/streisand_30x38.png');
+        }
+        span.keifer
+        {
+          background: url('images/keifer_sutherland_30x38.png');
+        }
+        span.channing
+        {
+          background: url('images/channingtatum_30x38.png');
+        }
+        span.luke_leia
+        {
+          width: 57px;
+          background: url('images/leia_luke_57x38.png');
+        }
     </style>
 </head>
 <body>
@@ -293,22 +337,51 @@
     <p>
       The idea came from the various name maps seen periodically on <a href='https://www.reddit.com/r/MapPorn/' target='_blank'>Reddit</a>. This <a href='https://patch.com/new-york/new-york-city/map-nycs-most-popular-dog-names-neighborhood' target='_blank'>map of popular dog names</a> in New York City was an inspriation as well. The data source for this map is the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
     </p>
-    <h4>Some interesting / unusual names to check out:</h4>
-    <ul>
-      <li><a href='/names/d3/?name=Roosevelt&sex=M'>FDR</a> effect?</li>
+
+    <!-- <h4>Interesting names / years to explore:</h4> -->
+
+    <div class='headshot'>
+      <span class='effect fdr'></span>
+      FDR effect? <a href='/names/d3/?name=Roosevelt&sex=M'>Roosevelt</a> (1933)
+    </div>
+    <div class='headshot'>
+      <span class='effect elvis'></span>
+      <a href='/names/d3/?name=Elvis&sex=M'>Elvis</a> Presley effect?</a> (1957)
+    </div>
+    <div class='headshot'>
+      <span class='effect jfk'></span>
+      JFK effect? <a href='/names/d3/?name=Kennedy&sex=M'>Kennedy</a> (1964)
+    </div>
+    <div class='headshot'>
+      <span class='effect streisand'></span>
+      <a href='/names/d3/?name=Barbra&sex=F'>Barbra</a> Streisand effect? (1966)
+    </div>
+    <div class='headshot'>
+      <span class='effect keifer'></span>
+      <a href='/names/d3/?name=Keifer&sex=M'>Keifer</a> Sutherland effect? (1991)
+    </div>
+    <div class='headshot'>
+      <span class='effect channing'></span>
+      <a href='/names/d3/?name=Channing&sex=M'>Channing</a> Tatum effect? (2012)
+    </div>
+    <div class='headshot'>
+      <span class='effect luke_leia'></span>
+      Star Wars effect? [<a href='/names/d3/?name=Luke&sex=M&yr=1980'>Luke</a>, <a href='/names/d3/?name=Leia&sex=F&yr=1980'>Leia</a>] (small spikes in 1979-80)
+    </div>
+    <!-- <ul>
       <li><a href='/names/d3/?name=Elvis&sex=M'>Elvis Presley</a> effect?</li>
       <li><a href='/names/d3/?name=Barbra&sex=F'>Barbra Streisand</a> effect?</li>
       <li><a href='/names/d3/?name=Kiefer&sex=M'>Kiefer Sutherland</a> effect?</li>
       <li><a href='/names/d3/?name=Channing&sex=M'>Channing Tatum</a> effect?</li>
-      <li>Star Wars effect [<a href='/names/d3/?name=Luke&sex=M'>Luke</a>, <a href='/names/d3/?name=Leia&sex=F'>Leia</a>] (small spikes in 1979-80)?</li>
-      <!-- <li>
+      <li>Star Wars effect </li>
+      <li>
         Old Southern Names:
         <a href='/names/d3/?name=Dollie&sex=F'>Dollie</a>,
         <a href='/names/d3/?name=Earnestine&sex=F'>Earnestine</a>,
         <a href='/names/d3/?name=Nettie&sex=F'>Nettie</a>
-      </li> -->
-    </ul>
-    <p>Thank you for checking out my project. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>GitHub repo</a> for a deeper look. Check out <a href='https://fergusdevelopmentllc.github.io/'>my portfolio</a> for more of my work. Find an interesting name, have a question or suggestion? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>!</p>
+      </li>
+    </ul> -->
+    <p>Thank you for checking out my project. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>GitHub repo</a> for a deeper look. Please check out <a href='https://fergusdevelopmentllc.github.io/'>my portfolio</a> for more of my work. Find an interesting name, have a question or suggestion? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>!</p>
     <p>
         For a similar project on the most popular U.S. Boys/Girls Names (1910-2016), check out the following <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>.<br/>
         <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'><img src='images/top_names.png' /></a>
@@ -428,7 +501,9 @@
 
     addAboutLegend(125, 475);
 
-    addSource(715, 490);
+    addFooter(250, 485);
+
+    addSource(715, 495);
 
     //set sex to match switch
     sex = d3.select('input[name="switch_mf"]:checked').node().value;
@@ -493,9 +568,13 @@
 
     addYear(125, 190);
 
-    addBirths(125, 215);
+    addFlame1(77, 174);
 
-    addSince(125, 235);
+    addFlame2(160, 174);
+
+    addBirths(125, 220);
+
+    addSince(125, 240);
 
     addBars(20, 255);
 
@@ -543,18 +622,22 @@
           }
 
           if(this_year == most_popular_year) {
-            d3.select("#year").text(this_year).style('fill', highlight_color);
+            d3.select('#year').text(this_year).style('fill', highlight_color);
+            d3.select('#flame1').style('opacity', 1);
+            d3.select('#flame2').style('opacity', 1);
           }
           else {
-            d3.select("#year").text(this_year).style('fill', '#000000');
+            d3.select('#year').text(this_year).style('fill', '#000000');
+            d3.select('#flame1').style('opacity', 0);
+            d3.select('#flame2').style('opacity', 0);
           }
 
           var births_text = total_occurrences_for_year.toLocaleString() + " births ";
-          d3.select("#births").text(births_text);
+          d3.select('#births').text(births_text);
 
         }
         var since_txt = total_occurrences_all_time.toLocaleString() + " since " + min_year;
-        d3.select("#since").text(since_txt);
+        d3.select('#since').text(since_txt);
         return fill;
       });
 
@@ -740,8 +823,6 @@
       number_of_classes = occurrences_acc.length;
     }
 
-    //console.log(states);
-
     var clusters = ss.ckmeans(occurrences_acc, number_of_classes);
     var brks = clusters.map(function(cluster) {
       return [cluster[0], cluster.pop()];
@@ -749,7 +830,6 @@
 
     breaks = multiDimensionalUnique(brks);
 
-    //console.log(breaks);
   }
 
   function addBackgroundToMap() {
@@ -785,7 +865,7 @@
           tooltip.html(tooltip_msg)
             .style("left", (d3.event.pageX + 15) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
-          d3.select(this).style("stroke", highlight_color);//make st outline red
+          d3.select(this).style("stroke", highlight_color);//outline the state with highlight_color
           d3.select(this).style("stroke-width", "2");
           //https://stackoverflow.com/questions/17917072/choropleth-maps-changing-stroke-color-in-mouseover-shows-overlapping-boundari
           this.parentNode.appendChild(this);//append it to parent to make it move to top, otherwise outline is covered by bordering state lines
@@ -865,6 +945,44 @@
         .attr('id', 'title')
         .attr('class', 'title')
         .text('American Names of the Last Century (1910-2016)');
+
+  }
+
+  function addFooter(left, top) {
+
+    var gradient = svg.append("defs")
+      .append("linearGradient")
+        .attr("id", "gradient")
+        .attr("x1", "0%")
+        .attr("y1", "50%")
+        .attr("x2", "65%")
+        .attr("y2", "50%")
+        .attr("spreadMethod", "pad");
+
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#eeeeee")
+      .attr("stop-opacity", 0);
+
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", eval(color_key)['5'][3])
+      .attr("stop-opacity", 1);
+
+    d3.select('#footer-root').remove();
+
+    svg.append('g')
+      .attr('id', 'footer-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var footer_root = d3.select('#footer-root');
+
+    footer_root.append("rect")
+      .attr('id', 'footer-rect')
+      .attr('width', 700)
+      .attr('height', 15)
+      .style("fill", "url(#gradient)");
+
 
   }
 
@@ -949,10 +1067,13 @@
 
     var legend_root = d3.select('#legend');
 
-    legend_root.append("rect")
+    legend_root.append('rect')
       .attr('id', 'legend-rect')
       .attr('width', 250)
-      .attr('height', 430);
+      .attr('height', 429)
+      .on('mouseover', function() {
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+      })
 
   }
 
@@ -971,7 +1092,10 @@
       .attr('id', 'search-box')
       .attr('width', 38)
       .attr('height', 38)
-      .on('mouseover', function() { d3.select('#icon-search').style('fill', highlight_color); })
+      .on('mouseover', function() {
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+        d3.select('#icon-search').style('fill', highlight_color);
+      })
       .on('mouseout', function() {  d3.select('#icon-search').style('fill', default_gray); })
       .on('click', function() {
         document.getElementById('name-input').focus();
@@ -1001,12 +1125,15 @@
 
     var legend_shuffle_root = d3.select('#legend-shuffle');
 
-    //search button box
+    //shuffle button box
     legend_shuffle_root.append('rect')
       .attr('id', 'shuffle-box')
       .attr('width', 38)
       .attr('height', 38)
-      .on('mouseover', function() { d3.select('#icon-shuffle').style('fill', highlight_color); })
+      .on('mouseover', function() {
+        d3.select('#icon-shuffle').style('fill', highlight_color);
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+      })
       .on('mouseout', function() {  d3.select('#icon-shuffle').style('fill', default_gray); })
       .on('click', function() {
         randomStart();
@@ -1038,7 +1165,77 @@
 
     year_root.append('text')
       .attr('id', 'year')
-      .text(this_year);
+      .text(this_year)
+      .on('mouseover', function() {
+        if(this_year = most_popular_year) showFlameTooltip();
+      })
+      .on('mouseoout', function() {
+        if(this_year = most_popular_year) tooltip.style("opacity", 0);//TODO, figure a better tooltip
+      });
+  }
+
+  var flame_svg_path = 'm269.518738,56.879459l20.222504,35.069424c38.867218,67.980759 50.538544,118.335266 49.916351,215.280212c-0.509277,79.329437 -3.852112,99.693268 -27.645996,170.48349c-24.114655,71.744385 -26.64447,87.628174 -23.294281,147.44519l3.58374,67.067078l-16.382782,-36.861267c-18.704346,-41.598572 -20.530701,-86.629456 -9.727295,-243.438171l6.911499,-100.088654l-25.342163,-51.452209c-25.936661,-52.653671 -91.050262,-126.665665 -80.378098,-91.385315c7.683868,25.401611 -14.069794,81.8125 -66.299118,172.27536c-64.898258,112.405731 -78.705029,156.334412 -74.23457,232.174988c5.406971,91.726135 51.529629,175.342834 131.830334,238.830505c26.246307,20.750916 48.034607,31.485779 64.507263,31.485657l24.83017,0l-34.557449,-37.629211c-47.777237,-51.832214 -75.347687,-115.793213 -80.378113,-186.098328c-2.990341,-41.794128 -1.467819,-55.681824 5.37561,-51.452271c5.158539,3.188171 9.215408,12.453552 9.215332,20.478455c0,23.250427 45.89386,108.610474 79.354172,147.701233c16.867981,19.70636 52.541687,51.868835 79.098206,71.418762c46.074646,33.918213 50.701385,35.581482 105.208252,35.58136c31.416748,0 55.729797,-2.764526 54.012054,-6.143555c-49.1008,-96.583252 -51.487366,-104.501587 -51.196228,-169.971497c0.269073,-60.518555 3.407288,-71.796875 38.653137,-147.445251c43.798767,-94.00528 54.754944,-135.713928 55.03595,-205.552887c0.407776,-101.266083 -47.761475,-177.397034 -140.533661,-222.191704c-28.442932,-13.733536 -62.075409,-27.511551 -74.746521,-30.461765l-23.0383,-5.119629zm341.734924,266.732449l-6.399536,36.861267c-9.053467,52.441284 -20.321228,77.364838 -67.835022,151.540924c-23.086975,36.042114 -46.697205,77.645996 -52.732117,92.409241c-17.083923,41.792664 -7.594086,127.251831 20.478455,184.050476l23.294312,47.356506l10.239258,-35.325378c7.876587,-27.012756 25.47052,-49.917175 75.258484,-97.272888c72.205566,-68.677917 82.860291,-91.117432 82.937927,-175.603149c0.056946,-61.969391 -16.436707,-110.241943 -55.291931,-163.060028l-29.949829,-40.95697z';
+
+  function addFlame1(left, top) {
+
+    d3.select('#flame1-root').remove();
+
+    svg.append('g')
+      .attr('id', 'flame1-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var flame1_root = d3.select('#flame1-root');
+
+    flame1_root.append('g')
+      .attr('transform', 'translate(0, 0) scale(.015)')
+      .append('path')
+        .attr('id', 'flame1')
+        .style('opacity', 0)
+        .style('fill', highlight_color)
+        .attr('d', flame_svg_path)
+        .on('mouseover', function() {
+          showFlameTooltip();
+        })
+        .on('mouseoout', function() {
+          tooltip.style("opacity", 0);//TODO, figure a better tooltip
+        });
+  }
+
+  function addFlame2(left, top) {
+
+    d3.select('#flame2-root').remove();
+
+    svg.append('g')
+      .attr('id', 'flame2-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var flame2_root = d3.select('#flame2-root');
+
+    flame2_root.append('g')
+      .attr('transform', 'translate(0, 0) scale(.015)')
+      .append('path')
+        .attr('id', 'flame2')
+        .style('opacity', 0)
+        .style('fill', highlight_color)
+        .attr('d', flame_svg_path)
+        .on('mouseover', function() {
+          showFlameTooltip();
+        })
+        .on('mouseoout', function() {
+          tooltip.style("opacity", 0);//TODO, figure a better tooltip
+        });
+  }
+
+  function showFlameTooltip() {
+    var tooltip_msg = '#yr# was the most popular year for #gender#s named #popular_name#.'
+    tooltip_msg = tooltip_msg.replace('#yr#', this_year);
+    tooltip_msg = tooltip_msg.replace('#gender#', getDisplayGender().toLowerCase());
+    tooltip_msg = tooltip_msg.replace('#popular_name#', popular_name);
+    tooltip.transition()
+      .style("opacity", .9);
+    tooltip.html(tooltip_msg)
+      .style("left", (d3.event.pageX + 15) + "px")
+      .style("top", (d3.event.pageY - 28) + "px");
   }
 
   function addBirths(left, top) {
@@ -1476,7 +1673,7 @@
       return sex_query;
     }
     else {
-      return default_sex;
+      return sex;
     }
   }
 

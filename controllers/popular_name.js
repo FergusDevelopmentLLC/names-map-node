@@ -69,15 +69,6 @@ module.exports = {
 
     const threshold = req.value.params.threshold;
 
-    // var sql = `
-    //   select max(name) as name, max(sex) as sex, sum(occurrences) as tot
-    //   from pop_name
-    //   group by name, sex
-    //   having sum(occurrences) > #threshold#
-    //   --order by sum(occurrences) desc;
-    //   order by max(name);
-    // `;
-
     var sql = `
       select max(name) as name, max(sex) as sex
       from pop_name
@@ -87,27 +78,10 @@ module.exports = {
     `;
 
     sql = sql.replace('#threshold#', threshold);
+
     const result = await knex.raw(sql);
     res.status(200).json(result.rows);
 
-  },
-
-  //gets data for top_name map
-  // getTopNamesForSex: async (req, res, next) => {
-  //
-  //   const sex = req.value.params.sex;
-  //
-  //   var sql = `
-  //   select date_part('year', year) as yr, state as st, top_name as name, total
-  //   from top_name
-  //   where sex = '#sex#'
-  //   order by year, state, total;
-  //   `;
-  //
-  //   sql = sql.replace('#sex#', sex);
-  //   const result = await knex.raw(sql);
-  //   res.status(200).json(result.rows);
-  //
-  // }
+  }
 
 };
