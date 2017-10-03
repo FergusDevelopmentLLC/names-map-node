@@ -4,7 +4,7 @@
     <title>American Names of the Last Century (1910-2016)</title>
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/switch-field.css" />
     <link rel="stylesheet" href="css/awesomplete.css" />
     <link rel="stylesheet" href="css/tingle.min.css" media="all">
@@ -34,7 +34,7 @@
           max-width: 300px;
           padding: 3px 6px;
           color: grey;
-          font-family: 'Roboto Mono', monospace;
+          font-family: 'Droid Sans Mono', monospace;
           font-size: .7em;
           background: whitesmoke;
           border: 1px solid grey;
@@ -169,7 +169,7 @@
 
         /*header*/
         #header-rect {
-          /*fill: #247f80;*/
+
         }
 
         /*title*/
@@ -229,7 +229,6 @@
           display: none;
         }
 
-
         #legend-rect {
           fill: #ffffff;
           fill-opacity: 1;
@@ -238,7 +237,7 @@
         }
 
         #year {
-          font-family: 'Roboto Mono', monospace;
+          font-family: 'Droid Sans Mono', monospace;
           font-weight: 800;
           font-size: 1.5em;
           text-anchor: middle;
@@ -258,7 +257,7 @@
 
 
         .swatch-label {
-          font-family: 'Roboto Mono', monospace;
+          font-family: 'Droid Sans Mono', monospace;
           fill: #000000;
           fill-opacity: .9;
           font-size: .65em;
@@ -337,9 +336,6 @@
     <p>
       The idea came from the various name maps seen periodically on <a href='https://www.reddit.com/r/MapPorn/' target='_blank'>Reddit</a>. This <a href='https://patch.com/new-york/new-york-city/map-nycs-most-popular-dog-names-neighborhood' target='_blank'>map of popular dog names</a> in New York City was an inspriation as well. The data source for this map is the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
     </p>
-
-    <!-- <h4>Interesting names / years to explore:</h4> -->
-
     <div class='headshot'>
       <span class='effect fdr'></span>
       FDR effect? <a href='/names/d3/?name=Roosevelt&sex=M'>Roosevelt</a> (1933)
@@ -461,7 +457,7 @@
   sex = getSexFromQS();
 
   if(popular_name == default_popular_name && sex == default_sex) {
-    randomStart();//get a random name, if none passed.
+    randomStart(); //get a random name, if none passed.
   }
   else {
     init();
@@ -621,8 +617,8 @@
             }
           }
 
+          //show the flames if this is the most_popular_year
           if(this_year == most_popular_year) {
-            //d3.select('#year').text(this_year).style('fill', highlight_color);
             d3.select('#flame1').style('opacity', 1);
             d3.select('#flame2').style('opacity', 1);
           }
@@ -657,7 +653,6 @@
         return x.name + "&nbsp;(" + getDisplayGender() + ")";
     });
 
-    //remove it if there
     d3.select('#name-input').remove();
 
     var placeholder_text = "Search for " + getDisplayGender().toLowerCase() + "s name"
@@ -982,7 +977,6 @@
       .attr('width', 700)
       .attr('height', 15)
       .style("fill", "url(#gradient)");
-
 
   }
 
