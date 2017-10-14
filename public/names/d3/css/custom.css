@@ -1,0 +1,346 @@
+
+		div.tooltip {
+			position: absolute;
+			max-width: 300px;
+			padding: 3px 6px;
+			color: grey;
+			font-family: 'Droid Sans Mono', monospace;
+			font-size: .7em;
+			background: whitesmoke;
+			border: 1px solid grey;
+			border-radius: 3px;
+			pointer-events: none;
+		}
+
+		#map-wrapper {
+
+		}
+
+		/*Map background*/
+		#map-background {
+			fill: #fff;
+			/*fill: none;*/
+			/*stroke: red;*/
+			width: 960px;
+			height: 600px;
+			transform: translate(0,0);
+		}
+
+		#spinner-wrapper {
+			width: 750px;
+			height: 420px;
+			display: none;
+		}
+
+		.state {
+			stroke-width: 1;
+		}
+
+		/*search widget*/
+		#search-widget-wrapper {
+			/*margin: auto;*/
+			/*min-width: 222px;*/
+			/*display: inline-block;*/
+			/*padding: 0;*/
+		}
+
+
+		/*slider*/
+		#slider { }
+		.ticks {
+			font-family: 'Arimo', sans-serif;
+			font-size: .65em;
+			fill: #696969;
+		}
+		.track,
+		.track-inset,
+		.track-overlay {
+			stroke-linecap: round;
+		}
+		.track {
+			stroke: #000;
+			stroke-opacity: 0.3;
+			stroke-width: 10px;
+		}
+		.track-inset {
+			stroke: #ddd;
+			stroke-width: 8px;
+		}
+		.track-overlay {
+			pointer-events: stroke;
+			stroke-width: 50px;
+			stroke: transparent;
+		}
+		.handle {
+			fill: #fff;
+			stroke: #000;
+			stroke-opacity: 0.5;
+			stroke-width: 1.25px;
+		}
+
+		/*modal about this map content*/
+		.modal {
+			font-family: Montserrat, sans-serif;
+			color: #696969;
+			font-size: .9em;
+		}
+		.modal a {
+			color: #696969;
+		}
+		.tingle-content {
+			display: none;
+		}
+
+		#births {
+			font-family: Montserrat, sans-serif;
+			font-size: 1em;
+			text-anchor: middle;
+		}
+
+		.swatch-label {
+			font-family: 'Droid Sans Mono', monospace;
+			fill: #000000;
+			fill-opacity: .9;
+			font-size: .65em;
+			text-anchor: end;
+		}
+
+		.legend-swatch {
+			stroke: #696969;
+			stroke-width:.3;
+		}
+
+		/*headshot bullets*/
+		div.headshot
+		{
+			margin-bottom: 1px;
+		}
+
+		span.effect
+		{
+			height: 38px;
+			width: 30px;
+			display: inline-block;
+			vertical-align: middle;
+			margin-bottom: 0.25em;
+			margin-right: 10px;
+		}
+		span.fdr
+		{
+			background: url('images/fdr_30x38.png');
+		}
+		span.jfk
+		{
+			background: url('images/jfk_30x38.png');
+		}
+		span.elvis
+		{
+			background: url('images/elvis_30x38.png');
+		}
+		span.streisand
+		{
+			background: url('images/streisand_30x38.png');
+		}
+		span.keifer
+		{
+			background: url('images/keifer_sutherland_30x38.png');
+		}
+		span.channing
+		{
+			background: url('images/channingtatum_30x38.png');
+		}
+		span.luke_leia
+		{
+			width: 57px;
+			background: url('images/leia_luke_57x38.png');
+		}
+
+		/*-----------------------------------*/
+
+		.hero .container
+		{
+			width: 95%;
+		}
+
+		.column {
+			/*border: 1px solid #696969;*/
+		}
+
+		.section {
+			padding-top: 11px;
+			padding-bottom: 11px;
+		}
+
+		.legend {
+			border-left: 1px solid #cccccc;
+			border-right: 1px solid #cccccc;
+		}
+
+		.boygirl {
+			justify-content: center !important;
+			/*margin-top:10px;*/
+		}
+
+		li {
+			text-align: left !important;
+		}
+
+		#search-icon, #random-icon {
+			font-size: 1.6em;
+			cursor: pointer; cursor: hand;
+			vertical-align: sub;
+		}
+
+		#search-icon {
+
+		}
+
+		#random-icon {
+
+		}
+
+		#bar-chart-wrapper {
+			/*border: 1px solid orange;*/
+			margin: 15px 1.5em 0 1.5em;
+		}
+
+		#cells-wrapper {
+			/*border: 1px solid orange;*/
+			margin: 0 1.5em 0 1.5em;
+		}
+
+		#slider-wrapper {
+			/*border: 1px solid orange;*/
+      margin: 0 1.5em 0 1.5em;
+		}
+
+		#slider-year {
+			margin-top: 0;
+			width: 100%;
+      vertical-align: middle;
+		}
+
+    #min-year-label {
+      margin-left: .5em;
+      float: left;
+    }
+
+    #max-year-label {
+      margin-right: .5em;
+      float: right;
+    }
+
+		.name-input {
+			height: 40px;
+			font-family: 'Montserrat', sans-serif;
+			padding: 0;
+			border: 0;
+			margin: 3px 0 3px 0;
+			text-align: center;
+			font-size: 1em;
+			font-weight: 600;
+			cursor: pointer; cursor: hand;
+		}
+		.name-input-edit {
+			height: 40px;
+			padding: 0 0 0 5px;
+			margin: 3px 0 3px 0;
+			border: 1px solid #696969;
+			font-size: 1em;
+			cursor: pointer; cursor: hand;
+		}
+
+		.name-search-column, .year-column, .births-column, .since-column, .barchart-column, .slider-column, .slider-label-column {
+			padding: 0;
+			text-align: center;
+		}
+
+		.name-search-column {
+			white-space: nowrap;
+		}
+
+		.boygirl-switch-column, .barchart-column, .cells-column, .slider-column {
+			padding: 0;
+		}
+
+		#year-wrapper, #births-wrapper, #since-wrapper {
+			font-family: Montserrat, sans-serif;
+			color: #000;
+		}
+
+		#year-wrapper {
+			font-family: 'Droid Sans Mono', monospace;
+			font-weight: 800;
+			font-size: 1.6em;
+			vertical-align: sub;
+		}
+
+		#births-wrapper {
+			font-size: 1.3em;
+		}
+
+		#since-wrapper {
+			font-size: 1em;
+		}
+
+		.icon-fire {
+			font-size: 1.2em;
+		}
+
+		.swatch-label {
+			font-family: 'Droid Sans Mono', monospace;
+			fill: #000000;
+			fill-opacity: .9;
+			font-size: .5em;
+			text-anchor: end;
+		}
+
+		.legend-swatch {
+			stroke: #696969;
+			stroke-width: .1;
+		}
+
+		/*@media screen and (max-width: 414px) {
+			.navbar-item {
+				font-size: .8em;
+			}
+		}
+
+		@media screen and (max-width: 360px) {
+			.navbar-item {
+				font-size: .65em;
+			}
+		}
+
+		@media screen and (max-width: 360px) {
+			.navbar-item {
+				font-size: .65em;
+			}
+		}
+
+		@media screen and (max-width: 320px) {
+			.name-input {
+				font-size: 1em;
+			}
+			.name-input-edit {
+				font-size: 1em;
+			}
+		}
+
+		@media screen and (max-width: 414px) {
+			.name-input {
+				font-size: 2em;
+			}
+			.name-input-edit {
+				font-size: 2em;
+			}
+		}
+
+		@media screen and (max-width: 1024px) {
+			.name-input {
+				font-size: .85em;
+			}
+			.name-input-edit {
+				font-size: .85em;
+			}
+		}*/

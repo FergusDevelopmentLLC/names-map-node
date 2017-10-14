@@ -1,0 +1,1713 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>American Names of the Last Century (1910-2016)</title>
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/switch-field.css" />
+    <link rel="stylesheet" href="css/awesomplete.css" />
+    <link rel="stylesheet" href="css/tingle.min.css" media="all">
+
+    <script src="js/utils.js"></script>
+    <script src="js/awesomplete.js"></script>
+    <script src="js/colorbrewer.js"></script>
+    <script src="js/cartocolor.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://unpkg.com/simple-statistics@4.1.0/dist/simple-statistics.min.js"></script>
+    <script src="http://spin.js.org/spin.min.js"></script>
+    <script src="js/spin_opt.js"></script>
+    <script src="js/tingle.min.js"></script>
+
+    <style>
+
+        body {
+          padding: 0;
+          margin: 0;
+          background: #eeeeee;
+        }
+
+        div.tooltip {
+          position: absolute;
+          max-width: 300px;
+          padding: 3px 6px;
+          color: grey;
+          font-family: 'Droid Sans Mono', monospace;
+          font-size: .7em;
+          background: whitesmoke;
+          border: 1px solid grey;
+          border-radius: 3px;
+          pointer-events: none;
+        }
+
+        #map-wrapper {
+          position:absolute;
+          width: 950px;
+          height: 500px;
+          /*border: 1px solid #dddddd;*/
+        }
+
+        /*Map background*/
+        #map-background {
+          fill: #EEEEEE;
+          /*fill: none;*/
+          /*stroke: red;*/
+          width: 960px;
+          height: 600px;
+          transform: translate(0,0);
+        }
+
+        #spinner-wrapper {
+          position: absolute;
+          top: 70px;
+          left: 250px;
+          width: 750px;
+          height: 420px;
+          display: none;
+        }
+
+        .state {
+          stroke-width: 1;
+        }
+
+        /*search widget*/
+        #search-widget-wrapper {
+          position: absolute;
+          left: 42px;
+          top: 92px;
+          display: none;
+        }
+        .name-input {
+          width: 165px;
+          height: 38px;
+          padding:3px;
+          font-family: 'Montserrat', sans-serif;
+          background-color: #ffffff;
+          text-align: center;
+          font-size: 1.5em;
+          font-weight: 600;
+          border: 0;
+          cursor: pointer; cursor: hand;
+        }
+        .name-input-edit {
+          width: 165px;
+          height: 38px;
+          padding: 3px;
+          border: 1px solid #696969;
+          background-color: #ffffff;
+          font-family: sans-serif;
+          font-size: .9em;
+          text-align: left;
+          cursor: pointer; cursor: hand;
+        }
+
+        /*search button*/
+        #search-box {
+          fill: #ffffff;
+          /*fill: #72a1d4;*/
+          stroke-width: 0;
+          rx: 5;
+          ry: 5;
+          cursor: pointer; cursor: hand;
+        }
+
+        /*shuffle button*/
+        #shuffle-box {
+          fill: #ffffff;
+          /*fill: #72a1d4;*/
+          stroke-width: 0;
+          rx: 5;
+          ry: 5;
+          cursor: pointer; cursor: hand;
+        }
+
+        /*boy/girl switch*/
+        .switch-field {
+          font-family: 'Montserrat', sans-serif;
+          padding: 0;
+        	overflow: hidden;
+          position: absolute;
+          top: 138px;
+          left: 73px;
+          display: none;
+        }
+
+        /*slider*/
+        #slider { }
+        .ticks {
+          font-family: 'Arimo', sans-serif;
+          font-size: .65em;
+          fill: #696969;
+        }
+        .track,
+        .track-inset,
+        .track-overlay {
+          stroke-linecap: round;
+        }
+        .track {
+          stroke: #000;
+          stroke-opacity: 0.3;
+          stroke-width: 10px;
+        }
+        .track-inset {
+          stroke: #ddd;
+          stroke-width: 8px;
+        }
+        .track-overlay {
+          pointer-events: stroke;
+          stroke-width: 50px;
+          stroke: transparent;
+        }
+        .handle {
+          fill: #fff;
+          stroke: #000;
+          stroke-opacity: 0.5;
+          stroke-width: 1.25px;
+        }
+
+        /*header*/
+        #header-rect {
+
+        }
+
+        /*title*/
+        #title {
+          font-family: Montserrat, sans-serif;
+          fill: #FFFFFF;
+          font-size: 1.3em;
+          font-weight: 600;
+        }
+
+        /*data source link*/
+        #source-root {
+          font-family: Montserrat, sans-serif;
+          fill: #FFFFFF;
+          font-size: .6em;
+        }
+        #source-link {
+          text-decoration: underline;
+          fill: #FFFFFF;
+        }
+
+        /*about this map link - header*/
+        #about-header-root {
+          font-family: Montserrat, sans-serif;
+          fill: #FFFFFF;
+          font-size: .8em;
+          font-weight: 600;
+          text-anchor: end;
+        }
+        #about-header-link {
+          text-decoration: underline;
+          fill: #FFFFFF;
+        }
+
+        /*about this map link - legend*/
+        #about-legend-root {
+          font-family: Montserrat, sans-serif;
+          fill: #696969;
+          font-size: .7em;
+          text-anchor: middle;
+        }
+        #about-legend-link {
+          text-decoration: underline;
+          fill: #696969;
+        }
+
+        /*modal about this map content*/
+        .modal {
+          font-family: Montserrat, sans-serif;
+          color: #696969;
+          font-size: .9em;
+        }
+        .modal a {
+          color: #696969;
+        }
+        .tingle-content {
+          display: none;
+        }
+
+        #legend-rect {
+          fill: #ffffff;
+          fill-opacity: 1;
+          stroke-width: .3;
+          stroke: #696969;
+        }
+
+        #year {
+          font-family: 'Droid Sans Mono', monospace;
+          font-weight: 800;
+          font-size: 1.5em;
+          text-anchor: middle;
+        }
+
+        #births {
+          font-family: Montserrat, sans-serif;
+          font-size: 1em;
+          text-anchor: middle;
+        }
+
+        #since {
+          font-family: Montserrat, sans-serif;
+          font-size: .8em;
+          text-anchor: middle;
+        }
+
+
+        .swatch-label {
+          font-family: 'Droid Sans Mono', monospace;
+          fill: #000000;
+          fill-opacity: .9;
+          font-size: .65em;
+          text-anchor: end;
+        }
+
+        .legend-swatch {
+          stroke: #696969;
+          stroke-width:.3;
+        }
+
+        /*headshot bullets*/
+        div.headshot
+        {
+          margin-bottom: 1px;
+        }
+
+        span.effect
+        {
+          height: 38px;
+          width: 30px;
+          display: inline-block;
+          vertical-align: middle;
+          margin-bottom: 0.25em;
+          margin-right: 10px;
+        }
+        span.fdr
+        {
+          background: url('images/fdr_30x38.png');
+        }
+        span.jfk
+        {
+          background: url('images/jfk_30x38.png');
+        }
+        span.elvis
+        {
+          background: url('images/elvis_30x38.png');
+        }
+        span.streisand
+        {
+          background: url('images/streisand_30x38.png');
+        }
+        span.keifer
+        {
+          background: url('images/keifer_sutherland_30x38.png');
+        }
+        span.channing
+        {
+          background: url('images/channingtatum_30x38.png');
+        }
+        span.luke_leia
+        {
+          width: 57px;
+          background: url('images/leia_luke_57x38.png');
+        }
+    </style>
+</head>
+<body>
+
+<div id='map-wrapper'></div>
+
+<div id='spinner-wrapper'></div>
+
+<div class="switch-field" id="switch-field">
+  <input type="radio" id="switch_left" name="switch_mf" value="M" checked/>
+  <label for="switch_left">Boy</label>
+  <input type="radio" id="switch_right" name="switch_mf" value="F" />
+  <label for="switch_right">Girl</label>
+</div>
+
+<div id="search-widget-wrapper"></div>
+
+<div class="container tingle-content-wrapper content">
+  <div class="tingle tingle-content">
+    <h3>American Names of the Last Century (1910-2016)</h3>
+    <p>
+      The idea came from the various name maps seen periodically on <a href='https://www.reddit.com/r/MapPorn/' target='_blank'>Reddit</a>. This <a href='https://patch.com/new-york/new-york-city/map-nycs-most-popular-dog-names-neighborhood' target='_blank'>map of popular dog names</a> in New York City was an inspriation as well. The data source for this map is the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
+    </p>
+    <div class='headshot'>
+      <span class='effect fdr'></span>
+      FDR effect? <a href='/names/d3/?name=Roosevelt&sex=M'>Roosevelt</a> (1933)
+    </div>
+    <div class='headshot'>
+      <span class='effect elvis'></span>
+      <a href='/names/d3/?name=Elvis&sex=M'>Elvis</a> Presley effect?</a> (1957)
+    </div>
+    <div class='headshot'>
+      <span class='effect jfk'></span>
+      JFK effect? <a href='/names/d3/?name=Kennedy&sex=M'>Kennedy</a> (1964)
+    </div>
+    <div class='headshot'>
+      <span class='effect streisand'></span>
+      <a href='/names/d3/?name=Barbra&sex=F'>Barbra</a> Streisand effect? (1966)
+    </div>
+    <div class='headshot'>
+      <span class='effect keifer'></span>
+      <a href='/names/d3/?name=Keifer&sex=M'>Keifer</a> Sutherland effect? (1991)
+    </div>
+    <div class='headshot'>
+      <span class='effect channing'></span>
+      <a href='/names/d3/?name=Channing&sex=M'>Channing</a> Tatum effect? (2012)
+    </div>
+    <div class='headshot'>
+      <span class='effect luke_leia'></span>
+      Star Wars effect? [<a href='/names/d3/?name=Luke&sex=M&yr=1980'>Luke</a>, <a href='/names/d3/?name=Leia&sex=F&yr=1980'>Leia</a>] (small spikes in 1979-80)
+    </div>
+    <!-- <ul>
+      <li><a href='/names/d3/?name=Elvis&sex=M'>Elvis Presley</a> effect?</li>
+      <li><a href='/names/d3/?name=Barbra&sex=F'>Barbra Streisand</a> effect?</li>
+      <li><a href='/names/d3/?name=Kiefer&sex=M'>Kiefer Sutherland</a> effect?</li>
+      <li><a href='/names/d3/?name=Channing&sex=M'>Channing Tatum</a> effect?</li>
+      <li>Star Wars effect </li>
+      <li>
+        Old Southern Names:
+        <a href='/names/d3/?name=Dollie&sex=F'>Dollie</a>,
+        <a href='/names/d3/?name=Earnestine&sex=F'>Earnestine</a>,
+        <a href='/names/d3/?name=Nettie&sex=F'>Nettie</a>
+      </li>
+    </ul> -->
+    <p>Thank you for checking out my project. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>GitHub repo</a> for a deeper look. Please check out <a href='https://fergusdevelopmentllc.github.io/'>my portfolio</a> for more of my work. Find an interesting name, have a question or suggestion? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>!</p>
+    <p>
+        For a similar project on the most popular U.S. Boys/Girls Names (1910-2016), check out the following <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>.<br/>
+        <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'><img src='images/top_names.png' /></a>
+    </p>
+    <p>-<a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a></p>
+  </div>
+</div>
+
+<script>
+
+  var width = 950,
+      height = 500,
+      default_popular_name = 'Quinn',
+      default_sex = 'M',
+      sex = 'M',
+      prev_sex = 'M',
+      number_of_breaks = 5,
+      this_year = 1910,
+      min_year = 1910,
+      max_year = 2016,
+      most_popular_year = this_year,
+      breaks = [],
+      occurrences = '',
+      color_key = 'cartocolor.Mint' //https://github.com/CartoDB/CartoColor/wiki/CARTOColor-Scheme-Names or colorbrewer.Greens http://127.0.0.1:8645/names/d3/?ck=colorbrewer.Greens
+      novalue_color = '#ffffff',
+      total_occurrences_all_time = 0,
+      total_occurrences_for_year = 0,
+      tooltip = '',
+      name_list = '',
+      slider = '',
+      handle = '',
+      spin_target = document.getElementById('spinner-wrapper'),
+      spinner = '',
+      mode = 'display',
+      bar_fill_color = '#ffffff',
+      highlight_color = '#e6550d',
+      default_gray = '#696969';
+
+  d3.selectAll("input[name='switch_mf']").on("change", function(){
+
+    tooltip.style("opacity", 0);
+
+    prev_sex = sex;
+
+    sex = this.value;
+
+    mode = 'edit';
+
+    svg.selectAll('.state')
+      .style('fill', function(d) {
+        return novalue_color;
+      });
+
+    handleAutocomplete();
+
+  });
+
+  color_key = getColorKeyFromQS();
+
+  highlight_color = getHighlightColorFromQS();
+
+  var svg = d3.select("#map-wrapper")
+    .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  var geoPath = d3.geoPath()
+    .projection(d3.geoAlbersUsa()
+      .scale(800));
+
+  tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  popular_name = getNameFromQS();
+
+  sex = getSexFromQS();
+
+  if(popular_name == default_popular_name && sex == default_sex) {
+    randomStart(); //get a random name, if none passed.
+  }
+  else {
+    init();
+  }
+
+  function randomStart() {
+    d3.queue()
+      .defer(d3.json, "/popular_name/getRandomName")
+      .await(setName);
+  }
+
+  function setName(error, random_name_data) {
+
+    sex = random_name_data[0].sex;
+
+    popular_name = random_name_data[0].name;
+
+    init();
+  }
+
+  function init() {
+
+    d3.select('#spinner-wrapper').style("display","block");
+    spinner = new Spinner(opts).spin(spin_target);
+
+    setMaleFemaleSwitch();
+
+    addBackgroundToMap();
+
+    addheader(0, 0);
+
+    addTitle(20, 45);
+
+    addAboutHeader(930, 40);
+
+    addLegendBackground(0, 70);
+
+    addAboutLegend(125, 475);
+
+    addFooter(250, 485);
+
+    addSource(715, 495);
+
+    //set sex to match switch
+    sex = d3.select('input[name="switch_mf"]:checked').node().value;
+
+    //force name to be camel case
+    popular_name = toCamelCase(popular_name);
+
+    //this will repopulate the name lookup input with only the sex selected on the Boy/Girl switch
+    handleAutocomplete('display');
+
+    data_url = '/popular_name/getNameData/' + popular_name + '/' + sex;
+
+    console.log(data_url);
+
+    d3.queue()
+      .defer(d3.json, 'data/states.topojson')
+      .defer(d3.json, data_url)
+      .await(makeMap);
+
+  }
+
+  function makeMap(error, statestopo, name_data) {
+
+    if(error || parseInt(name_data.length) == 0) {
+      addLegendBackground(0, 70);
+      addAboutLegend(125, 475);
+      addSearchButton(5, 90);
+      addShuffleButton(205, 90);
+      spinner.stop();
+      d3.select('#spinner-wrapper').style('display','none');
+      d3.select('#search-widget-wrapper').style('display','block');
+      d3.select('#switch-field').style('display','block');
+      //setting a delay here, intermittently wouldn't work. autocomplete?
+      setTimeout(function(){
+        var name_input = document.getElementById('name-input');
+        name_input.value = '* No Data *';
+      }, 100);
+      return;
+    }
+
+    populateOccurencesFrom(name_data);
+
+    joinDataToGeom(statestopo, name_data);
+
+    addStatesToMap(statestopo, 135, 30);
+
+    populateMaxMinYear();
+
+    setMostPopularYear();
+
+    this_year = getYearFromQS();
+
+    populateBreaks(number_of_breaks, statestopo);
+
+    setBarFillColor();
+
+    setBoyGirlSwitchBackgroundColor();
+
+    addSearchButton(5, 90);
+
+    addShuffleButton(205, 90);
+
+    addYear(125, 190);
+
+    addFlame1(80, 174);
+
+    addFlame2(160, 174);
+
+    addBirths(125, 220);
+
+    addSince(125, 240);
+
+    addBars(20, 255);
+
+    highlightBarForThisYear();
+
+    addCells(20, 335);
+
+    addSlider(23, 380);
+
+    attachModalToAboutLinks();
+
+    spinner.stop();
+    d3.select('#spinner-wrapper').style('display','none');
+
+    d3.select('#search-widget-wrapper').style('display','block');
+
+    d3.select('#switch-field').style('display','block');
+
+    d3.select('#slider').style('display','block');
+
+    updateMap();
+
+  };
+
+  function updateMap() {
+
+    total_occurrences_for_year = 0;
+    total_occurrences_all_time = 0;
+
+    svg.selectAll(".state")
+      .style('fill', function(d) {
+        var fill = novalue_color;
+        //console.log(d);
+        if (d.properties.occurrences.length > 0) {
+          for (var occurrence in d.properties.occurrences) {
+            var occurrence_date = new Date(d.properties.occurrences[occurrence].date);
+            if(occurrence_date.getFullYear() == this_year && d.properties.occurrences[occurrence].oc > 0) {
+              total_occurrences_for_year += d.properties.occurrences[occurrence].oc;
+              var this_fill = getColor(d.properties.occurrences[occurrence].normalized, breaks);
+              fill = this_fill;
+            }
+            if(occurrence_date.getFullYear() <= this_year) {
+              total_occurrences_all_time += d.properties.occurrences[occurrence].oc;
+            }
+          }
+
+          //show the flames if this is the most_popular_year
+          if(this_year == most_popular_year) {
+            d3.select('#flame1').style('opacity', 1);
+            d3.select('#flame2').style('opacity', 1);
+          }
+          else {
+            d3.select('#year').text(this_year).style('fill', '#000000');
+            d3.select('#flame1').style('opacity', 0);
+            d3.select('#flame2').style('opacity', 0);
+          }
+
+          var births_text = total_occurrences_for_year.toLocaleString() + " births ";
+          d3.select('#births').text(births_text);
+
+        }
+        var since_txt = total_occurrences_all_time.toLocaleString() + " since " + min_year;
+        d3.select('#since').text(since_txt);
+        return fill;
+      });
+
+  }
+
+  function handleAutocomplete() {
+    d3.queue()
+      .defer(d3.json, 'data/names_by_popularity.json')
+      .await(addAutoCompleteInput);
+  }
+
+  function addAutoCompleteInput(error, most_pop_names) {
+
+    //filter based on current sex
+    name_list = most_pop_names.map(function(x) {
+      if(x.sex == sex)
+        return x.name + "&nbsp;(" + getDisplayGender() + ")";
+    });
+
+    d3.select('#name-input').remove();
+
+    var placeholder_text = "Search for " + getDisplayGender().toLowerCase() + "s name"
+
+    //add it back
+    d3.select('#search-widget-wrapper').append('input')
+      .attr('id', 'name-input')
+      .attr('class', 'name-input')
+      .attr('placeholder', placeholder_text)
+      .attr('value', popular_name);
+
+    name_input = document.getElementById("name-input");
+
+    var autocomplete = new Awesomplete(name_input, {
+      list: name_list
+    });
+
+    Awesomplete.$.bind(name_input, { "awesomplete-selectcomplete": nameSelected });
+
+    d3.select("#name-input").on("focus", function() {
+        this.value = '';
+        d3.select(this).attr('class', 'name-input-edit');
+      });
+
+    d3.select("#name-input").on("blur", function() {
+        d3.select(this).attr('class', 'name-input');
+        var entered_value = this.value.replace(/\s/g,'');
+        if(entered_value == '') {
+          this.value = popular_name;
+          sex = prev_sex;
+          setMaleFemaleSwitch();
+          handleAutocomplete();
+          updateMap();
+        }
+      });
+
+    //handle when user doesn't select autocomplete option, enters own name and presses enter.
+    d3.select("#name-input").on("keydown", function() {
+      if(d3.event.keyCode == 13) {
+
+        var entered_name = '';
+        var selected_sex = '';
+
+        if(this.value == '') {
+          this.value = popular_name;
+          this.blur();
+          return;
+        }
+        else {
+          entered_name = this.value.replace(/\s/g,'');
+          selected_sex = d3.select('input[name="switch_mf"]:checked').node().value;
+        }
+
+        if(entered_name != popular_name || selected_sex != sex) {
+          popular_name = entered_name;
+          sex = selected_sex;
+          autocomplete.close();
+          init();
+        }
+
+      }
+    });
+
+    if(mode == 'edit') {
+      d3.select("#name-input").attr('class','name-input-edit');
+      document.getElementById('name-input').focus();
+      mode = 'display';
+    }
+
+  }
+
+  function nameSelected(evt) {
+
+    var selected_name = evt.text.value;
+    sex = "F"
+    if(selected_name.indexOf('(Boy)') > 0) {
+      sex = "M";
+    }
+
+    selected_name = selected_name.replace('&nbsp;(Boy)','');
+    selected_name = selected_name.replace('&nbsp;(Girl)','');
+    popular_name = selected_name;
+    document.querySelector('#name-input').value = popular_name;
+
+    d3.selectAll("input[name='switch_mf']").each(function(){
+      if(d3.select(this).node().value == sex)
+        d3.select(this).node().checked = true;
+    });
+
+    init();
+
+  }
+
+  function setMaleFemaleSwitch() {
+
+    d3.selectAll("input[name='switch_mf']").each(function(){
+      if(d3.select(this).node().value == sex)
+        d3.select(this).node().checked = true;
+    });
+
+  }
+
+  function populateOccurencesFrom(name_data) {
+
+    //append date to the name_data as the last day of occurrence yr
+    occurrences = name_data;
+
+    //add actual date field to occurrences for easier processing later
+    for (occurrence in occurrences) {
+      var dt = "12/31/" + occurrences[occurrence].yr;
+      occurrences[occurrence].date = new Date(dt);
+    }
+
+    for (occurrence in occurrences) {
+      var normalized = ((occurrences[occurrence].oc / occurrences[occurrence].tot) * 100).toFixed(2);
+      occurrences[occurrence].normalized = normalized;
+    }
+
+  }
+
+  function joinDataToGeom(states, name_data) {
+
+    states.objects.states.geometries.forEach(function(d) {
+      var layer_stusps = d.properties.stusps;
+      d.properties.occurrences = [];
+      var i = 0;
+      for (var occurrence in occurrences) {
+        if(layer_stusps == occurrences[occurrence].st) {
+          d.properties.occurrences[i] = occurrences[occurrence];
+          i++;
+        }
+      }
+    });
+
+  }
+
+  function populateMaxMinYear() {
+
+    var first_date = new Date(occurrences[0].date);
+    var last_date = new Date(occurrences[occurrences.length-1].date);
+
+    min_year = first_date.getFullYear();
+    max_year = last_date.getFullYear();
+    this_year = min_year;
+
+    d3.select("#slider-min-label").html(min_year);
+    d3.select("#slider-max-label").html(max_year);
+
+  }
+
+  function populateBreaks(number_of_classes, states) {
+
+    var occurrences_acc = [];
+
+    states.objects.states.geometries.forEach(function(d) {
+      for (occurrence in d.properties.occurrences) {
+        //occurrences_acc.push(d.properties.occurrences[occurrence].oc);
+        occurrences_acc.push(d.properties.occurrences[occurrence].normalized);
+      }
+    });
+
+    if(occurrences_acc.length <= number_of_classes) {
+      number_of_classes = occurrences_acc.length;
+    }
+
+    var clusters = ss.ckmeans(occurrences_acc, number_of_classes);
+    var brks = clusters.map(function(cluster) {
+      return [cluster[0], cluster.pop()];
+    });
+
+    breaks = multiDimensionalUnique(brks);
+
+  }
+
+  function addBackgroundToMap() {
+
+    //this is to catch when the mouse goes off the map, turn tooltip off. hack.
+    d3.select('#map-background').remove();
+    svg.append("rect")
+      .attr("id", "map-background")
+      .on("mouseover",function(d) {
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+      });
+
+  }
+
+  function addStatesToMap(statestopo, left, top) {
+
+    d3.select('#states').remove();
+
+    svg.append("g")
+      .attr('id','states')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+      .selectAll("path")
+      .data( topojson.feature(statestopo, statestopo.objects.states).features )
+        .enter()
+        .append('path')
+        .attr('d',geoPath)
+        .attr('class', 'state')
+        .style('stroke', default_gray)
+        .on('mouseover', function(d) {
+          var tooltip_msg = getTooltipMessage(d);
+          tooltip.transition()
+            .style("opacity", .9);
+          tooltip.html(tooltip_msg)
+            .style("left", (d3.event.pageX + 15) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+          d3.select(this).style("stroke", highlight_color);//outline the state with highlight_color
+          d3.select(this).style("stroke-width", "2");
+          //https://stackoverflow.com/questions/17917072/choropleth-maps-changing-stroke-color-in-mouseover-shows-overlapping-boundari
+          this.parentNode.appendChild(this);//append it to parent to make it move to top, otherwise outline is covered by bordering state lines
+        })
+        .on('mouseout', function(d) {
+          d3.select(this).style("stroke", default_gray);//return st outline to gray
+          d3.select(this).style("stroke-width", "1");
+          tooltip.style("opacity", 0);
+        });
+
+  }
+
+  function setMostPopularYear() {
+
+    var year_accumulations = [];
+    var last_yr = occurrences[0].yr;
+    var year_accum = 0;
+
+    for(var oc in occurrences) {
+      if(occurrences[oc].yr == last_yr) {
+        year_accum += occurrences[oc].oc;
+      }
+      else {
+        year_accumulations.push([last_yr, year_accum]);
+        year_accum = occurrences[oc].oc;
+        last_yr = occurrences[oc].yr;
+      }
+    }
+
+    if(year_accumulations.length == 0)
+      return;
+
+    var most_pop_year = year_accumulations[0][0];
+    var most_pop_acc = year_accumulations[0][1];
+
+    for(var acc in year_accumulations) {
+      if(year_accumulations[acc][1] > most_pop_acc) {
+        most_pop_acc = year_accumulations[acc][1];
+        most_pop_year = year_accumulations[acc][0];
+      }
+    }
+
+    most_popular_year = most_pop_year;
+
+  }
+
+  function addheader(left, top) {
+
+    d3.select('#header').remove();
+
+    svg.append("g")
+      .attr('id', 'header')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var header_root = d3.select('#header');
+
+    header_root.append('rect')
+      .attr('id', 'header-rect')
+      .attr('width', 950)
+      .attr('height', 70)
+      .style('fill', eval(color_key)['5'][3]);
+  }
+
+  function addTitle(left, top) {
+
+    d3.select('#title-root').remove();
+
+    svg.append('g')
+      .attr('id', 'title-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var title_root = d3.select('#title-root');
+
+    title_root.append('g')
+      .attr('id', 'title')
+      .append('text')
+        .attr('id', 'title')
+        .attr('class', 'title')
+        .text('American Names of the Last Century (1910-2016)');
+
+  }
+
+  function addFooter(left, top) {
+
+    var gradient = svg.append("defs")
+      .append("linearGradient")
+        .attr("id", "gradient")
+        .attr("x1", "0%")
+        .attr("y1", "50%")
+        .attr("x2", "65%")
+        .attr("y2", "50%")
+        .attr("spreadMethod", "pad");
+
+    gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#eeeeee")
+      .attr("stop-opacity", 0);
+
+    gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", eval(color_key)['5'][3])
+      .attr("stop-opacity", 1);
+
+    d3.select('#footer-root').remove();
+
+    svg.append('g')
+      .attr('id', 'footer-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var footer_root = d3.select('#footer-root');
+
+    footer_root.append("rect")
+      .attr('id', 'footer-rect')
+      .attr('width', 700)
+      .attr('height', 15)
+      .style("fill", "url(#gradient)");
+
+  }
+
+  function addSource(left, top) {
+
+    d3.select('#source-root').remove();
+
+    svg.append('g')
+      .attr('id', 'source-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var source_root = d3.select('#source-root');
+
+    source_root.append('text')
+      .attr('id', 'source');
+
+    var source = d3.select('#source');
+
+    source.append('tspan').text('Data Source: ');
+
+    source.append('tspan')
+      .append('a')
+        .attr('id', 'source-link')
+        .attr('xlink:href', 'https://www.ssa.gov/oact/babynames/limits.html')
+        .attr('target', '_blank')
+      .text('U.S. Social Security Administration ');
+
+  }
+
+  function addAboutHeader(left, top) {
+
+    d3.select('#about-header-root').remove();
+
+    svg.append('g')
+      .attr('id', 'about-header-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var about_header_root = d3.select('#about-header-root');
+
+    about_header_root.append('text')
+      .attr('id', 'about-header')
+      .append('tspan')
+        .append('a')
+          .attr('id', 'about-header-link')
+          .attr('class', 'about-link')
+          .attr('xlink:href', '#')
+          .text('About this map');
+
+  }
+
+  function addAboutLegend(left, top) {
+
+    d3.select('#about-legend-root').remove();
+
+    svg.append('g')
+      .attr('id', 'about-legend-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var about_legend_root = d3.select('#about-legend-root');
+
+    about_legend_root.append('text')
+      .attr('id', 'about-legend')
+      .append('tspan')
+        .append('a')
+          .attr('id', 'about-legend-link')
+          .attr('class', 'about-link')
+          .attr('xlink:href', '#')
+          .text('About this map');
+
+  }
+
+  function addLegendBackground(left, top) {
+
+    d3.select('#legend').remove();
+
+    svg.append("g")
+      .attr('id', 'legend')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+      .on("mouseover",function(d) {
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+      });
+
+    var legend_root = d3.select('#legend');
+
+    legend_root.append('rect')
+      .attr('id', 'legend-rect')
+      .attr('width', 250)
+      .attr('height', 429)
+      .on('mouseover', function() {
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+      })
+
+  }
+
+  function addSearchButton(left, top) {
+
+    d3.select('#legend-search').remove();
+
+    svg.append('g')
+      .attr('id', 'legend-search')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var legend_search_root = d3.select('#legend-search');
+
+    //search button box
+    legend_search_root.append('rect')
+      .attr('id', 'search-box')
+      .attr('width', 38)
+      .attr('height', 38)
+      .on('mouseover', function() {
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+        d3.select('#icon-search').style('fill', highlight_color);
+      })
+      .on('mouseout', function() {  d3.select('#icon-search').style('fill', default_gray); })
+      .on('click', function() {
+        document.getElementById('name-input').focus();
+        d3.select('#icon-edit').style('fill', default_gray);
+      });
+
+    legend_search_root.append('g')
+      .attr('transform', 'translate(0, 0) scale(.075)')
+      .append('path')
+        .attr('id', 'icon-search')
+        .style('fill', default_gray)
+        .attr('d', 'M320.913,226.507c0.022,21.651-4.695,39.784-15.146,56.013c-3.742,5.81-2.55,8.812,1.91,13.206  c26.929,26.533,53.571,53.359,80.294,80.101c7.526,7.531,7.729,11.243,0.741,19.402c-2.481,2.897-5.254,5.629-8.247,7.985  c-5.373,4.229-10.117,4.16-15.426-1.233c-27.139-27.576-54.7-54.738-81.869-82.286c-4.136-4.193-6.865-5.336-12.494-1.956  c-69.966,42.02-156.498-5.812-158.882-87.615c-1.494-51.276,40.176-98.76,90.404-104.987  c55.818-6.919,105.888,29.727,116.785,82.585C320.422,214.698,321.142,221.715,320.913,226.507z M146.788,228.876  c-0.024,38.293,31.658,70.1,69.786,70.061c37.851-0.039,70.022-32.216,70.044-70.056c0.022-38.141-31.776-69.804-70.073-69.774  C177.973,159.137,146.812,190.304,146.788,228.876z')
+        .on('click', function() {
+          document.getElementById('name-input').focus();
+          d3.select('#icon-edit').style('fill', default_gray);
+        });
+
+  }
+
+  function addShuffleButton(left, top) {
+
+    d3.select('#legend-shuffle').remove();
+
+    svg.append('g')
+      .attr('id', 'legend-shuffle')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var legend_shuffle_root = d3.select('#legend-shuffle');
+
+    //shuffle button box
+    legend_shuffle_root.append('rect')
+      .attr('id', 'shuffle-box')
+      .attr('width', 38)
+      .attr('height', 38)
+      .on('mouseover', function() {
+        d3.select('#icon-shuffle').style('fill', highlight_color);
+        tooltip.style("opacity", 0);//TODO, figure a better tooltip
+      })
+      .on('mouseout', function() {  d3.select('#icon-shuffle').style('fill', default_gray); })
+      .on('click', function() {
+        randomStart();
+        d3.select('#icon-shuffle').style('fill', default_gray);
+      });
+
+    legend_shuffle_root.append('g')
+      .attr('transform', 'translate(5, 5) scale(.055)')
+      .append('path')
+        .attr('id', 'icon-shuffle')
+        .style('fill', default_gray)
+        .attr('d', 'M370.1,181.3H399v47.3l81-83.2L399,64v54h-28.9c-82.7,0-129.4,61.9-170.6,116.5c-37,49.1-69,95.4-120.6,95.4H32v63.3h46.9  c82.7,0,129.4-65.8,170.6-120.4C286.5,223.7,318.4,181.3,370.1,181.3z M153.2,217.5c3.5-4.6,7.1-9.3,10.7-14.1  c8.8-11.6,18-23.9,28-36.1c-29.6-27.9-65.3-48.5-113-48.5H32v63.3c0,0,13.3-0.6,46.9,0C111.4,182.8,131.8,196.2,153.2,217.5z   M399,330.4h-28.9c-31.5,0-55.7-15.8-78.2-39.3c-2.2,3-4.5,6-6.8,9c-9.9,13.1-20.5,27.2-32.2,41.1c30.4,29.9,67.2,52.5,117.2,52.5  H399V448l81-81.4l-81-83.2V330.4z')
+        .on('click', function() {
+          randomStart();
+          d3.select('#icon-shuffle').style('fill', default_gray);
+        });
+
+  }
+
+  function addYear(left, top) {
+
+    d3.select('#year-root').remove();
+
+    svg.append('g')
+      .attr('id', 'year-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var year_root = d3.select('#year-root');
+
+    year_root.append('text')
+      .attr('id', 'year')
+      .text(this_year)
+      .on('mouseover', function() {
+        if(this_year == most_popular_year) showFlameTooltip();
+      })
+      .on('mouseoout', function() {
+        if(this_year = most_popular_year) tooltip.style("opacity", 0);//TODO, figure a better tooltip
+      });
+  }
+
+  var flame_svg_path = 'm269.518738,56.879459l20.222504,35.069424c38.867218,67.980759 50.538544,118.335266 49.916351,215.280212c-0.509277,79.329437 -3.852112,99.693268 -27.645996,170.48349c-24.114655,71.744385 -26.64447,87.628174 -23.294281,147.44519l3.58374,67.067078l-16.382782,-36.861267c-18.704346,-41.598572 -20.530701,-86.629456 -9.727295,-243.438171l6.911499,-100.088654l-25.342163,-51.452209c-25.936661,-52.653671 -91.050262,-126.665665 -80.378098,-91.385315c7.683868,25.401611 -14.069794,81.8125 -66.299118,172.27536c-64.898258,112.405731 -78.705029,156.334412 -74.23457,232.174988c5.406971,91.726135 51.529629,175.342834 131.830334,238.830505c26.246307,20.750916 48.034607,31.485779 64.507263,31.485657l24.83017,0l-34.557449,-37.629211c-47.777237,-51.832214 -75.347687,-115.793213 -80.378113,-186.098328c-2.990341,-41.794128 -1.467819,-55.681824 5.37561,-51.452271c5.158539,3.188171 9.215408,12.453552 9.215332,20.478455c0,23.250427 45.89386,108.610474 79.354172,147.701233c16.867981,19.70636 52.541687,51.868835 79.098206,71.418762c46.074646,33.918213 50.701385,35.581482 105.208252,35.58136c31.416748,0 55.729797,-2.764526 54.012054,-6.143555c-49.1008,-96.583252 -51.487366,-104.501587 -51.196228,-169.971497c0.269073,-60.518555 3.407288,-71.796875 38.653137,-147.445251c43.798767,-94.00528 54.754944,-135.713928 55.03595,-205.552887c0.407776,-101.266083 -47.761475,-177.397034 -140.533661,-222.191704c-28.442932,-13.733536 -62.075409,-27.511551 -74.746521,-30.461765l-23.0383,-5.119629zm341.734924,266.732449l-6.399536,36.861267c-9.053467,52.441284 -20.321228,77.364838 -67.835022,151.540924c-23.086975,36.042114 -46.697205,77.645996 -52.732117,92.409241c-17.083923,41.792664 -7.594086,127.251831 20.478455,184.050476l23.294312,47.356506l10.239258,-35.325378c7.876587,-27.012756 25.47052,-49.917175 75.258484,-97.272888c72.205566,-68.677917 82.860291,-91.117432 82.937927,-175.603149c0.056946,-61.969391 -16.436707,-110.241943 -55.291931,-163.060028l-29.949829,-40.95697z';
+
+  function addFlame1(left, top) {
+
+    d3.select('#flame1-root').remove();
+
+    svg.append('g')
+      .attr('id', 'flame1-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var flame1_root = d3.select('#flame1-root');
+
+    flame1_root.append('g')
+      .attr('transform', 'translate(0, 0) scale(.015)')
+      .append('path')
+        .attr('id', 'flame1')
+        .style('opacity', 0)
+        .style('fill', highlight_color)
+        .attr('d', flame_svg_path)
+        .on('mouseover', function() {
+          if(this_year == most_popular_year) {
+            showFlameTooltip();
+          }
+        })
+        .on('mouseoout', function() {
+          tooltip.style("opacity", 0);//TODO, figure a better tooltip
+        });
+  }
+
+  function addFlame2(left, top) {
+
+    d3.select('#flame2-root').remove();
+
+    svg.append('g')
+      .attr('id', 'flame2-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var flame2_root = d3.select('#flame2-root');
+
+    flame2_root.append('g')
+      .attr('transform', 'translate(0, 0) scale(.015)')
+      .append('path')
+        .attr('id', 'flame2')
+        .style('opacity', 0)
+        .style('fill', highlight_color)
+        .attr('d', flame_svg_path)
+        .on('mouseover', function() {
+          if(this_year == most_popular_year) {
+            showFlameTooltip();
+          }
+        })
+        .on('mouseoout', function() {
+          tooltip.style("opacity", 0);//TODO, figure a better tooltip
+        });
+  }
+
+  function showFlameTooltip() {
+    var tooltip_msg = '#cnt# #nameplural# were born in #yr#, more than any other year on record.';
+    tooltip_msg = tooltip_msg.replace('#cnt#', total_occurrences_for_year.toLocaleString());
+    tooltip_msg = tooltip_msg.replace('#yr#', this_year);
+    tooltip_msg = tooltip_msg.replace('#nameplural#', getPluralized(popular_name));
+    tooltip_msg = tooltip_msg.replace('#popular_name#', popular_name);
+    tooltip.transition()
+      .style("opacity", .9);
+    tooltip.html(tooltip_msg)
+      .style("left", (d3.event.pageX + 15) + "px")
+      .style("top", (d3.event.pageY - 28) + "px");
+  }
+
+  function addBirths(left, top) {
+
+    d3.select('#births-root').remove();
+
+    svg.append('g')
+      .attr('id', 'births-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var births_root = d3.select('#births-root');
+
+    births_root.append('text')
+      .attr('id', 'births')
+      .text('');
+  }
+
+  function addSince(left, top) {
+
+    d3.select('#since-root').remove();
+
+    svg.append('g')
+      .attr('id', 'since-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var since_root = d3.select('#since-root');
+
+    since_root.append('text')
+      .attr('id', 'since')
+      .text('');
+  }
+
+  function addBars(left, top) {
+
+    //get array of years, with each years total occurrences, regardless of state
+    var year_accumulations = getObjectArrayOfYearAccumulations(occurrences);
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 0, right: 0, bottom: 0, left: 0},
+        width = 205 - margin.left - margin.right,
+        height = 75 - margin.top - margin.bottom;
+
+    // set the ranges
+    var x = d3.scaleBand()
+      .range([0, width])
+      .padding(0.01);
+    var y = d3.scaleLinear()
+      .range([height, 0]);
+
+    d3.select('#bar-chart-root').remove();
+
+    svg.append('g')
+      .attr('id', 'bar-chart-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var bar_chart_root = d3.select('#bar-chart-root');
+
+    bar_chart_root.append("g")
+      .attr('id', 'bar-chart');
+
+    // Scale the range of the data in the domains
+    x.domain(year_accumulations.map(function(d) { return d.yr; }));
+    y.domain([0, d3.max(year_accumulations, function(d) { return d.year_accum; })]);
+
+    var bar_chart_group = d3.select('#bar-chart-root');
+
+    // append the rectangles for the bar chart
+    bar_chart_group.selectAll(".bar")
+      .data(year_accumulations)
+        .enter().append("rect")
+          .style('fill', bar_fill_color)
+          .attr('class', 'bar')
+          .attr('id', function(d) { return 'bar-' + d.yr; })
+          .attr('x', function(d) { return x(d.yr); })
+          .attr('width', x.bandwidth())
+          .attr('y', function(d) { return y(d.year_accum); })
+          .attr('height', function(d) { return height - y(d.year_accum); });
+
+  }
+
+  function highlightBarForThisYear() {
+    d3.selectAll('.bar').each(function(d) {
+      var bar = d3.select(this);
+      var bar_id = bar._groups[0][0].id;
+      if ( bar_id == 'bar-' + this_year ) { bar.style('fill', highlight_color); }
+      else { bar.style('fill', bar_fill_color); }
+    });
+  }
+
+  function addCells(left, top) {
+
+    d3.select('#cells-root').remove();
+
+    svg.append('g')
+      .attr('id', 'cells-root')
+      .attr('transform', 'translate(' + left + ', ' + top + ')')
+
+    var cells_root = d3.select('#cells-root');
+
+    var i = 0;
+    for(var br in breaks) {
+      cells_root.append("g")
+        .attr("id", "cell" + i)
+        .attr("transform", "translate(" + i * 41.5 + ",0)")
+      i++;
+    }
+
+    i = 0;
+    for(var br in breaks) {
+      var cell = d3.select('#cell' + i);
+
+      cell.append('rect')
+        .attr('class', 'swatch')
+        .attr('height', 15)
+        .attr('width', 39.5)
+        .attr('fill', getColor(breaks[br][1], breaks));
+
+      cell.append('text')
+        .text(breaks[br][1] + '%')
+        .attr('class', 'swatch-label')
+        .attr('transform', 'translate(39.5, 30)');
+
+      i++;
+    }
+
+  }
+
+  function addSlider(left, top) {
+
+    var width = 200;
+    var height = 100;
+
+    //tick every 20 years if (1900-2020)
+    var span = 20;
+
+    //tick every 10 years if (1950-2020)
+    if(min_year >= 1950)
+      span = 10;
+
+    //tick every 5 years if (1990-2020)
+    if(min_year >= 1990)
+      span = 5;
+
+    var slider_min = Math.floor(min_year / span) * span;
+    var slider_max = Math.ceil(max_year / span) * span;
+    var r = slider_max - slider_min;
+    var ticks_amt = r / span;
+
+    var x = d3.scaleLinear()
+        .domain([slider_min, slider_max])
+        .range([0, width])
+        .clamp(true);
+
+    var svg_root = d3.select('svg');
+
+    var translate = "translate(" + left + ", " + top + ")";
+    d3.select('#slider').remove();
+    svg_root.append("g")
+      .attr("id", "slider")
+      .style("display", "none")
+      .attr("transform", translate)
+
+    var slider = d3.select('#slider');
+    slider.append("line")
+        .attr("class", "track")
+        .attr("x1", x.range()[0])
+        .attr("x2", x.range()[1])
+      .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .attr("class", "track-inset")
+      .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .attr("class", "track-overlay")
+        .attr("id", "track-overlay")
+        .call(d3.drag()
+          .on("start.interrupt", function() {
+            slider.interrupt();
+          })
+          .on("start drag", function() {
+            var slider_position = x.invert(d3.event.x);
+            var slider_handle_year = Math.floor(slider_position);
+
+            if(this_year != slider_handle_year && slider_handle_year <= max_year) {
+              this_year = slider_handle_year;
+              d3.select('#year').text(this_year);
+              handle.attr("cx", x(slider_position));
+              highlightBarForThisYear();
+              updateMap();
+            }
+
+          }));
+
+    slider.insert("g", ".track-overlay")
+        .attr("class", "ticks")
+        .attr("transform", "translate(0," + 18 + ")")
+      .selectAll("text")
+      .data(x.ticks(ticks_amt))
+      .enter().append("text")
+        .attr("x", x)
+        .attr("text-anchor", "middle")
+        .attr("transform", "translate(0,3)")
+        .text(function(d) { return d; });
+
+    slider.insert("g", ".track-overlay")
+      .attr("class", "tick-marks")
+      .attr("transform", "translate(0,5)")
+      .selectAll("line")
+      .data(x.ticks(ticks_amt))
+      .enter().append("line")
+        .style('stroke', '#000')
+        .style('stroke-opacity', 0.5)
+        .attr("x1", x)
+        .attr("y1", 0)
+        .attr("x2", x)
+        .attr("y2", 3);
+
+    handle = slider.insert("circle", ".track-overlay")
+      .attr("class", "handle")
+      .attr("r", 9)
+      .attr("cx", ((this_year - slider_min) / (slider_max - slider_min)) * x.range()[1]);
+
+  }
+
+  function getObjectArrayOfYearAccumulations(name_data) {
+
+    var year_accumulations = [];
+    var first_yr = name_data[0].yr;
+    var last_yr = name_data[name_data.length - 1].yr;
+
+    var last_yr = name_data[0].yr;
+    var year_accum = 0;
+
+    for(var oc in name_data) {
+      if(name_data[oc].yr == last_yr) {
+        year_accum += name_data[oc].oc;
+        last_yr = name_data[oc].yr;
+      }
+      else {
+        year_accum = name_data[oc].oc;
+        last_yr = name_data[oc].yr;
+      }
+
+      var year = {};
+      year.yr = last_yr;
+      year.year_accum = year_accum;
+      year_accumulations.push(year);
+
+    }
+
+    //add back any 0 occurrence yrs
+    var missing_years = [];
+    for (i = first_yr; i <= last_yr; i++) {
+      var found = false;
+      for(var oc in name_data) {
+        if(i == name_data[oc].yr) {
+          found = true;
+        }
+      }
+      if(found == false)
+        missing_years.push(i);
+    }
+
+    if(missing_years && missing_years.length > 0) {
+      for(var yr in missing_years) {
+        var year = {};
+        year.yr = missing_years[yr];
+        year.year_accum = 0;
+        year_accumulations.push(year);
+      }
+    }
+
+    year_accumulations.sort(function(a, b) {
+      return a.yr - b.yr;
+    })
+
+    return year_accumulations;
+
+  }
+
+  function getColor(d, breaks) {
+
+    //console.log(d);
+
+    var br = breaks[breaks.length - 1];
+
+    while(breaks.length < 3) {
+      breaks.push(br);
+    }
+
+    var colors = d3.entries(eval(color_key));
+    var color_scale = colors[breaks.length - 1];
+    var returncolor = novalue_color;
+    d = parseFloat(d);
+
+    if(d == 0)
+      returncolor = novalue_color;
+
+    if (breaks[0] && d <= breaks[0][1]) {
+      returncolor = color_scale.value[0];
+    } else if (breaks[1] && d <= breaks[1][1]) {
+      returncolor = color_scale.value[1];
+    } else if (breaks[2] && d <= breaks[2][1]) {
+      returncolor = color_scale.value[2];
+    } else if (breaks[3] && d <= breaks[3][1]) {
+      returncolor = color_scale.value[3];
+    } else if (breaks[4] && d <= breaks[4][1]) {
+      returncolor = color_scale.value[4];
+    } else if (breaks[5] && d <= breaks[5][1]) {
+      returncolor = color_scale.value[5];
+    } else if (breaks[6] && d <= breaks[6][1]) {
+      returncolor = color_scale.value[6];
+    } else if (breaks[7] && d <= breaks[7][1]) {
+      returncolor = color_scale.value[7];
+    } else if (breaks[8] && d <= breaks[8][1]) {
+      returncolor = color_scale.value[8];
+    } else if (breaks[9] && d <= breaks[9][1]) {
+      returncolor = color_scale.value[9];
+    }
+
+    return returncolor;
+
+  }
+
+  function getTooltipMessage(d) {
+
+    var tooltip_msg = "No " + getPluralized(popular_name) + " were born in " + abbrRegion(d.properties.stusps, 'name')  + " in " + this_year + ".";
+
+    for(var oc in occurrences) {
+        if(occurrences[oc].yr == this_year && occurrences[oc].st == d.properties.stusps) {
+          tooltip_msg = 'In #state# in #year#, there were #total_for_state# #genderplural# popular name births, #total_for_name# named #the_name# [#pct#].';
+          tooltip_msg = tooltip_msg.replace('#year#', this_year);
+          tooltip_msg = tooltip_msg.replace('#state#', abbrRegion(occurrences[oc].st, 'name'));
+          tooltip_msg = tooltip_msg.replace('#total_for_state#', occurrences[oc].tot.toLocaleString());
+          tooltip_msg = tooltip_msg.replace('#genderplural#', getDisplayGenderMF().toLowerCase());
+          tooltip_msg = tooltip_msg.replace('#total_for_name#', occurrences[oc].oc.toLocaleString());
+          tooltip_msg = tooltip_msg.replace('#the_name#', popular_name);
+          var pct = occurrences[oc].normalized;
+          tooltip_msg = tooltip_msg.replace('#pct#', pct + '%');
+        }
+    }
+
+    return tooltip_msg;
+  }
+
+  function getDisplayGender() {
+    var display_gender = "Boy";
+    if(sex == 'F') { display_gender = "Girl"; }
+    return display_gender;
+  }
+
+  function getDisplayGenderMF() {
+    var display_gender = "Male";
+    if(sex == 'F') { display_gender = "Female"; }
+    return display_gender;
+  }
+
+  function attachModalToAboutLinks() {
+
+    var modalTinyNoFooter = new tingle.modal({
+      onClose: function() {
+        // console.log('close');
+      },
+      onOpen: function() {
+        // console.log('open');
+      },
+      beforeOpen: function() {
+        // console.log('before open');
+      },
+      beforeClose: function() {
+        // console.log('before close');
+        return true;
+      },
+      cssClass: ['modal']
+    });
+
+    var lnks = document.querySelectorAll('.about-link');
+
+    if(lnks) {
+      lnks[0].onclick = function(e){ modalTinyNoFooter.open(); }
+      lnks[1].onclick = function(e){ modalTinyNoFooter.open(); }
+    }
+
+    modalTinyNoFooter.setContent(document.querySelector('.tingle-content').innerHTML);
+
+  }
+
+  function setBarFillColor() {
+    //set the bar_fill_color to the midrange color
+    var shift = 3;
+    if (breaks.length < 4) { shift = 1; }
+    bar_fill_color = getColor(breaks[breaks.length - shift][1], breaks);
+  }
+
+  function setBoyGirlSwitchBackgroundColor() {
+    var switch_color = eval(color_key)['5'][1];
+    var cssRuleCode = document.all ? 'rules' : 'cssRules'; //account for IE and FF
+    var rule = document.styleSheets[3][cssRuleCode][4];//brittle, depends on order css is loaded
+    rule.style['background-color'] = switch_color;
+  }
+
+  function getPluralized(name) {
+
+    //https://english.stackexchange.com/questions/39150/pluralization-of-names
+    //If the name ends in s, sh, ch, x or z, add es.
+
+    var plural_append = "s";
+    if(popular_name.endsWith('s')) {
+      plural_append = "es";
+    }
+    else if (popular_name.endsWith('sh')) {
+      plural_append = "es";
+    }
+    else if (popular_name.endsWith('ch')) {
+      plural_append = "es";
+    }
+    else if (popular_name.endsWith('x')) {
+      plural_append = "es";
+    }
+    else if (popular_name.endsWith('z')) {
+      plural_append = "es";
+    }
+
+    return name + plural_append;
+  }
+
+  function getNameFromQS() {
+    var name_query = gup('name', document.location.search);
+    if(name_query != null)
+      return name_query;
+    else {
+      return default_popular_name;
+    }
+  }
+
+  function getSexFromQS() {
+    var sex_query = gup('sex', document.location.search);
+    if(sex_query != null) {
+      return sex_query;
+    }
+    else {
+      return sex;
+    }
+  }
+
+  function getYearFromQS() {
+    var yr_query = gup('yr', document.location.search);
+    if(yr_query != null) {
+      return yr_query;
+    }
+    else {
+      return most_popular_year;
+    }
+  }
+
+  function getColorKeyFromQS() {
+    var ck_query = gup('ck', document.location.search);
+    if(ck_query != null) {
+      return ck_query;
+    }
+    else {
+      return color_key;
+    }
+  }
+
+  function getHighlightColorFromQS() {
+    var hl_query = gup('hl', document.location.search);
+    if(hl_query != null) {
+      return hl_query;
+    }
+    else {
+      return highlight_color;
+    }
+  }
+
+</script>
+
+</body>
+</html>
