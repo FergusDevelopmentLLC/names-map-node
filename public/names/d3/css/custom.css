@@ -1,4 +1,8 @@
 
+		body {
+			background-color: whitesmoke;
+		}
+
 		div.tooltip {
 			position: absolute;
 			max-width: 300px;
@@ -16,19 +20,10 @@
 
 		}
 
-		/*Map background*/
-		#map-background {
-			fill: #fff;
-			/*fill: none;*/
-			/*stroke: red;*/
-			width: 960px;
-			height: 600px;
-			transform: translate(0,0);
-		}
-
 		#spinner-wrapper {
-			width: 750px;
-			height: 420px;
+			width: 100%;
+			height: 100%;
+			background-color: green;
 			display: none;
 		}
 
@@ -38,57 +33,75 @@
 
 		/*search widget*/
 		#search-widget-wrapper {
-			/*margin: auto;*/
-			/*min-width: 222px;*/
-			/*display: inline-block;*/
-			/*padding: 0;*/
-		}
 
-
-		/*slider*/
-		#slider { }
-		.ticks {
-			font-family: 'Arimo', sans-serif;
-			font-size: .65em;
-			fill: #696969;
-		}
-		.track,
-		.track-inset,
-		.track-overlay {
-			stroke-linecap: round;
-		}
-		.track {
-			stroke: #000;
-			stroke-opacity: 0.3;
-			stroke-width: 10px;
-		}
-		.track-inset {
-			stroke: #ddd;
-			stroke-width: 8px;
-		}
-		.track-overlay {
-			pointer-events: stroke;
-			stroke-width: 50px;
-			stroke: transparent;
-		}
-		.handle {
-			fill: #fff;
-			stroke: #000;
-			stroke-opacity: 0.5;
-			stroke-width: 1.25px;
 		}
 
 		/*modal about this map content*/
-		.modal {
+
+		.modal-content {
 			font-family: Montserrat, sans-serif;
 			color: #696969;
-			font-size: .9em;
+			font-size: .8em;
+			background-color: #ffffff;
+			padding: 20px;
+
+			/*-moz-border-radius: 10px;
+	 		-webkit-border-radius: 10px;
+	 		-khtml-border-radius: 10px;
+	 		border-radius: 10px;*/
 		}
-		.modal a {
+
+		.modal-content h1 {
+			color: #000000;
+			font-weight: bold;
+			font-size: 1.2em;
+			margin-bottom: .6em;
+		}
+
+		.modal-content h2 {
+			color: #000000;
+			font-weight: bold;
+			font-size: 1em;
+			margin-bottom: .6em;
+		}
+
+		.modal-content p {
+			margin-bottom: .6em;
+		}
+
+		.modal-content a {
 			color: #696969;
+			text-decoration: underline;
 		}
-		.tingle-content {
-			display: none;
+
+		.modal-content li {
+			display: inline;
+			padding-right: 1em;
+		}
+
+		.modal-content ul {
+			padding-bottom: 1em;
+		}
+
+		#about-map-img-wrapper {
+			text-align: center;
+		}
+
+		#about-map-img-wrapper img{
+			height: 150px;
+		}
+
+		#about-sig {
+			text-align: right;
+			margin-right: 50px;
+		}
+
+		.about-examples {
+			margin: 10px;
+		}
+
+		.about-examples div {
+			padding: 0;
 		}
 
 		#births {
@@ -127,32 +140,36 @@
 		}
 		span.fdr
 		{
-			background: url('images/fdr_30x38.png');
+			background: url('../images/fdr_30x38.png');
 		}
 		span.jfk
 		{
-			background: url('images/jfk_30x38.png');
+			background: url('../images/jfk_30x38.png');
 		}
 		span.elvis
 		{
-			background: url('images/elvis_30x38.png');
+			background: url('../images/elvis_30x38.png');
 		}
 		span.streisand
 		{
-			background: url('images/streisand_30x38.png');
+			background: url('../images/streisand_30x38.png');
 		}
 		span.keifer
 		{
-			background: url('images/keifer_sutherland_30x38.png');
+			background: url('../images/keifer_sutherland_30x38.png');
 		}
 		span.channing
 		{
-			background: url('images/channingtatum_30x38.png');
+			background: url('../images/channingtatum_30x38.png');
 		}
 		span.luke_leia
 		{
 			width: 57px;
-			background: url('images/leia_luke_57x38.png');
+			background: url('../images/leia_luke_57x38.png');
+		}
+
+		#about-nmp {
+			height: 30px;
 		}
 
 		/*-----------------------------------*/
@@ -167,18 +184,18 @@
 		}
 
 		.section {
-			padding-top: 11px;
-			padding-bottom: 11px;
+			padding-top: 12px;
+			padding-bottom: 12px;
 		}
 
 		.legend {
 			border-left: 1px solid #cccccc;
 			border-right: 1px solid #cccccc;
+			background-color: #ffffff;
 		}
 
 		.boygirl {
 			justify-content: center !important;
-			/*margin-top:10px;*/
 		}
 
 		li {
@@ -200,18 +217,30 @@
 		}
 
 		#bar-chart-wrapper {
-			/*border: 1px solid orange;*/
-			margin: 15px 1.5em 0 1.5em;
+			font-size: 0;
+			margin: 15px 12% 3px 12%;
 		}
 
 		#cells-wrapper {
-			/*border: 1px solid orange;*/
-			margin: 0 1.5em 0 1.5em;
+			margin: 0 12% 0 12%;
+		}
+
+		.swatch-label {
+			font-family: 'Droid Sans Mono', monospace;
+			fill: #000000;
+			fill-opacity: .9;
+			font-size: .5em;
+			text-anchor: end;
+		}
+
+		.legend-swatch {
+			stroke: #696969;
+			stroke-width: .1;
 		}
 
 		#slider-wrapper {
-			/*border: 1px solid orange;*/
-      margin: 0 1.5em 0 1.5em;
+			margin: 0 12% 0 12%;
+			font-size: 0;
 		}
 
 		#slider-year {
@@ -220,13 +249,17 @@
       vertical-align: middle;
 		}
 
+		#min-year-label, #max-year-label {
+			font-size: .8em;
+		}
+
     #min-year-label {
-      margin-left: .5em;
+      margin-left: 12%;
       float: left;
     }
 
     #max-year-label {
-      margin-right: .5em;
+      margin-right: 12%;
       float: right;
     }
 
@@ -241,6 +274,7 @@
 			font-weight: 600;
 			cursor: pointer; cursor: hand;
 		}
+
 		.name-input-edit {
 			height: 40px;
 			padding: 0 0 0 5px;
@@ -250,7 +284,7 @@
 			cursor: pointer; cursor: hand;
 		}
 
-		.name-search-column, .year-column, .births-column, .since-column, .barchart-column, .slider-column, .slider-label-column {
+		.name-search-column, .year-column, .births-column, .since-column, .bar-chart-column, .slider-column, .map-column {
 			padding: 0;
 			text-align: center;
 		}
@@ -259,8 +293,12 @@
 			white-space: nowrap;
 		}
 
-		.boygirl-switch-column, .barchart-column, .cells-column, .slider-column {
+		.boygirl-switch-column, .bar-chart-column, .cells-column, .slider-column {
 			padding: 0;
+		}
+
+		.slider-label-column {
+			padding:0 0 25px 0;
 		}
 
 		#year-wrapper, #births-wrapper, #since-wrapper {
@@ -287,20 +325,118 @@
 			font-size: 1.2em;
 		}
 
-		.swatch-label {
-			font-family: 'Droid Sans Mono', monospace;
-			fill: #000000;
-			fill-opacity: .9;
-			font-size: .5em;
-			text-anchor: end;
+		.legend-column {
+			/*margin-top: auto;*/
 		}
 
-		.legend-swatch {
-			stroke: #696969;
-			stroke-width: .1;
+		#about-legend-wrapper {
+			font-size: .8em;
+			text-align: center;
 		}
 
-		/*@media screen and (max-width: 414px) {
+		.about-link-legend {
+			color: #696969;
+			text-decoration: underline;
+		}
+
+		.about-link-header {
+			color: #ffffff;
+			text-decoration: underline;
+		}
+
+		#map-footer-column, #map-column {
+			background-color: #ffffff;
+		}
+
+		#map-column {
+			border-right: 1px solid #cccccc;
+		}
+
+		#map-footer-wrapper {
+			font-size: .6em;
+			text-align: right;
+		}
+
+		#map-footer-wrapper a {
+			color: #696969;
+			text-decoration: underline;
+		}
+
+		.footer-content {
+			color: #fff;
+			font-size: .8em;
+		}
+
+		.footer-content a {
+			color: #fff;
+			text-decoration: underline;
+		}
+
+		.navbar-item {
+			font-size: 1.5em;
+			font-weight: bold;
+			opacity: 1;
+			color: rgba(255, 255, 255, 1) !important;
+		}
+
+		.about-link-header {
+			font-size: .9em;
+			font-weight: normal;
+		}
+
+		@media screen and (max-width: 920px) {
+
+			#map-column {
+				border-left: 1px solid #cccccc;
+			}
+
+			.swatch-label {
+				font-size: .4em;
+			}
+
+			#min-year-label, #max-year-label {
+				font-size: 1.2em;
+			}
+
+			.name-input {
+				font-size: 2em;
+				height: 60px;
+			}
+
+			.name-input-edit {
+				font-size: 2em;
+				height: 60px;
+			}
+
+			#search-icon, #random-icon {
+				font-size: 2.2em;
+			}
+		}
+
+		@media screen and (max-width: 700px) {
+			.navbar-item {
+				font-size: 1.2em;
+			}
+		}
+
+		@media screen and (max-width: 575px) {
+
+			.name-input {
+				font-size: 1.1em;
+				height: 60px;
+			}
+
+			.name-input-edit {
+				font-size: 1.1em;
+				height: 60px;
+			}
+
+			#search-icon, #random-icon {
+				font-size: 1.5em;
+			}
+		}
+
+		@media screen and (max-width: 538px) {
 			.navbar-item {
 				font-size: .8em;
 			}
@@ -311,36 +447,3 @@
 				font-size: .65em;
 			}
 		}
-
-		@media screen and (max-width: 360px) {
-			.navbar-item {
-				font-size: .65em;
-			}
-		}
-
-		@media screen and (max-width: 320px) {
-			.name-input {
-				font-size: 1em;
-			}
-			.name-input-edit {
-				font-size: 1em;
-			}
-		}
-
-		@media screen and (max-width: 414px) {
-			.name-input {
-				font-size: 2em;
-			}
-			.name-input-edit {
-				font-size: 2em;
-			}
-		}
-
-		@media screen and (max-width: 1024px) {
-			.name-input {
-				font-size: .85em;
-			}
-			.name-input-edit {
-				font-size: .85em;
-			}
-		}*/

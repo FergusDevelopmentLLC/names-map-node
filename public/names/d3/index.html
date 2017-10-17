@@ -40,7 +40,7 @@
       <nav class="navbar main-nav">
         <div class="container">
           <div class="navbar-brand">
-            <a class="navbar-item">American Names of the Last Century (1910-2016)</a>
+            <div class="navbar-item">American Names of the Last Century (1910-2016)</div>
             <span class="navbar-burger burger" data-target="navbarMenuHeroA">
               <span></span>
               <span></span>
@@ -48,17 +48,17 @@
             </span>
           </div>
           <div id="navbarMenuHeroA" class="navbar-menu">
-            <a class="navbar-end navbar-item">About this Map</a>
+            <a class="navbar-end navbar-item about-link about-link-header">About this Map</a>
           </div>
         </div>
       </nav>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="main">
     <div class="container">
       <div class="columns">
-        <div class="column is-3 legend">
+        <div class="column is-4 legend-column legend">
 					<div class="columns is-multiline">
 						<div class="column is-12 name-search-column">
 							<i class="fa fa-search fa-1x" id='search-icon' aria-hidden="true"></i>
@@ -91,7 +91,7 @@
 						<div class='column is-12 since-column'>
 							<span id='since-wrapper'></span>
 						</div>
-						<div class="column is-12 barchart-column">
+						<div class="column is-12 bar-chart-column">
 							<div id='bar-chart-wrapper'></div>
 						</div>
 						<div class="column is-12 cells-column">
@@ -106,107 +106,108 @@
 							<div id='min-year-label' class='year-label'>1910</div>
 							<div id='max-year-label' class='year-label'>2016</div>
 						</div>
+						<div class="column is-12">
+							<div id='about-legend-wrapper'>
+								<a href='#' class='about-link about-link-legend'>About this Map</a>
+							</div>
+						</div>
 					</div>
 				</div>
-        <div class='column is-9'>
-					<div id='map-wrapper'></div>
+        <div class='column is-8' id='map-column'>
+					<div class="columns is-multiline">
+						<div class="column is-12">
+							<div id='map-wrapper'></div>
+						</div>
+						<div class='column is-12  is-gapless' id='map-footer-column'>
+							<div id='map-footer-wrapper'>
+								Data Source: <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>
+							</div>
+						</div>
 				</div>
       </div>
     </div>
   </section>
 
-
-
-	<!-- <table id='legend-table'>
-		<tr>
-			<td colspan="3">
-
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3">
-
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				<span id='year-flame-wrapper'><i class="icon-fire"> </i><span id='year-wrapper'></span> <i class="icon-fire"></i></span>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				<span id='births-wrapper'></span>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				<span id='since-wrapper'></span>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				<div id='bar-chart-wrapper'></div>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				<div id='cells-wrapper'></div>
-			</td>
-		</tr>
-	</table> -->
-
   <footer class="footer">
     <div class="container">
-      <div class="content has-text-centered">
-        <p>Data Source: Sedaperspiciatis unde omnis iste</p>
+      <div class="content has-text-centered footer-content">
+        <p>&copy; Copyright <span id='copyright-year'></span> <a href='https://fergusdevelopmentllc.github.io/'>Fergus Development LLC</a></p>
       </div>
     </div>
   </footer>
 
-	<div id='spinner-wrapper'></div>
-
-	<!-- <div class="container tingle-content-wrapper content">
-	  <div class="tingle tingle-content">
-	    <h3>American Names of the Last Century (1910-2016)</h3>
-	    <p>
-	      The idea came from the various name maps seen periodically on <a href='https://www.reddit.com/r/MapPorn/' target='_blank'>Reddit</a>. This <a href='https://patch.com/new-york/new-york-city/map-nycs-most-popular-dog-names-neighborhood' target='_blank'>map of popular dog names</a> in New York City was an inspriation as well. The data source for this map is the <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>.
-	    </p>
-	    <div class='headshot'>
-	      <span class='effect fdr'></span>
-	      FDR effect? <a href='/names/d3/?name=Roosevelt&sex=M'>Roosevelt</a> (1933)
-	    </div>
-	    <div class='headshot'>
-	      <span class='effect elvis'></span>
-	      <a href='/names/d3/?name=Elvis&sex=M'>Elvis</a> Presley effect?</a> (1957)
-	    </div>
-	    <div class='headshot'>
-	      <span class='effect jfk'></span>
-	      JFK effect? <a href='/names/d3/?name=Kennedy&sex=M'>Kennedy</a> (1964)
-	    </div>
-	    <div class='headshot'>
-	      <span class='effect streisand'></span>
-	      <a href='/names/d3/?name=Barbra&sex=F'>Barbra</a> Streisand effect? (1966)
-	    </div>
-	    <div class='headshot'>
-	      <span class='effect keifer'></span>
-	      <a href='/names/d3/?name=Keifer&sex=M'>Keifer</a> Sutherland effect? (1991)
-	    </div>
-	    <div class='headshot'>
-	      <span class='effect channing'></span>
-	      <a href='/names/d3/?name=Channing&sex=M'>Channing</a> Tatum effect? (2012)
-	    </div>
-	    <div class='headshot'>
-	      <span class='effect luke_leia'></span>
-	      Star Wars effect? [<a href='/names/d3/?name=Luke&sex=M&yr=1980'>Luke</a>, <a href='/names/d3/?name=Leia&sex=F&yr=1980'>Leia</a>] (small spikes in 1979-80)
-	    </div>
-	    <p>Thank you for checking out my project. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>GitHub repo</a> for a deeper look. Please check out <a href='https://fergusdevelopmentllc.github.io/'>my portfolio</a> for more of my work. Find an interesting name, have a question or suggestion? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>!</p>
-	    <p>
-	        For a similar project on the most popular U.S. Boys/Girls Names (1910-2016), check out the following <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>.<br/>
-	        <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'><img src='images/top_names.png' /></a>
-	    </p>
-	    <p>-<a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a></p>
+	<div class="modal">
+	  <div class="modal-background"></div>
+	  <div class="modal-content">
+			<h1>American Names of the Last Century (1910-2016)</h1>
+	    <p>This map was created as a final project for <a href='http://newmapsplus.uky.edu/new-maps-plus-programs-and-online-courses'>MAP 673 – Design for Interactive Web Mapping</a> in the <a href='http://newmapsplus.uky.edu/' target='blank'>The New Maps Plus</a> Masters Program and the University of Kentucky. Much thanks to <a href='https://twitter.com/rgdonohue' target='blank'>@rgdonohue</a> for many helpful pointers on this project and others.</p>
+			<h2>Built on</h2>
+			<ul>
+				<li><a href='http://newmapsplus.uky.edu/' target='_blank'><img src='images/NMP_120x50.png' id='about-nmp' /></a></li>
+				<li><a href='https://d3js.org/'><img src='images/d3_40x38.png' /></a></li>
+				<li><a href='http://postgis.net/'><img src='images/postgis_66x38.png' /></a></li>
+				<li><a href="https://nodejs.org"><img src='images/nodejs_62x38.png' /></a></li>
+				<li><a href="https://www.python.org/"><img src='images/python_150x38.png' /></a></li>
+				<li><a href="https://www.w3.org/Graphics/SVG/"><img src='images/svg_97x38.png' /></a></li>
+				<li><a href="https://github.com/topojson/topojson"><img src='images/topojson_79x38.png' /></a></li>
+				<li><a href="https://bulma.io/"><img src='images/bulma_82x38.png' /></a></li>
+				<li><a href="http://sass-lang.com/"><img src='images/sass_33x38.png' /></a></li>
+			</ul>
+			<h2>Check out these interesting names/years</h2>
+			<div class="columns is-multiline about-examples">
+				<div class="column is-4">
+					<div class='headshot'>
+			      <span class='effect fdr'></span>
+			      FDR effect? <a href='/names/d3/?name=Roosevelt&sex=M'>Roosevelt</a> (1933)
+			    </div>
+				</div>
+				<div class="column is-4">
+					<div class='headshot'>
+			      <span class='effect elvis'></span>
+			      <a href='/names/d3/?name=Elvis&sex=M'>Elvis</a> Presley effect?</a> (1957)
+			    </div>
+				</div>
+				<div class="column is-4">
+					<div class='headshot'>
+			      <span class='effect jfk'></span>
+			      JFK effect? <a href='/names/d3/?name=Kennedy&sex=M'>Kennedy</a> (1964)
+			    </div>
+				</div>
+				<div class="column is-4">
+					<div class='headshot'>
+			      <span class='effect streisand'></span>
+			      <a href='/names/d3/?name=Barbra&sex=F'>Barbra</a> Streisand effect? (1966)
+			    </div>
+				</div>
+				<div class="column is-4">
+					<div class='headshot'>
+			      <span class='effect keifer'></span>
+			      <a href='/names/d3/?name=Keifer&sex=M'>Keifer</a> Sutherland effect? (1991)
+			    </div>
+				</div>
+				<div class="column is-4">
+					<div class='headshot'>
+			      <span class='effect channing'></span>
+			      <a href='/names/d3/?name=Channing&sex=M'>Channing</a> Tatum effect? (2012)
+			    </div>
+				</div>
+				<div class="column is-12">
+					<div class='headshot'>
+			      <span class='effect luke_leia'></span>
+			      Star Wars effect? [<a href='/names/d3/?name=Luke&sex=M&yr=1980'>Luke</a>, <a href='/names/d3/?name=Leia&sex=F&yr=1980'>Leia</a>] (small spikes in 1979-80)
+			    </div>
+				</div>
+			</div>
+			<h2>Thanks!</h2>
+			<p>...For spending a bit of time here. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>GitHub repo</a> and <a href='https://fergusdevelopmentllc.github.io/'>my portfolio</a> for a deeper look. Have a question, suggestion or find an interesting name? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>!</p>
+	    <p>For a similar project on the most popular U.S. Boys/Girls Names (1910-2016), check out the following <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>.</p>
+			<div id='about-map-img-wrapper'>
+				<a href='http://104.236.16.91:8650/top-names-map/' target='_blank'><img src='images/top_names.png' /></a>
+			</div>
+	    <p id='about-sig'>-<a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a></p>
+			<button class="modal-close is-large" aria-label="close"></button>
 	  </div>
-	</div> -->
+	</div>
 
 	<script>
 
@@ -229,7 +230,7 @@
 			name_list = '',
 			slider = '',
 			handle = '',
-			spin_target = document.getElementById('spinner-wrapper'),
+			spin_target = document.getElementById('main'),
 			spinner = '',
 			mode = 'display',
 			bar_fill_color = '#ffffff',
@@ -257,6 +258,8 @@
 
 	d3.select('#gender').attr('value', sex);
 
+	d3.select('#copyright-year').html((new Date()).getFullYear());
+
 	d3.selectAll('.icon-fire').style('color', highlight_color);
 
 	d3.select('#search-icon').on('mouseover', function() {
@@ -267,9 +270,9 @@
 
 	d3.select('#random-icon').on('mouseover', function() {
 		this.style.color = highlight_color;
-	}).on('mouseout', function() {
-		this.style.color = '#4a4a4a';
-	});
+		}).on('mouseout', function() {
+			this.style.color = '#4a4a4a';
+		});
 
 	d3.select('#search-icon').on('click', function() {
 		document.getElementById('name-input').focus();
@@ -277,6 +280,14 @@
 
 	d3.select('#random-icon').on('click', function() {
 		randomStart();
+	});
+
+	d3.selectAll('.about-link').on('click', function() {
+		d3.selectAll('.modal').classed('is-active', true);
+	});
+
+	d3.selectAll('.modal-close').on('click', function() {
+		d3.selectAll('.modal').classed('is-active', false);
 	});
 
 	if(popular_name == default_popular_name && sex == default_sex) {
@@ -305,8 +316,15 @@
 
 	function init() {
 
-		d3.select('#spinner-wrapper').style("display","block");
 		spinner = new Spinner(opts).spin(spin_target);
+
+		d3.select('.year-column').style('display', 'none');
+		d3.select('.births-column').style('display', 'none');
+		d3.select('.since-column').style('display', 'none');
+		d3.select('.bar-chart-column').style('display', 'none');
+		d3.select('.cells-column').style('display', 'none');
+		d3.select('.slider-column').style('display', 'none');
+		d3.select('.slider-label-column').style('display', 'none');
 
 		setMaleFemaleSwitch();
 
@@ -377,17 +395,17 @@
 
 		addCells();
 
-		//addSlider();
-
-		attachModalToAboutLinks();
+		addSlider();
 
 		spinner.stop();
 
-		d3.select('#spinner-wrapper').style('display','none');
-
-		//d3.select('#search-widget-wrapper').style('display','block');
-
-		d3.select('#slider').style('display','block');
+		d3.select('.year-column').style('display', 'block');
+		d3.select('.births-column').style('display', 'block');
+		d3.select('.since-column').style('display', 'block');
+		d3.select('.bar-chart-column').style('display', 'block');
+		d3.select('.cells-column').style('display', 'block');
+		d3.select('.slider-column').style('display', 'block');
+		d3.select('.slider-label-column').style('display', 'block');
 
 		updateMap();
 
@@ -419,12 +437,10 @@
 
 		      //show the flames if this is the most_popular_year
 		      if(this_year == most_popular_year) {
-		        d3.select('#flame1').style('opacity', 1);
-		        d3.select('#flame2').style('opacity', 1);
+		        d3.selectAll('.icon-fire').style('opacity', 1);
 		      }
 		      else {
-		        d3.select('#flame1').style('opacity', 0);
-		        d3.select('#flame2').style('opacity', 0);
+		        d3.selectAll('.icon-fire').style('opacity', 0);
 		      }
 
 		      var births_text = total_occurrences_for_year.toLocaleString() + " births ";
@@ -623,7 +639,6 @@
 
 		states.objects.states.geometries.forEach(function(d) {
 			for (occurrence in d.properties.occurrences) {
-				//occurrences_acc.push(d.properties.occurrences[occurrence].oc);
 				occurrences_acc.push(d.properties.occurrences[occurrence].normalized);
 			}
 		});
@@ -643,6 +658,8 @@
 
 	function addMapContainer() {
 
+		d3.select('#states_svg_map').remove();
+
 		var states_svg = d3.select("#map-wrapper")
 			.append("svg")
 				.attr('id','states_svg_map')
@@ -658,6 +675,10 @@
 		d3.select('#map-background').remove();
 		states_svg.append('rect')
 			.attr('id', 'map-background')
+			.style('fill', novalue_color)
+			.style('width', '100%')
+			.style('height', '100%')
+			.attr('transform', 'translate (0, 1)')
 			.on('mouseover',function(d) {
 				tooltip.style('opacity', 0);//TODO, figure a better tooltip
 			});
@@ -672,7 +693,7 @@
 
 		states_svg.append("g")
 			.attr('id','states')
-			.attr('transform','translate(-50, -30) scale(1)')
+			.attr('transform','translate(-120, -50) scale(1.15)')
 			.selectAll("path")
 			.data( topojson.feature(statestopo, statestopo.objects.states).features )
 				.enter()
@@ -707,6 +728,7 @@
 		var year_accum = 0;
 
 		for(var oc in occurrences) {
+			// console.log(occurrences[oc].yr);
 			if(occurrences[oc].yr == last_yr) {
 				year_accum += occurrences[oc].oc;
 			}
@@ -716,6 +738,7 @@
 				last_yr = occurrences[oc].yr;
 			}
 		}
+		year_accumulations.push([last_yr, year_accum]);
 
 		if(year_accumulations.length == 0)
 			return;
@@ -725,6 +748,9 @@
 
 		for(var acc in year_accumulations) {
 			if(year_accumulations[acc][1] > most_pop_acc) {
+
+				// console.log(most_pop_year);
+
 				most_pop_acc = year_accumulations[acc][1];
 				most_pop_year = year_accumulations[acc][0];
 			}
@@ -819,13 +845,13 @@
 		      .attr('y', function(d) { return y(d.year_accum); })
 		      .attr('height', function(d) { return height - y(d.year_accum); });
 
-		bar_chart_svg.append('rect')
-			.attr('width', width)
-			.attr('height', height)
-			.style('stroke', '#000000')
-			.style('stroke-width', '.03pt')
-			.style('fill', 'none')
-			.attr('id', 'bars-outline');
+		// bar_chart_svg.append('rect')
+		// 	.attr('width', width)
+		// 	.attr('height', height)
+		// 	.style('stroke', '#000000')
+		// 	.style('stroke-width', '.03pt')
+		// 	.style('fill', 'none')
+		// 	.attr('id', 'bars-outline');
 	}
 
 	function highlightBarForThisYear() {
@@ -887,100 +913,25 @@
 
 	function addSlider() {
 
-		d3.select('#slider-svg').remove();
+		d3.select('#slider-year').remove();
 
 		d3.select('#slider-wrapper')
-			.append('svg')
-				.attr("viewBox", "0 0 200 100")
-				.attr("transform", "translate (0, 0) scale(1)")
-				.attr('id','slider-svg');
+			.append('input')
+				.attr('type', 'range')
+				.attr('id','slider-year')
+				.attr('min', min_year)
+				.attr('max', max_year);
 
-		var slider_svg = d3.select('#slider-svg');
+		d3.select('#min-year-label').html(min_year);
+		d3.select('#max-year-label').html(max_year);
+		d3.select('#slider-year').attr('value', this_year);
 
-		var width = 200;
-		var height = 100;
-
-		//tick every 20 years if (1900-2020)
-		var span = 20;
-
-		//tick every 10 years if (1950-2020)
-		if(min_year >= 1950)
-		  span = 10;
-
-		//tick every 5 years if (1990-2020)
-		if(min_year >= 1990)
-		  span = 5;
-
-		var slider_min = Math.floor(min_year / span) * span;
-		var slider_max = Math.ceil(max_year / span) * span;
-		var r = slider_max - slider_min;
-		var ticks_amt = r / span;
-
-		var x = d3.scaleLinear()
-		    .domain([slider_min, slider_max])
-		    .range([0, width])
-		    .clamp(true);
-
-		slider_svg.append('g')
-		  .attr('id', 'slider')
-		  .style('display', 'none');
-
-		var slider = d3.select('#slider');
-		slider.append('line')
-		    .attr('class', 'track')
-		    .attr("x1", x.range()[0])
-		    .attr("x2", x.range()[1])
-		  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-		    .attr("class", "track-inset")
-		  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-		    .attr("class", "track-overlay")
-		    .attr("id", "track-overlay")
-		    .call(d3.drag()
-		      .on("start.interrupt", function() {
-		        slider.interrupt();
-		      })
-		      .on("start drag", function() {
-		        var slider_position = x.invert(d3.event.x);
-		        var slider_handle_year = Math.floor(slider_position);
-
-		        if(this_year != slider_handle_year && slider_handle_year <= max_year) {
-		          this_year = slider_handle_year;
-		          d3.select('#year').text(this_year);
-		          handle.attr("cx", x(slider_position));
-		          highlightBarForThisYear();
-		          updateMap();
-		        }
-
-		      }));
-
-		slider.insert("g", ".track-overlay")
-		    .attr("class", "ticks")
-		    .attr("transform", "translate(0," + 18 + ")")
-		  .selectAll("text")
-		  .data(x.ticks(ticks_amt))
-		  .enter().append("text")
-		    .attr("x", x)
-		    .attr("text-anchor", "middle")
-		    .attr("transform", "translate(0,3)")
-		    .text(function(d) { return d; });
-
-		slider.insert("g", ".track-overlay")
-		  .attr("class", "tick-marks")
-		  .attr("transform", "translate(0,5)")
-		  .selectAll("line")
-		  .data(x.ticks(ticks_amt))
-		  .enter().append("line")
-		    .style('stroke', '#000')
-		    .style('stroke-opacity', 0.5)
-		    .attr("x1", x)
-		    .attr("y1", 0)
-		    .attr("x2", x)
-		    .attr("y2", 3);
-
-		handle = slider.insert("circle", ".track-overlay")
-		  .attr("class", "handle")
-		  .attr("r", 9)
-		  .attr("cx", ((this_year - slider_min) / (slider_max - slider_min)) * x.range()[1]);
+		d3.select('#slider-year').on('input', function() {
+  		this_year = this.value;
+			d3.select('#year-wrapper').html(this_year);
+			highlightBarForThisYear();
+			updateMap();
+		});
 
 	}
 
@@ -1117,41 +1068,6 @@
 		return display_gender;
 	}
 
-	function attachModalToAboutLinks() {
-
-		console.log('attachModalToAboutLinks');
-
-		// var modalTinyNoFooter = new tingle.modal({
-		//   onClose: function() {
-		//     // console.log('close');
-		//   },
-		//   onOpen: function() {
-		//     // console.log('open');
-		//   },
-		//   beforeOpen: function() {
-		//     // console.log('before open');
-		//   },
-		//   beforeClose: function() {
-		//     // console.log('before close');
-		//     return true;
-		//   },
-		//   cssClass: ['modal']
-		// });
-		//
-		// var lnks = document.querySelectorAll('.about-link');
-		//
-		// if(lnks) {
-		//
-		//   if(lnks[0]) { lnks[0].onclick = function(e){ modalTinyNoFooter.open(); } }
-		//
-		//   if(lnks[1]) { lnks[1].onclick = function(e){ modalTinyNoFooter.open(); } }
-		//
-		// }
-		//
-		// modalTinyNoFooter.setContent(document.querySelector('.tingle-content').innerHTML);
-
-	}
-
 	function setBarFillColor() {
 		//set the bar_fill_color to the midrange color
 		var shift = 3;
@@ -1264,6 +1180,34 @@
 	  });
 
 	}
+
+	</script>
+
+	<script type="text/javascript">
+
+	document.addEventListener('DOMContentLoaded', function () {
+
+		// Get all "navbar-burger" elements
+		var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+		// Check if there are any navbar burgers
+		if ($navbarBurgers.length > 0) {
+			// Add a click event on each of them
+			$navbarBurgers.forEach(function ($el) {
+				$el.addEventListener('click', function () {
+					// Get the target from the "data-target" attribute
+					var target = $el.dataset.target;
+					var $target = document.getElementById(target);
+					// Toggle the class on both the "navbar-burger" and the "navbar-menu"
+					$el.classList.toggle('is-active');
+					$target.classList.toggle('is-active');
+					$target.classList.toggle('navbar-menu');
+					$target.childNodes[1].classList.toggle('navbar-end');
+				});
+			});
+		}
+	});
+
 	</script>
 
 </body>

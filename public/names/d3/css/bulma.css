@@ -272,7 +272,7 @@ table th {
   font-size: 0.75rem !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .is-size-1-mobile {
     font-size: 3rem !important;
   }
@@ -296,7 +296,7 @@ table th {
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .is-size-1-tablet {
     font-size: 3rem !important;
   }
@@ -420,19 +420,19 @@ table th {
   text-align: center !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .has-text-centered-mobile {
     text-align: center !important;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .has-text-centered-tablet {
     text-align: center !important;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 920px) and (max-width: 1023px) {
   .has-text-centered-tablet-only {
     text-align: center !important;
   }
@@ -478,19 +478,19 @@ table th {
   text-align: justify !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .has-text-justified-mobile {
     text-align: justify !important;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .has-text-justified-tablet {
     text-align: justify !important;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 920px) and (max-width: 1023px) {
   .has-text-justified-tablet-only {
     text-align: justify !important;
   }
@@ -536,19 +536,19 @@ table th {
   text-align: left !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .has-text-left-mobile {
     text-align: left !important;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .has-text-left-tablet {
     text-align: left !important;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 920px) and (max-width: 1023px) {
   .has-text-left-tablet-only {
     text-align: left !important;
   }
@@ -594,19 +594,19 @@ table th {
   text-align: right !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .has-text-right-mobile {
     text-align: right !important;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .has-text-right-tablet {
     text-align: right !important;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 920px) and (max-width: 1023px) {
   .has-text-right-tablet-only {
     text-align: right !important;
   }
@@ -796,19 +796,19 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   display: block !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .is-block-mobile {
     display: block !important;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .is-block-tablet {
     display: block !important;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 920px) and (max-width: 1023px) {
   .is-block-tablet-only {
     display: block !important;
   }
@@ -854,19 +854,19 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   display: flex !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .is-flex-mobile {
     display: flex !important;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .is-flex-tablet {
     display: flex !important;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 920px) and (max-width: 1023px) {
   .is-flex-tablet-only {
     display: flex !important;
   }
@@ -912,19 +912,19 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   display: inline !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .is-inline-mobile {
     display: inline !important;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .is-inline-tablet {
     display: inline !important;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 920px) and (max-width: 1023px) {
   .is-inline-tablet-only {
     display: inline !important;
   }
@@ -970,19 +970,19 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   display: inline-block !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .is-inline-block-mobile {
     display: inline-block !important;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .is-inline-block-tablet {
     display: inline-block !important;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 920px) and (max-width: 1023px) {
   .is-inline-block-tablet-only {
     display: inline-block !important;
   }
@@ -1028,19 +1028,19 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   display: inline-flex !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .is-inline-flex-mobile {
     display: inline-flex !important;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .is-inline-flex-tablet {
     display: inline-flex !important;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 920px) and (max-width: 1023px) {
   .is-inline-flex-tablet-only {
     display: inline-flex !important;
   }
@@ -1086,19 +1086,19 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   display: none !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .is-hidden-mobile {
     display: none !important;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .is-hidden-tablet {
     display: none !important;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 920px) and (max-width: 1023px) {
   .is-hidden-tablet-only {
     display: none !important;
   }
@@ -1672,18 +1672,18 @@ a.box:active {
 .button.is-primary {
   background-color: #308080;
   border-color: transparent;
-  color: #fff;
+  color: white;
 }
 
 .button.is-primary:hover, .button.is-primary.is-hovered {
   background-color: #2d7777;
   border-color: transparent;
-  color: #fff;
+  color: white;
 }
 
 .button.is-primary:focus, .button.is-primary.is-focused {
   border-color: transparent;
-  color: #fff;
+  color: white;
 }
 
 .button.is-primary:focus:not(:active), .button.is-primary.is-focused:not(:active) {
@@ -1693,7 +1693,7 @@ a.box:active {
 .button.is-primary:active, .button.is-primary.is-active {
   background-color: #296d6d;
   border-color: transparent;
-  color: #fff;
+  color: white;
 }
 
 .button.is-primary[disabled] {
@@ -1703,7 +1703,7 @@ a.box:active {
 }
 
 .button.is-primary.is-inverted {
-  background-color: #fff;
+  background-color: white;
   color: #308080;
 }
 
@@ -1712,14 +1712,14 @@ a.box:active {
 }
 
 .button.is-primary.is-inverted[disabled] {
-  background-color: #fff;
+  background-color: white;
   border-color: transparent;
   box-shadow: none;
   color: #308080;
 }
 
 .button.is-primary.is-loading:after {
-  border-color: transparent transparent #fff #fff !important;
+  border-color: transparent transparent white white !important;
 }
 
 .button.is-primary.is-outlined {
@@ -1731,7 +1731,7 @@ a.box:active {
 .button.is-primary.is-outlined:hover, .button.is-primary.is-outlined:focus {
   background-color: #308080;
   border-color: #308080;
-  color: #fff;
+  color: white;
 }
 
 .button.is-primary.is-outlined.is-loading:after {
@@ -1747,20 +1747,20 @@ a.box:active {
 
 .button.is-primary.is-inverted.is-outlined {
   background-color: transparent;
-  border-color: #fff;
-  color: #fff;
+  border-color: white;
+  color: white;
 }
 
 .button.is-primary.is-inverted.is-outlined:hover, .button.is-primary.is-inverted.is-outlined:focus {
-  background-color: #fff;
+  background-color: white;
   color: #308080;
 }
 
 .button.is-primary.is-inverted.is-outlined[disabled] {
   background-color: transparent;
-  border-color: #fff;
+  border-color: white;
   box-shadow: none;
-  color: #fff;
+  color: white;
 }
 
 .button.is-link {
@@ -3232,25 +3232,25 @@ a.box:active {
 .file.is-primary .file-cta {
   background-color: #308080;
   border-color: transparent;
-  color: #fff;
+  color: white;
 }
 
 .file.is-primary:hover .file-cta, .file.is-primary.is-hovered .file-cta {
   background-color: #2d7777;
   border-color: transparent;
-  color: #fff;
+  color: white;
 }
 
 .file.is-primary:focus .file-cta, .file.is-primary.is-focused .file-cta {
   border-color: transparent;
   box-shadow: 0 0 0.5em rgba(48, 128, 128, 0.25);
-  color: #fff;
+  color: white;
 }
 
 .file.is-primary:active .file-cta, .file.is-primary.is-active .file-cta {
   background-color: #296d6d;
   border-color: transparent;
-  color: #fff;
+  color: white;
 }
 
 .file.is-link .file-cta {
@@ -3773,7 +3773,7 @@ a.box:active {
   margin-bottom: 0;
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .field.is-horizontal {
     display: flex;
   }
@@ -3783,13 +3783,13 @@ a.box:active {
   font-size: inherit;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .field-label {
     margin-bottom: 0.5rem;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .field-label {
     flex-basis: 0;
     flex-grow: 1;
@@ -3818,7 +3818,7 @@ a.box:active {
   margin-bottom: 0;
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .field-body {
     display: flex;
     flex-basis: 0;
@@ -4129,7 +4129,7 @@ a.box:active {
 
 .notification.is-primary {
   background-color: #308080;
-  color: #fff;
+  color: white;
 }
 
 .notification.is-link {
@@ -4323,7 +4323,7 @@ a.box:active {
 .table th.is-primary {
   background-color: #308080;
   border-color: #308080;
-  color: #fff;
+  color: white;
 }
 
 .table td.is-link,
@@ -4374,7 +4374,7 @@ a.box:active {
 
 .table tr.is-selected {
   background-color: #308080;
-  color: #fff;
+  color: white;
 }
 
 .table tr.is-selected a,
@@ -4384,7 +4384,7 @@ a.box:active {
 
 .table tr.is-selected td,
 .table tr.is-selected th {
-  border-color: #fff;
+  border-color: white;
   color: currentColor;
 }
 
@@ -4515,7 +4515,7 @@ a.box:active {
 
 .tag:not(body).is-primary {
   background-color: #308080;
-  color: #fff;
+  color: white;
 }
 
 .tag:not(body).is-link {
@@ -5133,7 +5133,7 @@ a.dropdown-item.is-active {
   flex-grow: 1;
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .level {
     display: flex;
   }
@@ -5156,7 +5156,7 @@ a.dropdown-item.is-active {
   margin-bottom: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .level-item:not(:last-child) {
     margin-bottom: 0.75rem;
   }
@@ -5174,7 +5174,7 @@ a.dropdown-item.is-active {
   flex-grow: 1;
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .level-left .level-item:not(:last-child),
   .level-right .level-item:not(:last-child) {
     margin-right: 0.75rem;
@@ -5186,13 +5186,13 @@ a.dropdown-item.is-active {
   justify-content: flex-start;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .level-left + .level-right {
     margin-top: 1.5rem;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .level-left {
     display: flex;
   }
@@ -5203,7 +5203,7 @@ a.dropdown-item.is-active {
   justify-content: flex-end;
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .level-right {
     display: flex;
   }
@@ -5422,7 +5422,7 @@ a.dropdown-item.is-active {
 
 .message.is-primary .message-header {
   background-color: #308080;
-  color: #fff;
+  color: white;
 }
 
 .message.is-primary .message-body {
@@ -5576,12 +5576,12 @@ a.dropdown-item.is-active {
   width: 100%;
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .modal-content,
   .modal-card {
     margin: 0 auto;
     max-height: calc(100vh - 40px);
-    width: 640px;
+    width: 900px;
   }
 }
 
@@ -5945,23 +5945,23 @@ a.dropdown-item.is-active {
 
 .navbar.is-primary {
   background-color: #308080;
-  color: #fff;
+  color: white;
 }
 
 .navbar.is-primary .navbar-brand > .navbar-item,
 .navbar.is-primary .navbar-brand .navbar-link {
-  color: #fff;
+  color: white;
 }
 
 .navbar.is-primary .navbar-brand > a.navbar-item:hover, .navbar.is-primary .navbar-brand > a.navbar-item.is-active,
 .navbar.is-primary .navbar-brand .navbar-link:hover,
 .navbar.is-primary .navbar-brand .navbar-link.is-active {
   background-color: #296d6d;
-  color: #fff;
+  color: white;
 }
 
 .navbar.is-primary .navbar-brand .navbar-link::after {
-  border-color: #fff;
+  border-color: white;
 }
 
 @media screen and (min-width: 1024px) {
@@ -5969,7 +5969,7 @@ a.dropdown-item.is-active {
   .navbar.is-primary .navbar-start .navbar-link,
   .navbar.is-primary .navbar-end > .navbar-item,
   .navbar.is-primary .navbar-end .navbar-link {
-    color: #fff;
+    color: white;
   }
   .navbar.is-primary .navbar-start > a.navbar-item:hover, .navbar.is-primary .navbar-start > a.navbar-item.is-active,
   .navbar.is-primary .navbar-start .navbar-link:hover,
@@ -5979,20 +5979,20 @@ a.dropdown-item.is-active {
   .navbar.is-primary .navbar-end .navbar-link:hover,
   .navbar.is-primary .navbar-end .navbar-link.is-active {
     background-color: #296d6d;
-    color: #fff;
+    color: white;
   }
   .navbar.is-primary .navbar-start .navbar-link::after,
   .navbar.is-primary .navbar-end .navbar-link::after {
-    border-color: #fff;
+    border-color: white;
   }
   .navbar.is-primary .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-primary .navbar-item.has-dropdown.is-active .navbar-link {
     background-color: #296d6d;
-    color: #fff;
+    color: white;
   }
   .navbar.is-primary .navbar-dropdown a.navbar-item.is-active {
     background-color: #308080;
-    color: #fff;
+    color: white;
   }
 }
 
@@ -6721,7 +6721,7 @@ a.navbar-item:hover, a.navbar-item.is-active,
   flex-wrap: wrap;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .pagination {
     flex-wrap: wrap;
   }
@@ -6736,7 +6736,7 @@ a.navbar-item:hover, a.navbar-item.is-active,
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .pagination-list {
     flex-grow: 1;
     flex-shrink: 1;
@@ -7220,7 +7220,7 @@ label.panel-block:hover {
   margin-left: 100%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .column.is-narrow-mobile {
     flex: none;
   }
@@ -7349,7 +7349,7 @@ label.panel-block:hover {
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .column.is-narrow, .column.is-narrow-tablet {
     flex: none;
   }
@@ -8043,7 +8043,7 @@ label.panel-block:hover {
   align-items: center;
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .columns:not(.is-desktop) {
     display: flex;
   }
@@ -8141,7 +8141,7 @@ label.panel-block:hover {
   margin-bottom: 1.5rem !important;
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .tile:not(.is-child) {
     display: flex;
   }
@@ -8282,7 +8282,7 @@ label.panel-block:hover {
   background-image: linear-gradient(141deg, #e6e6e6 0%, white 71%, white 100%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero.is-white.is-bold .navbar-menu {
     background-image: linear-gradient(141deg, #e6e6e6 0%, white 71%, white 100%);
   }
@@ -8360,7 +8360,7 @@ label.panel-block:hover {
   background-image: linear-gradient(141deg, black 0%, #0a0a0a 71%, #181616 100%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero.is-black.is-bold .navbar-menu {
     background-image: linear-gradient(141deg, black 0%, #0a0a0a 71%, #181616 100%);
   }
@@ -8438,7 +8438,7 @@ label.panel-block:hover {
   background-image: linear-gradient(141deg, #dfd8d9 0%, whitesmoke 71%, white 100%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero.is-light.is-bold .navbar-menu {
     background-image: linear-gradient(141deg, #dfd8d9 0%, whitesmoke 71%, white 100%);
   }
@@ -8516,7 +8516,7 @@ label.panel-block:hover {
   background-image: linear-gradient(141deg, #1f191a 0%, #363636 71%, #46403f 100%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero.is-dark.is-bold .navbar-menu {
     background-image: linear-gradient(141deg, #1f191a 0%, #363636 71%, #46403f 100%);
   }
@@ -8524,7 +8524,7 @@ label.panel-block:hover {
 
 .hero.is-primary {
   background-color: #308080;
-  color: #fff;
+  color: white;
 }
 
 .hero.is-primary a:not(.button),
@@ -8533,7 +8533,7 @@ label.panel-block:hover {
 }
 
 .hero.is-primary .title {
-  color: #fff;
+  color: white;
 }
 
 .hero.is-primary .subtitle {
@@ -8542,7 +8542,7 @@ label.panel-block:hover {
 
 .hero.is-primary .subtitle a:not(.button),
 .hero.is-primary .subtitle strong {
-  color: #fff;
+  color: white;
 }
 
 @media screen and (max-width: 1023px) {
@@ -8560,11 +8560,11 @@ label.panel-block:hover {
 .hero.is-primary .navbar-link:hover,
 .hero.is-primary .navbar-link.is-active {
   background-color: #296d6d;
-  color: #fff;
+  color: white;
 }
 
 .hero.is-primary .tabs a {
-  color: #fff;
+  color: white;
   opacity: 0.9;
 }
 
@@ -8577,7 +8577,7 @@ label.panel-block:hover {
 }
 
 .hero.is-primary .tabs.is-boxed a, .hero.is-primary .tabs.is-toggle a {
-  color: #fff;
+  color: white;
 }
 
 .hero.is-primary .tabs.is-boxed a:hover, .hero.is-primary .tabs.is-toggle a:hover {
@@ -8585,8 +8585,8 @@ label.panel-block:hover {
 }
 
 .hero.is-primary .tabs.is-boxed li.is-active a, .hero.is-primary .tabs.is-boxed li.is-active a:hover, .hero.is-primary .tabs.is-toggle li.is-active a, .hero.is-primary .tabs.is-toggle li.is-active a:hover {
-  background-color: #fff;
-  border-color: #fff;
+  background-color: white;
+  border-color: white;
   color: #308080;
 }
 
@@ -8594,7 +8594,7 @@ label.panel-block:hover {
   background-image: linear-gradient(141deg, #1c6156 0%, #308080 71%, #328798 100%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero.is-primary.is-bold .navbar-menu {
     background-image: linear-gradient(141deg, #1c6156 0%, #308080 71%, #328798 100%);
   }
@@ -8672,7 +8672,7 @@ label.panel-block:hover {
   background-image: linear-gradient(141deg, #1577c6 0%, #3273dc 71%, #4366e5 100%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero.is-link.is-bold .navbar-menu {
     background-image: linear-gradient(141deg, #1577c6 0%, #3273dc 71%, #4366e5 100%);
   }
@@ -8750,7 +8750,7 @@ label.panel-block:hover {
   background-image: linear-gradient(141deg, #04a6d7 0%, #209cee 71%, #3287f5 100%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero.is-info.is-bold .navbar-menu {
     background-image: linear-gradient(141deg, #04a6d7 0%, #209cee 71%, #3287f5 100%);
   }
@@ -8828,7 +8828,7 @@ label.panel-block:hover {
   background-image: linear-gradient(141deg, #12af2f 0%, #23d160 71%, #2ce28a 100%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero.is-success.is-bold .navbar-menu {
     background-image: linear-gradient(141deg, #12af2f 0%, #23d160 71%, #2ce28a 100%);
   }
@@ -8906,7 +8906,7 @@ label.panel-block:hover {
   background-image: linear-gradient(141deg, #ffaf24 0%, #ffdd57 71%, #fffa70 100%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero.is-warning.is-bold .navbar-menu {
     background-image: linear-gradient(141deg, #ffaf24 0%, #ffdd57 71%, #fffa70 100%);
   }
@@ -8984,7 +8984,7 @@ label.panel-block:hover {
   background-image: linear-gradient(141deg, #ff0561 0%, #ff3860 71%, #ff5257 100%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero.is-danger.is-bold .navbar-menu {
     background-image: linear-gradient(141deg, #ff0561 0%, #ff3860 71%, #ff5257 100%);
   }
@@ -8995,14 +8995,14 @@ label.panel-block:hover {
   padding-top: 1.5rem;
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .hero.is-medium .hero-body {
     padding-bottom: 9rem;
     padding-top: 9rem;
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .hero.is-large .hero-body {
     padding-bottom: 18rem;
     padding-top: 18rem;
@@ -9049,7 +9049,7 @@ label.panel-block:hover {
   opacity: 0.3;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero-video {
     display: none;
   }
@@ -9059,7 +9059,7 @@ label.panel-block:hover {
   margin-top: 1.5rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 919px) {
   .hero-buttons .button {
     display: flex;
   }
@@ -9068,7 +9068,7 @@ label.panel-block:hover {
   }
 }
 
-@media screen and (min-width: 769px), print {
+@media screen and (min-width: 920px), print {
   .hero-buttons {
     display: flex;
     justify-content: center;
@@ -9104,6 +9104,6 @@ label.panel-block:hover {
 }
 
 .footer {
-  background-color: whitesmoke;
+  background-color: #509693;
   padding: 3rem 1.5rem 6rem;
 }
