@@ -218,11 +218,17 @@
 
 		#bar-chart-wrapper {
 			font-size: 0;
-			margin: 15px 12% 3px 12%;
+			margin-top: 3%;
+			margin-right: 12%;
+			margin-bottom: 1%;
+			margin-left: 12%;
 		}
 
 		#cells-wrapper {
-			margin: 0 12% 0 12%;
+			margin-top: 0;
+			margin-right: 12%;
+			margin-bottom: 0;
+			margin-left: 12%;
 		}
 
 		.swatch-label {
