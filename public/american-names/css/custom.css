@@ -331,16 +331,12 @@
 			font-size: 1.2em;
 		}
 
-		.legend-column {
-			/*margin-top: auto;*/
-		}
-
 		#about-legend-wrapper {
 			font-size: .8em;
 			text-align: center;
 		}
 
-		.about-link-legend {
+		#about-legend-wrapper a {
 			color: #696969;
 			text-decoration: underline;
 		}
@@ -356,11 +352,6 @@
 
 		#map-column {
 			border-right: 1px solid #cccccc;
-		}
-
-		#map-footer-wrapper {
-			font-size: .6em;
-			text-align: right;
 		}
 
 		#map-footer-wrapper a {

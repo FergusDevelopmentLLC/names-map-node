@@ -108,7 +108,7 @@
 						</div>
 						<div class="column is-12">
 							<div id='about-legend-wrapper'>
-								<a href='#' class='about-link about-link-legend'>About this Map</a>
+								Data Source: <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a><br/>
 							</div>
 						</div>
 					</div>
@@ -118,11 +118,6 @@
 						<div class="column is-12">
 							<div id='map-wrapper'></div>
 						</div>
-						<div class='column is-12  is-gapless' id='map-footer-column'>
-							<div id='map-footer-wrapper'>
-								Data Source: <a href='https://www.ssa.gov/oact/babynames/limits.html' target='_blank'>U.S. Social Security Administration</a>
-							</div>
-						</div>
 				</div>
       </div>
     </div>
@@ -131,7 +126,9 @@
   <footer class="footer">
     <div class="container">
       <div class="content has-text-centered footer-content">
-        <p>&copy; Copyright <span id='copyright-year'></span> <a href='https://fergusdevelopmentllc.github.io/'>Fergus Development LLC</a></p>
+        <p>
+					&copy; Copyright <span id='copyright-year'></span> <a href='https://fergusdevelopmentllc.github.io/'>Fergus Development LLC</a>
+				</p>
       </div>
     </div>
   </footer>
@@ -234,7 +231,6 @@
 			bar_fill_color = '#ffffff',
 			highlight_color = '#e6550d',
 			default_gray = '#696969';
-
 
 	handleBoyGirlClick();
 
@@ -693,7 +689,7 @@
 
 		states_svg.append("g")
 			.attr('id','states')
-			.attr('transform','translate(-120, -50) scale(1.15)')
+			.attr('transform','translate(-130, -70) scale(1.15)')
 			.selectAll("path")
 			.data( topojson.feature(statestopo, statestopo.objects.states).features )
 				.enter()
@@ -814,7 +810,7 @@
 		d3.select('#bar-chart-wrapper')
 			.append('svg')
 				.attr('viewBox', '0 0 205 75')
-				.attr('transform', 'translate (0, 0) scale(1)')
+				.attr('transform', 'translate (0, 0) scale(.98 1)')
 				.attr('id','bar-chart-svg');
 
 		var bar_chart_svg = d3.select('#bar-chart-svg');
@@ -873,7 +869,7 @@
 			.append('svg')
 				.attr("viewBox", "0 0 206 26")
 				// .attr("transform", "translate (0, -28) scale(.86)")
-				.attr("transform", "translate (0, 0) scale(1)")
+				.attr("transform", "translate (0, 0) scale(.98 1)")
 				.attr('id','cells-svg');
 
 		var cells_svg = d3.select('#cells-svg');
