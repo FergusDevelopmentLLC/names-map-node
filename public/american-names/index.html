@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
     <link rel="stylesheet" href="css/awesomplete.css" />
 
-		<!--<link rel="stylesheet" href="css/tingle.min.css" media="all">-->
 		<link rel="stylesheet" href="css/bulma.css">
 		<link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/fontello.css">
@@ -26,7 +25,6 @@
     <script src="https://unpkg.com/simple-statistics@4.1.0/dist/simple-statistics.min.js"></script>
     <script src="http://spin.js.org/spin.min.js"></script>
     <script src="js/spin_opt.js"></script>
-    <!-- <script src="js/tingle.min.js"></script> -->
 
 		<style>
 
@@ -56,7 +54,7 @@
   </section>
 
   <section class="section" id="main">
-    <div class="container">
+    <div class="container is-fluid">
       <div class="columns">
         <div class="column is-4 legend-column legend">
 					<div class="columns is-multiline">
@@ -92,7 +90,7 @@
 							<span id='since-wrapper'></span>
 						</div>
 						<div class="column is-12 bar-chart-column">
-							<div id='bar-chart-wrapper'></div>
+							<div id='bar-chart-wrapper' class='container is-fluid'></div>
 						</div>
 						<div class="column is-12 cells-column">
 							<div id='cells-wrapper'></div>
@@ -137,7 +135,7 @@
 	  <div class="modal-background"></div>
 	  <div class="modal-content">
 			<h1>American Names of the Last Century (1910-2016)</h1>
-	    <p>This map was created as a final project for <a href='http://newmapsplus.uky.edu/new-maps-plus-programs-and-online-courses'>MAP 673 – Design for Interactive Web Mapping</a> in the <a href='http://newmapsplus.uky.edu/' target='blank'>The New Maps Plus</a> Masters Program and the University of Kentucky. Much thanks to <a href='https://twitter.com/rgdonohue' target='blank'>@rgdonohue</a> for many helpful pointers on this project and others. This project was built with ...</p>
+	    <p>This map was created as a final project for <a href='http://newmapsplus.uky.edu/new-maps-plus-programs-and-online-courses'>MAP 673 – Design for Interactive Web Mapping</a> in the <a href='http://newmapsplus.uky.edu/' target='blank'>The New Maps Plus</a> Masters Program and the University of Kentucky. Much thanks to <a href='https://twitter.com/rgdonohue' target='blank'>@rgdonohue</a> for many helpful pointers on this project and others. This project was built with on ...</p>
 			<ul>
 				<li><a href='http://newmapsplus.uky.edu/' target='_blank'><img src='images/NMP_120x50.png' id='about-nmp' /></a></li>
 				<li><a href='https://d3js.org/'><img src='images/d3_40x38.png' /></a></li>
@@ -154,53 +152,52 @@
 				<div class="column is-4">
 					<div class='headshot'>
 			      <span class='effect fdr'></span>
-			      FDR effect? <a href='/names/d3/?name=Roosevelt&sex=M'>Roosevelt</a> (1933)
+			      FDR effect? <a href='/american-names/?name=Roosevelt&sex=M'>Roosevelt</a> (1933)
 			    </div>
 				</div>
 				<div class="column is-4">
 					<div class='headshot'>
 			      <span class='effect elvis'></span>
-			      <a href='/names/d3/?name=Elvis&sex=M'>Elvis</a> Presley effect?</a> (1957)
+			      <a href='/american-names/?name=Elvis&sex=M'>Elvis</a> Presley effect?</a> (1957)
 			    </div>
 				</div>
 				<div class="column is-4">
 					<div class='headshot'>
 			      <span class='effect jfk'></span>
-			      JFK effect? <a href='/names/d3/?name=Kennedy&sex=M'>Kennedy</a> (1964)
+			      JFK effect? <a href='/american-names/?name=Kennedy&sex=M'>Kennedy</a> (1964)
 			    </div>
 				</div>
 				<div class="column is-4">
 					<div class='headshot'>
 			      <span class='effect streisand'></span>
-			      <a href='/names/d3/?name=Barbra&sex=F'>Barbra</a> Streisand effect? (1966)
+			      <a href='/american-names/?name=Barbra&sex=F'>Barbra</a> Streisand effect? (1966)
 			    </div>
 				</div>
 				<div class="column is-4">
 					<div class='headshot'>
 			      <span class='effect keifer'></span>
-			      <a href='/names/d3/?name=Keifer&sex=M'>Keifer</a> Sutherland effect? (1991)
+			      <a href='/american-names/?name=Keifer&sex=M'>Keifer</a> Sutherland effect? (1991)
 			    </div>
 				</div>
 				<div class="column is-4">
 					<div class='headshot'>
 			      <span class='effect channing'></span>
-			      <a href='/names/d3/?name=Channing&sex=M'>Channing</a> Tatum effect? (2012)
+			      <a href='/american-names/?name=Channing&sex=M'>Channing</a> Tatum effect? (2012)
 			    </div>
 				</div>
 				<div class="column is-12">
 					<div class='headshot'>
 			      <span class='effect luke_leia'></span>
-			      Star Wars effect (spikes in 1980)? [<a href='/names/d3/?name=Luke&sex=M&yr=1980'>Luke</a>, <a href='/names/d3/?name=Leia&sex=F&yr=1980'>Leia</a>]
+			      Star Wars effect (spikes in 1980)? [<a href='/american-names/?name=Luke&sex=M&yr=1980'>Luke</a>, <a href='/american-names/?name=Leia&sex=F&yr=1980'>Leia</a>]
 			    </div>
 				</div>
 			</div>
-			<h2>Thanks!</h2>
-			<p>...For spending a bit of time here. Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>GitHub repo</a> and <a href='https://fergusdevelopmentllc.github.io/'>my portfolio</a> for a deeper look. Have a question, suggestion or find an interesting name? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>! For a similar project on the most popular U.S. Boys/Girls Names (1910-2016), check out the following <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>.</p>
+			<h2>Thanks for checking out my project!</h2>
+			<p>Check out the <a href='https://github.com/FergusDevelopmentLLC/names-map-node'>GitHub repo</a> and <a href='https://fergusdevelopmentllc.github.io/'>my portfolio</a> for a deeper look. Have a question, suggestion or find an interesting name? <a href='https://twitter.com/zippyFerguson' target='_blank'>Let me know</a>! For a similar project on the most popular U.S. Boys/Girls Names (1910-2016), check out the following <a href='http://104.236.16.91:8650/top-names-map/' target='_blank'>map</a>. - <a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a></p>
 			<div id='about-map-img-wrapper'>
 				<a href='http://104.236.16.91:8650/top-names-map/' target='_blank'><img src='images/top_names.png' /></a>
 			</div>
-	    <p id='about-sig'>-<a href='https://fergusdevelopmentllc.github.io/'>Will Carter</a></p>
-			<button class="modal-close is-large" aria-label="close"></button>
+	    <button class="modal-close is-large" aria-label="close"></button>
 	  </div>
 	</div>
 
@@ -219,7 +216,7 @@
 			occurrences = '',
 			total_occurrences_all_time = 0,
 			total_occurrences_for_year = 0,
-			color_key = 'cartocolor.Mint' //https://github.com/CartoDB/CartoColor/wiki/CARTOColor-Scheme-Names or colorbrewer.Greens http://127.0.0.1:8645/names/d3/?ck=colorbrewer.Greens
+			color_key = 'cartocolor.Mint' //https://github.com/CartoDB/CartoColor/wiki/CARTOColor-Scheme-Names or colorbrewer.Greens http://127.0.0.1:8645/american-names/?ck=colorbrewer.Greens
 			novalue_color = '#ffffff',
 			tooltip = '',
 			name_list = '',
@@ -689,7 +686,8 @@
 
 		states_svg.append("g")
 			.attr('id','states')
-			.attr('transform','translate(-130, -60) scale(1.15)')
+			// .attr('transform','translate(-130, -70) scale(1.15)')
+			.attr('transform','translate(-50, -15) scale(1)')
 			.selectAll("path")
 			.data( topojson.feature(statestopo, statestopo.objects.states).features )
 				.enter()
@@ -810,7 +808,7 @@
 		d3.select('#bar-chart-wrapper')
 			.append('svg')
 				.attr('viewBox', '0 0 205 75')
-				.attr('transform', 'translate (0, 0) scale(.98 1)')
+				// .attr('transform', 'translate (0, 0) scale(.98 1)')
 				.attr('id','bar-chart-svg');
 
 		var bar_chart_svg = d3.select('#bar-chart-svg');
