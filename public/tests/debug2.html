@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css">
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<style>
+
+    #svg-wrapper {
+			font-size: 0;
+			margin-bottom: 1%;
+			border: 1px solid blue;
+		}
+
+		.column {
+			border: 1px solid gray;
+		}
+
+		</style>
+</head>
+
+<body>
+
+	<section class="section" id="main">
+    <div class="container is-fluid">
+      <div class="columns">
+        <div class="column is-4">
+					<div class="columns is-multiline">
+						<div class="column is-12">
+							<div id='svg-wrapper' class='container is-fluid'>
+								<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 205 75">
+								  <rect width='205' height='75' fill='red' fill-opacity='.5' stroke-width='1px' stroke='red' />
+								</svg>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="column is-8">
+					8
+				</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+
+	// d3.select('#svg-wrapper')
+	// 	.append('svg')
+	// 		.attr('viewBox', '0 0 205 75')
+	// 		.attr('id','rect-svg');
+	//
+	// var rect_svg = d3.select('#rect-svg');
+	//
+	// rect_svg.append('rect')
+	// 	.attr('width', 205)
+	// 	.attr('height', 75)
+	// 	.style('fill', 'red')
+	// 	.style('fill-opacity', .5)
+	// 	.style('stroke-width', 'px')
+	// 	.style('stroke', 'red');
+
+	</script>
+
+</body>
+</html>

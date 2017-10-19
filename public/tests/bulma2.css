@@ -1,0 +1,12 @@
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 960px;
+    width: 960px;
+  }
+  .container.is-fluid {
+    margin-left: 32px;
+    margin-right: 32px;
+    max-width: none;
+    width: auto;
+  }
+}

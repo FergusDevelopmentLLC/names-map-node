@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-sass": "node-sass --output-style expanded bulma_customize/bulma.sass > public/american-names/css/bulma.css",
+    "build-sass": "node-sass --output-style expanded bulma_customize/bulma.sass > public/css/bulma.css",
     "start": "npm run build-sass && nodemon server.js"
   },
   "author": "",
