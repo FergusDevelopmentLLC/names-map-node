@@ -1,6 +1,6 @@
 # Popular U.S. Names of the Last Century (1910 - 2016)
 
-![](http://storage2.static.itmages.com/i/17/0911/h_1505100561_8959476_b8f21c9727.png "")
+![](http://storage1.static.itmages.com/i/17/1026/h_1509053992_1986747_fcc467b31a.png "")
 
 ### Topic
 
