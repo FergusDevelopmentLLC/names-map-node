@@ -469,20 +469,16 @@
 		}
 
 		@media screen and (max-width: 538px) {
+
 			.navbar-item {
-				font-size: .8em;
+				font-size: .7em;
 			}
-		}
 
-		@media screen and (max-width: 360px) {
-			.navbar-item {
-				font-size: .65em;
+			#min-year-label, #max-year-label {
+				font-size: .7em;
 			}
+
 		}
-
-
-
-
 
 		@media screen and (min-width: 1024px) {
 		  .container.is-fluid {

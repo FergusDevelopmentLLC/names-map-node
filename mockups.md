@@ -62,4 +62,4 @@ https://bl.ocks.org/curran/3a68b0c81991e2e94b19
 
 #### Final Responsive Version
 
-![](https://media.giphy.com/media/3ohhwAVbkam4Wv7rcQ/giphy.gif "")
+![](https://media.giphy.com/media/l378oQAE7tpNQXya4/giphy.gif "")
