@@ -164,8 +164,6 @@ http://whatsinaname.us/leaflet/
 
 ![](http://storage1.static.itmages.com/i/17/0911/h_1505096986_5526102_dbae722e6d.png "")
 
-![](http://storage3.static.itmages.com/i/17/0911/h_1505097046_2645969_c83f97308e.png "")
-
 #### Interesting names
 * Old Southern Names:
   * http://whatsinaname.us/?name=Dollie&sex=F
