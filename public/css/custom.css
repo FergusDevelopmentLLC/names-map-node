@@ -1,6 +1,6 @@
 
 		body {
-			background-color: whitesmoke;
+			background-color: #f2efe7;
 		}
 
 		div.tooltip {
@@ -348,7 +348,7 @@
 		}
 
 		#map-footer-column, #map-column {
-			background-color: #ffffff;
+			background-color: #f5f5f5;
 		}
 
 		#map-column {
