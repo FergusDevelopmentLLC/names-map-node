@@ -35,7 +35,7 @@ Source data imported into pop_name table via python script with columns:
 id, state, sex, year, name, occurrences
 ~~~~
 
-![](http://storage9.static.itmages.com/i/17/0828/h_1503960370_4537145_c3520122ac.png "")
+![](http://storage4.static.itmages.com/i/17/1026/h_1509054156_1732270_38d0153de0.png "")
 
 ### Thematic representation
 
@@ -134,5 +134,15 @@ I imagined expectant parents using the tool to research potential baby names for
   * http://whatsinaname.us/?name=Kiefer&sex=M
 * Channing Tatum effect?
   * http://whatsinaname.us/?name=Channing&sex=M
-* Star Wars effect (bump in 1978)?
+* Star Wars effect (bump in 1980)?
   * http://whatsinaname.us/?name=Leia&sex=F
+* Britney Spears effect (2000, Oops I Did It Again)?
+  * http://whatsinaname.us/?name=Britney&sex=F
+* Brian's Song (1971 tv movie tearjerker)?
+  * http://whatsinaname.us/?name=Brian&sex=M
+* Beyonce effect (2001)?
+  * http://whatsinaname.us/?name=Beyonce&sex=F
+* Marilyn Monroe plateau (1930s-1950s)?
+  * http://whatsinaname.us/?name=Marilyn&sex=F
+* Jacqueline Kennedy (1964, year after JFK killed)?
+  * http://whatsinaname.us/?name=Jacqueline&sex=F
