@@ -426,7 +426,7 @@
 
 		@media screen and (max-width: 1216px) {
 			#map-wrapper {
-				margin-top: 3%;
+				margin-top: 5%;
 			}
 
 			#about-legend-wrapper {
@@ -441,7 +441,7 @@
 
 		@media screen and (max-width: 1024px) {
 			#map-wrapper {
-				margin-top: 5%;
+				margin-top: 7%;
 			}
 
 			#about-legend-wrapper {
