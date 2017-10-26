@@ -1,5 +1,30 @@
 ### Mockups
 
+#### Leaflet prototype:
+
+http://whatsinaname.us/leaflet/
+![](http://storage3.static.itmages.com/i/17/0911/h_1505101581_7314008_10493da923.png "")
+
+#### Legend wireframe:
+
+![](http://storage3.static.itmages.com/i/17/0911/h_1505097386_1540974_fef790703f.png "")
+
+#### Bi-variate (map 2 names)
+
+![](http://storage1.static.itmages.com/i/17/0911/h_1505096468_4092358_b48c0cd0bd.png "")
+
+#### Experiments:
+
+![](http://storage2.static.itmages.com/i/17/0911/h_1505096535_3247971_aa76d0e156.png "")
+
+![](http://storage3.static.itmages.com/i/17/0911/h_1505096576_9497553_1b96437af9.png "")
+
+![](http://storage1.static.itmages.com/i/17/0911/h_1505096986_5526102_dbae722e6d.png "")
+
+![](http://storage3.static.itmages.com/i/17/0911/h_1505097046_2645969_c83f97308e.png "")
+
+![](http://storage5.static.itmages.com/i/17/0911/h_1505097554_9759760_2522635eb1.png "")
+
 #### Group all items in legend
 
 ![](http://storage5.static.itmages.com/i/17/0929/h_1506712374_2625729_1106264add.png "")

@@ -59,32 +59,9 @@ U.S. State choropleth map, also a slider explore the name year by year.
 
 * There is a state outline and tooltip affordance when hovering over state that shows number of births in that state in the current slider year.
 
-### Wireframes
+### Wireframes Mockups/Iterations
 
-#### Leaflet prototype:
-
-http://104.236.16.91:8645/names/leaflet/
-![](http://storage3.static.itmages.com/i/17/0911/h_1505101581_7314008_10493da923.png "")
-
-#### Legend wireframe:
-
-![](http://storage3.static.itmages.com/i/17/0911/h_1505097386_1540974_fef790703f.png "")
-
-#### Experiments:
-
-![](http://storage2.static.itmages.com/i/17/0911/h_1505096535_3247971_aa76d0e156.png "")
-
-![](http://storage3.static.itmages.com/i/17/0911/h_1505096576_9497553_1b96437af9.png "")
-
-![](http://storage1.static.itmages.com/i/17/0911/h_1505096986_5526102_dbae722e6d.png "")
-
-![](http://storage3.static.itmages.com/i/17/0911/h_1505097046_2645969_c83f97308e.png "")
-
-![](http://storage5.static.itmages.com/i/17/0911/h_1505097554_9759760_2522635eb1.png "")
-
-#### Bi-variate (map 2 names)
-
-![](http://storage1.static.itmages.com/i/17/0911/h_1505096468_4092358_b48c0cd0bd.png "")
+[lots of screenshots here](mockups.md)
 
 ###  Technology Stack
 
@@ -159,20 +136,20 @@ https://english.stackexchange.com/questions/39150/pluralization-of-names
 
 #### Interesting names
 * Old Southern Names:
-  * http://104.236.16.91:8645/names/d3/?name=Dollie&sex=F
-  * http://104.236.16.91:8645/names/d3/?name=Earnestine&sex=F
-  * http://104.236.16.91:8645/names/d3/?name=Charley&sex=M
-  * http://104.236.16.91:8645/names/d3/?name=Nettie&sex=F
-  * http://104.236.16.91:8645/names/d3/?name=Earnestine&sex=F
+  * http://whatsinaname.us/?name=Dollie&sex=F
+  * http://whatsinaname.us/?name=Earnestine&sex=F
+  * http://whatsinaname.us/?name=Charley&sex=M
+  * http://whatsinaname.us/?name=Nettie&sex=F
+  * http://whatsinaname.us/?name=Earnestine&sex=F
 * Theodore Roosevelt effect?
-  * http://104.236.16.91:8645/names/d3/?name=Roosevelt&sex=M
+  * http://whatsinaname.us/?name=Roosevelt&sex=M
 * Elvis Presley effect?
-  * http://104.236.16.91:8645/names/d3/?name=Elvis&sex=M
+  * http://whatsinaname.us/?name=Elvis&sex=M
 * Elon Musk effect?
-  * http://104.236.16.91:8645/names/d3/?name=Elon&sex=M
+  * http://whatsinaname.us/?name=Elon&sex=M
 * Kiefer Sutherland effect?
-  * http://104.236.16.91:8645/names/d3/?name=Kiefer&sex=M
+  * http://whatsinaname.us/?name=Kiefer&sex=M
 * Channing Tatum effect?
-  * http://104.236.16.91:8645/names/d3/?name=Channing&sex=M
+  * http://whatsinaname.us/?name=Channing&sex=M
 * Star Wars effect (bump in 1978)?
-  * http://104.236.16.91:8645/names/d3/?name=Leia&sex=F
+  * http://whatsinaname.us/?name=Leia&sex=F
