@@ -362,12 +362,12 @@
 		}
 
 		.footer-content {
-			color: #fff;
-			font-size: .8em;
+			color: #D3D3D3;
+			font-size: .75em;
 		}
 
 		.footer-content a {
-			color: #fff;
+			color: #D3D3D3;
 			text-decoration: underline;
 		}
 
