@@ -384,8 +384,8 @@
 		}
 
 		.sharethis-inline-share-buttons {
-			margin-top: 20px;
-			margin-bottom: 20px;
+			/*margin-top: 20px;*/
+			margin-bottom: 5px;
 		}
 
 		@media screen and (max-width: 920px) {
