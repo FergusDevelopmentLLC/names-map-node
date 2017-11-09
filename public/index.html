@@ -11,14 +11,14 @@
 		<meta property="og:url" content="http://www.whatsinaname.us" />
 		<meta property="og:title" content="American Names of the Last Century (1910-2016) #whatsinaname" />
 		<meta property="og:description" content="American Names of the Last Century (1910-2016). Based on #d3js, #nodejs, #PostgreSQL, #restapi." />
-		<meta property="og:image" content="https://fergusdevelopmentllc.github.io/images/names_800x400.png" />
+		<meta property="og:image" content="https://fergusdevelopmentllc.github.io/images/top_names_800x400.png" />
 
 		<!-- twitter card tags additive with the og: tags -->
 		<meta name="twitter:card" content="https://fergusdevelopmentllc.github.io/images/names_800x400.png">
 		<meta name="twitter:domain" value="www.whatsinaname.us" />
 		<meta name="twitter:title" value="American Names of the Last Century (1910-2016) #whatsinaname" />
 		<meta name="twitter:description" value="American Names of the Last Century (1910-2016). Based on #d3js, #nodejs, #PostgreSQL, #restapi." />
-		<meta name="twitter:image" content="https://fergusdevelopmentllc.github.io/images/names_800x400.png" />
+		<meta name="twitter:image" content="https://fergusdevelopmentllc.github.io/images/top_names_800x400.png" />
 		<meta name="twitter:url" value="http://www.whatsinaname.us" />
 
 		<link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
@@ -45,7 +45,17 @@
 		<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=59f25fa958ca400012955903&product=inline-share-buttons"></script>
 
 		<style>
-
+			.cryptodonate-btn {
+				margin-top: 10px;
+				margin-bottom: 10px;
+				margin-right: 10px;
+				padding:2px 3px 2px 3px !important;
+				/*border: 1px solid red !important;*/
+			}
+			.cryptodonate-btn span {
+				color: #000;
+				font-size: .8em;
+			}
 		</style>
 </head>
 
@@ -65,7 +75,29 @@
           </div>
           <div id="navbarMenuHeroA" class="navbar-menu">
             <a class="navbar-end navbar-item about-link about-link-header">About this Map</a>
+						<div id="cd772"></div>
+						<div id="cd800"></div>
+						<script>
+						  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="//lab.subinsb.com/projects/francium/cryptodonate/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+						    Fr.loadCD("cd772", {
+						      coin: "bitcoin",
+						      address: "14HgAu2QnDmkJb7G2ndfKaAbn2zJcMZkhD",
+						      buttonClass: "",
+						      dialogClass: "",
+						    });
+						  });
+
+						  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="//lab.subinsb.com/projects/francium/cryptodonate/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+						    Fr.loadCD("cd800", {
+						      coin: "ethereum",
+						      address: "0xbe17fF2053B446e0B1cb67a439E65016594Bb32B",
+						      buttonClass: "",
+						      dialogClass: "",
+						    });
+						  });
+						</script>
           </div>
+
         </div>
       </nav>
     </div>
@@ -143,8 +175,8 @@
     <div class="container">
       <div class="content has-text-centered footer-content">
 				<div class="sharethis-inline-share-buttons"></div>
-        <p>
-					&copy; Copyright <span id='copyright-year'></span>, <a href='https://fergusdevelopmentllc.github.io/'>FergusLLC</a><br/><a href='https://fergusdevelopmentllc.github.io/contact.html'>Hire me!</a>
+				<p>
+					&copy; <span id='copyright-year'></span> | <a href='https://fergusdevelopmentllc.github.io/'>FergusLLC</a> | <a href='https://fergusdevelopmentllc.github.io/contact.html'>Hire me!</a>
 				</p>
       </div>
     </div>
@@ -216,6 +248,38 @@
 			<div id='about-map-img-wrapper'>
 				<a href='http://whatsinaname.us/top-names/' target='_blank'><img src='images/top_names.png' /></a>
 			</div>
+			<div class="columns is-multiline">
+				<div class="column is-4">
+				</div>
+				<div class="column is-2">
+					<div id="cd712"></div>
+				</div>
+				<div class="column is-2">
+					<div id="cd188"></div>
+				</div>
+				<div class="column is-4"></div>
+			</div>
+
+			<script>
+			  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="//lab.subinsb.com/projects/francium/cryptodonate/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+			    Fr.loadCD("cd188", {
+			      coin: "ethereum",
+			      address: "0xbe17fF2053B446e0B1cb67a439E65016594Bb32B",
+			      buttonClass: "",
+			      dialogClass: "",
+			    });
+			  });
+
+			  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="//lab.subinsb.com/projects/francium/cryptodonate/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+			    Fr.loadCD("cd712", {
+			      coin: "bitcoin",
+			      address: "14HgAu2QnDmkJb7G2ndfKaAbn2zJcMZkhD",
+			      buttonClass: "",
+			      dialogClass: "",
+			    });
+			  });
+			</script>
+
 	    <button class="modal-close is-large" aria-label="close"></button>
 	  </div>
 	</div>
