@@ -35,12 +35,12 @@
     <script src="js/awesomplete.js"></script>
     <script src="js/colorbrewer.js"></script>
     <script src="js/cartocolor.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://unpkg.com/topojson-client@3"></script>
-    <script src="https://momentjs.com/downloads/moment.min.js"></script>
-    <script src="https://unpkg.com/simple-statistics@4.1.0/dist/simple-statistics.min.js"></script>
-    <script src="js/spin.js"></script>
-    <script src="js/spin_opt.js"></script>
+    <script src="js/d3.v4.min.js"></script>
+    <script src="js/topojson-client.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/simple-statistics.min.js"></script>
+    <!-- <script src="js/spin.js"></script> -->
+    <!-- <script src="js/spin_opt.js"></script> -->
 
 		<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=59f25fa958ca400012955903&product=inline-share-buttons"></script>
 
@@ -50,11 +50,25 @@
 				margin-bottom: 10px;
 				margin-right: 10px;
 				padding:2px 3px 2px 3px !important;
+				width: 75px;
 				/*border: 1px solid red !important;*/
+			}
+			#about-donate {
+				margin-left: auto;
+    		margin-right: auto;
+			}
+
+			#about-donate-wrapper {
+				/*border: 1px solid red;*/
+				text-align: center;
 			}
 			.cryptodonate-btn span {
 				color: #000;
-				font-size: .8em;
+				font-size: 12px;
+			}
+
+			#header-donate {
+				margin-left:18px;
 			}
 		</style>
 </head>
@@ -75,10 +89,14 @@
           </div>
           <div id="navbarMenuHeroA" class="navbar-menu">
             <a class="navbar-end navbar-item about-link about-link-header">About this Map</a>
-						<div id="cd772"></div>
-						<div id="cd800"></div>
+						<table id='header-donate'>
+							<tr>
+								<td><div id="cd772"></div></td>
+								<td><div id="cd800"></div></td>
+							</tr>
+						</table>
 						<script>
-						  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="//lab.subinsb.com/projects/francium/cryptodonate/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+						  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
 						    Fr.loadCD("cd772", {
 						      coin: "bitcoin",
 						      address: "14HgAu2QnDmkJb7G2ndfKaAbn2zJcMZkhD",
@@ -87,7 +105,7 @@
 						    });
 						  });
 
-						  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="//lab.subinsb.com/projects/francium/cryptodonate/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+						  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
 						    Fr.loadCD("cd800", {
 						      coin: "ethereum",
 						      address: "0xbe17fF2053B446e0B1cb67a439E65016594Bb32B",
@@ -248,20 +266,26 @@
 			<div id='about-map-img-wrapper'>
 				<a href='http://whatsinaname.us/top-names/' target='_blank'><img src='images/top_names.png' /></a>
 			</div>
-			<div class="columns is-multiline">
-				<div class="column is-4">
-				</div>
-				<div class="column is-2">
-					<div id="cd712"></div>
-				</div>
-				<div class="column is-2">
-					<div id="cd188"></div>
-				</div>
-				<div class="column is-4"></div>
+			<div id='about-donate-wrapper'>
+				<table id='about-donate'>
+					<tr>
+						<td><div id="cd712"></div></td>
+						<td><div id="cd188"></div></td>
+					</tr>
+				</table>
 			</div>
 
+			<!-- <div class="columns is-multiline">
+				<div class="column is-5">
+				</div>
+				<div class="column is-2">
+
+				</div>
+				<div class="column is-5"></div>
+			</div> -->
+
 			<script>
-			  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="//lab.subinsb.com/projects/francium/cryptodonate/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+			  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
 			    Fr.loadCD("cd188", {
 			      coin: "ethereum",
 			      address: "0xbe17fF2053B446e0B1cb67a439E65016594Bb32B",
@@ -270,7 +294,7 @@
 			    });
 			  });
 
-			  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="//lab.subinsb.com/projects/francium/cryptodonate/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+			  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
 			    Fr.loadCD("cd712", {
 			      coin: "bitcoin",
 			      address: "14HgAu2QnDmkJb7G2ndfKaAbn2zJcMZkhD",
@@ -390,7 +414,7 @@
 
 	function init() {
 
-		//spinner = new Spinner(opts).spin(spin_target);
+		// spinner = new Spinner(opts).spin(spin_target);
 
 		d3.select('.year-column').style('display', 'none');
 		d3.select('.births-column').style('display', 'none');
@@ -430,7 +454,8 @@
 
 		if(error || parseInt(name_data.length) == 0) {
 
-			//spinner.stop();
+			// spinner.stop();
+
 			d3.select('#spinner-wrapper').style('display','none');
 			// d3.select('#search-widget-wrapper').style('display','block');
 			d3.select('#button-boy').style('display','block');
@@ -471,7 +496,7 @@
 
 		addSlider();
 
-		//spinner.stop();
+		// spinner.stop();
 
 		d3.select('.year-column').style('display', 'block');
 		d3.select('.births-column').style('display', 'block');
