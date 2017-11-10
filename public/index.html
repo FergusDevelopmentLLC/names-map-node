@@ -46,31 +46,52 @@
 
 		<style>
 			.cryptodonate-btn {
-				margin-top: 10px;
-				margin-bottom: 10px;
-				margin-right: 10px;
-				padding:2px 3px 2px 3px !important;
-				width: 75px;
+				/*margin-top: 0px;*/
+				margin-bottom: 7px;
+				margin-right: 5px;
+				/*margin: 0 !important;*/
+				padding:2px 5px 2px 5px !important;
+
 				/*border: 1px solid red !important;*/
 			}
+
 			#about-donate {
 				margin-left: auto;
     		margin-right: auto;
 			}
 
 			#about-donate-wrapper {
-				/*border: 1px solid red;*/
 				text-align: center;
 			}
+
 			.cryptodonate-btn span {
 				color: #000;
 				font-size: 12px;
 			}
 
-			#header-donate {
-				margin-left:18px;
+			.sharethis-inline-share-buttons {
+
 			}
 
+			#cd772 {
+				/*border: 1px solid red;*/
+				display: inline-block !important;
+			}
+
+			#cd800 {
+				/*border: 1px solid red;*/
+				display: inline-block !important;
+			}
+
+			#footer-button-table {
+				/*width: 500px;*/
+			}
+
+			#footer-button-table td {
+				/*border: 1px solid red;*/
+				margin: 0;
+				padding: 0;
+			}
 
 		</style>
 </head>
@@ -93,28 +114,48 @@
             <a class="navbar-end navbar-item about-link about-link-header">About this Map</a>
 						<table id='header-donate'>
 							<tr>
-								<td><div id="cd772"></div></td>
-								<td><div id="cd800"></div></td>
+								<!-- <td><div id="cd772"></div></td>
+								<td><div id="cd800"></div></td> -->
 							</tr>
 						</table>
 						<script>
-						  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
-						    Fr.loadCD("cd772", {
-						      coin: "bitcoin",
-						      address: "14HgAu2QnDmkJb7G2ndfKaAbn2zJcMZkhD",
-						      buttonClass: "",
-						      dialogClass: "",
-						    });
-						  });
-
-						  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
-						    Fr.loadCD("cd800", {
-						      coin: "ethereum",
-						      address: "0xbe17fF2053B446e0B1cb67a439E65016594Bb32B",
-						      buttonClass: "",
-						      dialogClass: "",
-						    });
-						  });
+						  // !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+						  //   Fr.loadCD("cd772", {
+						  //     coin: "bitcoin",
+							// 		strings: {
+							//         button: 'Tips',
+							//         buttonTitle: 'Tip {coinName}',
+							//         coins: {
+							//             bitcoin: 'Bitcoin'
+							//         },
+							//         dialogHeader: 'Tip {coinName}',
+							//         dialogHelper: 'Please use this {coin} address to donate. Thanks!',
+							//         openInWallet: 'Click here to send this address to your wallet.'
+							//     },
+							// 		address: "14HgAu2QnDmkJb7G2ndfKaAbn2zJcMZkhD",
+						  //     buttonClass: "",
+						  //     dialogClass: "",
+						  //   });
+						  // });
+							//
+						  // !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+						  //   Fr.loadCD("cd800", {
+						  //     coin: "ethereum",
+							// 		strings: {
+							//         button: 'Tips',
+							//         buttonTitle: 'Tip {coinName}',
+							//         coins: {
+							//             bitcoin: 'Bitcoin'
+							//         },
+							//         dialogHeader: 'Tip {coinName}',
+							//         dialogHelper: 'Please use this {coin} address to donate. Thanks!',
+							//         openInWallet: 'Click here to send this address to your wallet.'
+							//     },
+						  //     address: "0xbe17fF2053B446e0B1cb67a439E65016594Bb32B",
+						  //     buttonClass: "",
+						  //     dialogClass: "",
+						  //   });
+						  // });
 						</script>
           </div>
 
@@ -195,6 +236,50 @@
     <div class="container">
       <div class="content has-text-centered footer-content">
 				<div class="sharethis-inline-share-buttons"></div>
+				<div id="cd772"></div>
+				<div id="cd800"></div>
+				<script>
+					!function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+						Fr.loadCD("cd772", {
+							coin: "bitcoin",
+							strings: {
+									button: 'Tips',
+									buttonTitle: 'Tip {coinName}',
+									coins: {
+										bitcoin: 'Bitcoin',
+										ethereum: 'Ether'
+									},
+									dialogHeader: 'Tip {coinName}',
+									dialogHelper: 'Please use this {coin} address to donate. Thanks!',
+									openInWallet: 'Click here to send this address to your wallet.'
+							},
+							address: "14HgAu2QnDmkJb7G2ndfKaAbn2zJcMZkhD",
+							buttonClass: "",
+							dialogClass: "",
+						});
+					});
+
+					!function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+						Fr.loadCD("cd800", {
+							coin: "ethereum",
+							strings: {
+									button: 'Tips',
+									buttonTitle: 'Tip {coinName}',
+									coins: {
+										bitcoin: 'Bitcoin',
+										ethereum: 'Ether'
+									},
+									dialogHeader: 'Tip {coinName}',
+									dialogHelper: 'Please use this {coin} address to donate. Thanks!',
+									openInWallet: 'Click here to send this address to your wallet.'
+							},
+							address: "0xbe17fF2053B446e0B1cb67a439E65016594Bb32B",
+							buttonClass: "",
+							dialogClass: "",
+						});
+					});
+				</script>
+
 				<p>
 					&copy; <span id='copyright-year'></span> | <a href='https://fergusdevelopmentllc.github.io/'>FergusLLC</a> | <a href='https://fergusdevelopmentllc.github.io/contact.html'>Hire me!</a>
 				</p>
@@ -279,19 +364,42 @@
 
 			<script>
 			  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
-			    Fr.loadCD("cd188", {
-			      coin: "ethereum",
-			      address: "0xbe17fF2053B446e0B1cb67a439E65016594Bb32B",
+			    Fr.loadCD("cd712", {
+			      coin: "bitcoin",
+						address: "14HgAu2QnDmkJb7G2ndfKaAbn2zJcMZkhD",
+						strings: {
+								button: 'Tips',
+								buttonTitle: 'Tip {coinName}',
+								coins: {
+									bitcoin: 'Bitcoin',
+									ethereum: 'Ether'
+								},
+								dialogHeader: 'Tip {coinName}',
+								dialogHelper: 'Please use this {coin} address to donate. Thanks!',
+								openInWallet: 'Click here to send this address to your wallet.'
+						},
+			      address: "14HgAu2QnDmkJb7G2ndfKaAbn2zJcMZkhD",
 			      buttonClass: "",
 			      dialogClass: "",
 			    });
 			  });
 
-			  !function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
-			    Fr.loadCD("cd712", {
-			      coin: "bitcoin",
-			      address: "14HgAu2QnDmkJb7G2ndfKaAbn2zJcMZkhD",
-			      buttonClass: "",
+				!function(c){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.onload=c,t.src="js/widget.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}(function(){
+			    Fr.loadCD("cd188", {
+			      coin: "ethereum",
+						address: "0xbe17fF2053B446e0B1cb67a439E65016594Bb32B",
+						strings: {
+								button: 'Tips',
+								buttonTitle: 'Tip {coinName}',
+								coins: {
+									bitcoin: 'Bitcoin',
+									ethereum: 'Ether'
+								},
+								dialogHeader: 'Tip {coinName}',
+								dialogHelper: 'Please use this {coin} address to donate. Thanks!',
+								openInWallet: 'Click here to send this address to your wallet.'
+						},
+						buttonClass: "",
 			      dialogClass: "",
 			    });
 			  });
