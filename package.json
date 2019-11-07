@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": ">=0.18.1",
     "bluebird": "^3.3.5",
     "body-parser": "^1.15.1",
     "css-toggle-switch": "^4.1.0",
@@ -20,7 +20,7 @@
     "font-awesome": "^4.7.0",
     "helmet": "^3.6.1",
     "joi": "^10.6.0",
-    "knex": "^0.12.0",
+    "knex": ">=0.19.5",
     "knex-postgis": "^0.2.2",
     "leaflet": "^1.2.0",
     "logger": "^0.0.1",
@@ -35,8 +35,8 @@
     "vue": "^2.4.2"
   },
   "devDependencies": {
-    "node-sass": "^4.5.3",
     "bulma": "^0.6.0",
+    "node-sass": "^4.13.0",
     "nodemon": "^1.11.0"
   }
 }
