@@ -1,4 +1,5 @@
 node_modules/
 knexfile.js
 *.lock
+package-lock.json
 npm-debug.log
